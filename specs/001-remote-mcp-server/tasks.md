@@ -7,7 +7,7 @@ How to run: In Codex, from the project root, use the Spec Kit skills mode: `$spe
 
 ## Implementation status — 2026-11-12
 
-Restored from the supplied task-list PDF. Only T0.1 has passed: all four decisions are dated in `spec.md` and `plan.md`. No other task check has passed and no implementation phase has started. Stop after each phase and show Maxx what passed its checks before moving on.
+Restored from the supplied task-list PDF. T0.1 and T0.2 have passed: all four decisions are dated in `spec.md` and `plan.md`, and the public GitHub repository contains committed copies of the constitution, spec, plan, and tasks. DNS routing (T0.3) and Railway/Postgres setup (T0.4) remain pending. Phase 1 has not started. Stop after each phase and show Maxx what passed its checks before moving on.
 
 Constitution §6 requires "Pre-sell before building" and says "Do not sell until checked" for the employer IP / conflict check. This conflicts with postponing sale validation to T6.3. T6.3 remains in its original phase as a later verification checkpoint; it does not waive the constitution's earlier gates.
 
@@ -19,11 +19,12 @@ Domain update confirmed 2026-11-12: use Maxx's already-owned `rigbyscloud.com`. 
 
 - [x] **T0.1** Resolve Open Decisions 1–4 in `plan.md`: price/duration, rate limits, hosting, stack. Confirmed 2026-11-12: $99 one-time / 90 days from redemption; paid 1,000 tool calls/day and free 20 searches/day; Railway; Python 3.12 + FastAPI + FastMCP.
   - Check: decisions recorded in `spec.md` Open Decisions section, dated. **Passed 2026-11-12.**
-- [ ] **T0.2** Create GitHub repo `rigbys-cloud-mcp` (public), add `.specify/` + `specs/001-remote-mcp-server/` from this folder.
+- [x] **T0.2** Create GitHub repo `rigbys-cloud-mcp` (public), add `.specify/` + `specs/001-remote-mcp-server/` from this folder.
   - Check: repo exists, constitution + spec + plan + tasks are committed.
+  - **Passed 2026-11-12:** public repository https://github.com/MaxxSomers1220/rigbys-cloud-mcp, commit `97c1f8c`. All four committed documents were fetched from GitHub and matched the reviewed local files.
 - [ ] **T0.3** Buy / confirm domain `rigbyscloud.com`, point DNS at the chosen host (do not deploy yet).
   - Check: DNS resolves to host (or host placeholder page loads over HTTPS).
-  - Status 2026-11-12: Maxx confirmed ownership and approved using this existing domain instead of the original `rigbys.cloud`. Public NS lookup confirms AWS Route 53 nameservers. `mcp.rigbyscloud.com` does not yet resolve; Railway routing has not been configured.
+  - Status 2026-11-12: Maxx confirmed ownership and approved using this existing domain. Public NS lookup confirms AWS Route 53 nameservers. `mcp.rigbyscloud.com` does not yet resolve; Railway routing has not been configured.
 - [ ] **T0.4** Create Railway hosting project + Postgres, set env vars `DATABASE_URL` only for now — no secrets in repo.
   - Check: empty Postgres reachable from a local migration run.
   - Status 2026-11-12: Maxx needs to create a Railway account. No project or database has been provisioned, `DATABASE_URL` is not configured locally, and the database connection check has not run.
