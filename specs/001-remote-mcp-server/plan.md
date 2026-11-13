@@ -13,7 +13,7 @@ This document was restored from the supplied plan PDF. No implementation phase h
 
 On 2026-11-12, Maxx confirmed in chat that both gates are complete: the employer IP / conflict check is cleared, and one paid pre-sale is recorded. This is user-confirmed status, not an independent audit of clearance or sale evidence. These confirmations satisfy the constitutional gates for proceeding once Phase 0 checks pass; no constitutional amendment or waiver is made. T6.3 remains unchecked until its Phase 6 review in task order.
 
-On 2026-11-12, Maxx confirmed GitHub and Railway are connected; paid Railway plan signup is still pending. Domain ownership is user-confirmed; DNS routing, hosting project, and Postgres connectivity remain unchecked in Phase 0.
+On 2026-11-12, Maxx confirmed GitHub and Railway are connected and reported a Railway trial with $5 in credits, expiring after 30 days or credit exhaustion. Railway permits databases during the trial (https://docs.railway.com/pricing/free-trial), so paid-plan activation is not a Phase 0 gate. The browser session available to Codex is still awaiting Railway sign-in/authorization. Domain ownership is user-confirmed; DNS routing, hosting project, and Postgres connectivity remain unchecked in Phase 0.
 
 ## Technical Context
 
