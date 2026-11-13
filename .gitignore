@@ -1,0 +1,12 @@
+# Secrets belong in environment variables, never in tracked files.
+.env
+.env.*
+*.pem
+*.key
+
+# Local runtime, caches, and temporary verification artifacts.
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+tmp/
