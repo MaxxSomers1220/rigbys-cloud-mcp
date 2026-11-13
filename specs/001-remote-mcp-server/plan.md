@@ -5,15 +5,26 @@
 - Constitution: `.specify/memory/constitution.md` v1.0.0
 - Date: 2026-11-12
 
-Status: Draft plan for Codex (`$speckit-implement` target). Nothing built yet. The four Open Decisions were confirmed on 2026-11-12; setup checks remain pending.
+Status: Phase 0 setup checks passed on 2026-11-12. The four Open Decisions are confirmed. Feed and MCP application implementation have not started. **STOP before Phase 1 and show Maxx the Phase 0 checks for review.**
 
 ## Implementation status — 2026-11-12
 
-This document was restored from the supplied plan PDF. No implementation phase has started. The constitution remains unchanged and governs the following source-document conflict: constitution §6 says "Pre-sell before building" and "Do not sell until checked" for the employer IP / conflict check; the task list places its sale checkpoint at T6.3. The original plan called that checkpoint Phase 5, but it is Phase 6 in `tasks.md`. The later checkpoint does not waive the earlier constitutional gates.
+This document was restored from the supplied plan PDF. Phase 0 is complete; Phase 1 has not started, and work is stopped for Maxx's phase review. The constitution remains unchanged and governs the following source-document conflict: constitution §6 says "Pre-sell before building" and "Do not sell until checked" for the employer IP / conflict check; the task list places its sale checkpoint at T6.3. The original plan called that checkpoint Phase 5, but it is Phase 6 in `tasks.md`. The later checkpoint does not waive the earlier constitutional gates.
 
-On 2026-11-12, Maxx confirmed in chat that both gates are complete: the employer IP / conflict check is cleared, and one paid pre-sale is recorded. This is user-confirmed status, not an independent audit of clearance or sale evidence. These confirmations satisfy the constitutional gates for proceeding once Phase 0 checks pass; no constitutional amendment or waiver is made. T6.3 remains unchecked until its Phase 6 review in task order.
+On 2026-11-12, Maxx confirmed in chat that both gates are complete: the employer IP / conflict check is cleared, and one paid pre-sale is recorded. This is user-confirmed status, not an independent audit of clearance or sale evidence. These confirmations satisfy the constitutional gates; no constitutional amendment or waiver is made. T6.3 remains unchecked until its Phase 6 review in task order. All Phase 0 checks have now passed, but Phase 1 remains stopped for Maxx's phase review.
 
-On 2026-11-12, Maxx confirmed GitHub and Railway are connected and reported a Railway trial with $5 in credits, expiring after 30 days or credit exhaustion. Railway permits databases during the trial (https://docs.railway.com/pricing/free-trial), so paid-plan activation is not a Phase 0 gate. The browser session available to Codex is still awaiting Railway sign-in/authorization. Domain ownership is user-confirmed; DNS routing, hosting project, and Postgres connectivity remain unchecked in Phase 0.
+On 2026-11-12, Maxx confirmed GitHub and Railway are connected and reported a Railway trial with $5 in credits, expiring after 30 days or credit exhaustion. Railway permits databases during the trial (https://docs.railway.com/pricing/free-trial), so paid-plan activation is not a Phase 0 gate. Railway access is verified. The `rigbys-cloud-mcp` project and private Postgres service are provisioned; the empty application service has no connected source and no active deployment. Its `DATABASE_URL` reference was committed using Railway's documented configuration-only action that skips redeployment. The local database migration preflight, removal of temporary public database access, and DNS routing checks all passed as recorded below.
+
+### Phase 0 infrastructure evidence — 2026-11-12
+
+- Project: https://railway.com/project/bc2ef276-6d7f-431e-b5ad-ca8aa706f7a8
+- Environment: `production`, ID `3e3f66d7-72f8-4978-8b81-ce06cb0e0629`.
+- Empty application service: `easygoing-sparkle`, ID `e8ee5640-6647-4a1c-be5b-e33b524798fa`; no GitHub repository or image connected, and no active deployment.
+- Postgres service: `Postgres`, ID `7b9ac7d4-5d35-4ee2-b885-30dd49af57c0`; online, restored to private access only after the approved local check. The actual local Python migration preflight connected over TLS to PostgreSQL 18.6, confirmed an empty database and public-schema CREATE privilege, and successfully rolled back temporary DDL/DML. The probe was absent afterward, with no Phase 1 application tables created.
+- The application's only configured user variable is `DATABASE_URL`, referencing the Postgres service through Railway's environment-variable reference system. No connection URL or password is stored in this repository.
+- `mcp.rigbyscloud.com` is allocated on Railway with target port `8000`. Public DNS resolves its CNAME to `cinv31ig.up.railway.app`; its ownership TXT value exactly matches Railway's required record. Route 53 zone `Z0351672KRBWDR8D6R7N` changed from five to seven records by adding only the required CNAME and ownership TXT names. This passes the DNS alternative in T0.3; it does not claim an issued TLS certificate or a working HTTP application.
+- User decisions confirmed 2026-11-12: both MCP and redemption use `mcp.rigbyscloud.com`; root/apex routing is not a v1 prerequisite. Maxx approved temporary public access to the empty Postgres database solely for the local TLS migration check, followed by immediate removal. The public proxy was removed immediately after that check; a new connection using the same credentials to the old endpoint was rejected. Railway then showed Postgres Online, no public proxy, Add Public Access available, and no staged changes remaining. No database credentials or connection URLs are recorded here.
+- Ordinary Railway **Deploy Changes** was rejected by automatic approval review because it could deploy the service. The subsequent environment-variable commit used the documented Alt-click configuration-only action (https://docs.railway.com/deployments/staged-changes); the application was then verified to have no connected source and no active deployment. Phase 0 ended without deploying the application.
 
 ## Technical Context
 
@@ -102,7 +113,7 @@ No trial `link_type` in v1.
 - **Service:** one Railway service, Python, uvicorn (or `fastmcp run` behind FastAPI mount). Port from `$PORT`.
 - **Jobs:** feed builder as a scheduled job on the same host (daily Grants.gov, weekly RePORTER/OpenAlex in v1). Log `feed_generated_at` + per-source counts on every run; `/health` exposes them.
 - **Env vars (host dashboard only):** `DATABASE_URL`, `GUMROAD_PRODUCT_ID` (for license verification), `MCP_SERVER_NAME=rigbys-cloud`, `FREE_TIER_DELAY_DAYS=7`. No secrets in repo.
-- **Domain:** `mcp.rigbyscloud.com` → host. `rigbyscloud.com/redeem` → same service. HTTPS via host.
+- **Domain:** `mcp.rigbyscloud.com` → host, serving both `/mcp` and `/redeem` on the same service. HTTPS via host. Root/apex routing is not a v1 prerequisite (confirmed 2026-11-12).
 
 ## Testing Strategy
 
@@ -127,4 +138,4 @@ All four decisions confirmed by Maxx on **2026-11-12**, asked and answered indiv
 3. **Hosting:** Railway.
 4. **Stack:** Python + FastAPI + FastMCP; Python 3.12 per this plan.
 
-Additional deployment decision — **2026-11-12:** Maxx authorized using the already-owned `rigbyscloud.com` domain in place of the draft domain. Use `https://mcp.rigbyscloud.com/mcp` for MCP and `https://rigbyscloud.com/redeem` for redemption. This is a user-authorized update to the source draft's domain and client-command URLs; the four original decisions above remain unchanged.
+Additional deployment decision — **2026-11-12:** Maxx authorized using `mcp.rigbyscloud.com`, under the already-owned domain, for both MCP and redemption. Use `https://mcp.rigbyscloud.com/mcp` for MCP and `https://mcp.rigbyscloud.com/redeem` for redemption. T0.3 requires routing this hostname only; root/apex routing is not a v1 prerequisite. This is a user-authorized update to the source draft's domain, buyer/renewal URLs, client-command URLs, and setup DNS scope; the four original decisions above remain unchanged.

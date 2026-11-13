@@ -37,7 +37,7 @@ Independent Test: Take a real Gumroad license key, redeem it, copy the two comma
 
 Acceptance Scenarios:
 
-1. Given a valid Gumroad license key, When the buyer pastes it at `https://rigbyscloud.com/redeem`, Then the page shows a single API key once, with the Codex and Claude Code copy-paste commands beside it.
+1. Given a valid Gumroad license key, When the buyer pastes it at `https://mcp.rigbyscloud.com/redeem`, Then the page shows a single API key once, with the Codex and Claude Code copy-paste commands beside it.
 2. Given the key is shown, When the buyer copies it into `RIGBYS_API_KEY` and runs the Codex command, Then `codex mcp list` shows `rigbys-cloud` and `/mcp` inside Codex shows it connected.
 3. Given an invalid or already-redeemed license key, When the buyer submits it, Then the page shows a plain error ("That license key isn't valid / has already been redeemed") — no stack trace, no key issued.
 
@@ -69,7 +69,7 @@ Acceptance Scenarios:
 
 ### Edge Cases
 
-- Expired key: server returns 401 with "Key expired — renew at rigbyscloud.com". No stack trace.
+- Expired key: server returns 401 with "Key expired — renew at mcp.rigbyscloud.com/redeem". No stack trace.
 - Revoked / rotated key: old key dies immediately on rotation; new key works at once.
 - Feed build fails on a given day: tools return the last good feed with its `feed_generated_at` visible — never silently serve stale data as fresh.
 - Rate limit hit: server returns 429 with `Retry-After`. Paid: 1,000 tool calls/day. Free: 20 searches/day (confirmed 2026-11-12).
@@ -89,7 +89,7 @@ Acceptance Scenarios:
 - **FR-008:** System MUST enforce the free tier: `opportunity_search` only, 7-day-delayed data, no scores, no `summary_short`. The other three tools MUST refuse free keys with a plain paid-required error.
 - **FR-009:** System MUST enforce expiry: a key's clock starts at redemption, not purchase. Expired keys return 401 with a plain renewal message.
 - **FR-010:** System MUST support key rotation from the redeem page: new key works immediately, old key is revoked immediately. No dashboard in v1.
-- **FR-011:** System MUST provide a redeem page at `https://rigbyscloud.com/redeem` that accepts a Gumroad license key (plus an email for key recovery) and shows the API key once, with the Codex and Claude Code commands beside it. No account creation beyond that email.
+- **FR-011:** System MUST provide a redeem page at `https://mcp.rigbyscloud.com/redeem` that accepts a Gumroad license key (plus an email for key recovery) and shows the API key once, with the Codex and Claude Code commands beside it. No account creation beyond that email.
 - **FR-012:** System MUST serve the feed from Grants.gov + NIH RePORTER + OpenAlex only in v1. Open opportunities refresh daily; awards/papers weekly in v1 (daily is the goal).
 - **FR-013:** Every record MUST carry `feed_generated_at`, per-field `source_refs`, and `methodology_version` on every scored record.
 - **FR-014:** System MUST be read-only in v1. No write tools.
@@ -153,4 +153,4 @@ All four decisions confirmed by Maxx on **2026-11-12**, asked and answered indiv
 3. **Hosting:** Railway.
 4. **Stack:** Python + FastAPI + FastMCP; Python 3.12 per the plan.
 
-Additional deployment decision — **2026-11-12:** Maxx authorized using the already-owned `rigbyscloud.com` domain in place of the draft domain. The MCP endpoint is `https://mcp.rigbyscloud.com/mcp` and redemption is `https://rigbyscloud.com/redeem`. This user-authorized deviation updates all URLs and normative client commands above; it does not add a fifth Open Decision.
+Additional deployment decision — **2026-11-12:** Maxx authorized using `mcp.rigbyscloud.com`, under the already-owned domain, for both MCP and redemption. The MCP endpoint is `https://mcp.rigbyscloud.com/mcp` and redemption is `https://mcp.rigbyscloud.com/redeem`. Root/apex routing is not a v1 prerequisite. This user-authorized deviation updates the draft domain, buyer/renewal URLs, normative client commands, and T0.3's DNS scope; it does not add a fifth Open Decision.

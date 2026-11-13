@@ -4,7 +4,7 @@ Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Nothing built 
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
 
-Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Maxx also confirmed employer IP clearance and one paid pre-sale on 2026-11-12; these statements have not been independently audited. Phase 0 setup checks remain pending; see the implementation-status notes in the plan and tasks.
+Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Maxx also confirmed employer IP clearance and one paid pre-sale on 2026-11-12; these statements have not been independently audited. All four Phase 0 setup checks passed on 2026-11-12. Work is stopped before Phase 1 for phase review; see the evidence in the plan and tasks.
 
 ## Layout
 
@@ -53,7 +53,7 @@ Do not run `$speckit-implement` until the four Open Decisions in `plan.md` are r
 
 - **Product:** Rigby's Cloud Grants Feed #1, served as a hosted remote MCP server.
 - **Server:** Streamable HTTP at `https://mcp.rigbyscloud.com/mcp`, server name `rigbys-cloud`.
-- **Auth:** one Bearer API key per buyer, from a Gumroad license redeemed at `rigbyscloud.com/redeem`.
+- **Auth:** one Bearer API key per buyer, from a Gumroad license redeemed at `https://mcp.rigbyscloud.com/redeem`. Maxx confirmed on 2026-11-12 that MCP and redemption share this hostname; root/apex routing is not a v1 prerequisite.
 - **Tools (4 only):** `opportunity_search`, `opportunity_get`, `opportunity_links`, `gap_for_topic`. Read-only.
 - **Pay:** timed MCP pass ($99 one-time / 90 days from redemption, confirmed 2026-11-12) + $99 one-time snapshot file (separate product). No subscriptions for now.
 - **Free tier:** `opportunity_search` only, 7-day-delayed, no scores/summaries; 20 searches/day (confirmed 2026-11-12).
