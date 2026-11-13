@@ -13,7 +13,7 @@ This document was restored from the supplied plan PDF. No implementation phase h
 
 On 2026-11-12, Maxx confirmed in chat that both gates are complete: the employer IP / conflict check is cleared, and one paid pre-sale is recorded. This is user-confirmed status, not an independent audit of clearance or sale evidence. These confirmations satisfy the constitutional gates for proceeding once Phase 0 checks pass; no constitutional amendment or waiver is made. T6.3 remains unchecked until its Phase 6 review in task order.
 
-Maxx reports that the Railway account still needs to be created. Domain ownership is user-confirmed; DNS routing, hosting project, and Postgres connectivity remain unchecked in Phase 0.
+On 2026-11-12, Maxx confirmed GitHub and Railway are connected; paid Railway plan signup is still pending. Domain ownership is user-confirmed; DNS routing, hosting project, and Postgres connectivity remain unchecked in Phase 0.
 
 ## Technical Context
 
