@@ -13,7 +13,7 @@ Constitution §6 requires "Pre-sell before building" and says "Do not sell until
 
 On 2026-11-12, Maxx confirmed in chat that the employer IP / conflict check is cleared and one paid pre-sale is recorded. These are user confirmations, not independently audited clearance or sale evidence. The constitutional gates are satisfied by these confirmations; Phase 1 may begin once Phase 0 checks pass and its results have been shown to Maxx. No constitutional amendment or waiver is made. T6.3 remains unchecked until its Phase 6 review in task order.
 
-Domain update confirmed 2026-11-12: use Maxx's already-owned `rigbyscloud.com`. Maxx reports the Railway account still needs creating. T0.3 and T0.4 remain unchecked until DNS routing and database connectivity checks pass; T0.2 remains unchecked until the restored documents are committed and pushed to the public repo.
+Domain update confirmed 2026-11-12: use Maxx's already-owned `rigbyscloud.com`. Maxx confirmed GitHub and Railway are connected; paid Railway plan signup is still pending. T0.1 and T0.2 have passed. T0.3 and T0.4 remain unchecked until DNS routing and database connectivity checks pass.
 
 ## Phase 0 — Decisions & setup (blocking)
 
@@ -27,7 +27,7 @@ Domain update confirmed 2026-11-12: use Maxx's already-owned `rigbyscloud.com`. 
   - Status 2026-11-12: Maxx confirmed ownership and approved using this existing domain. Public NS lookup confirms AWS Route 53 nameservers. `mcp.rigbyscloud.com` does not yet resolve; Railway routing has not been configured.
 - [ ] **T0.4** Create Railway hosting project + Postgres, set env vars `DATABASE_URL` only for now — no secrets in repo.
   - Check: empty Postgres reachable from a local migration run.
-  - Status 2026-11-12: Maxx needs to create a Railway account. No project or database has been provisioned, `DATABASE_URL` is not configured locally, and the database connection check has not run.
+  - Status 2026-11-12: Maxx confirmed GitHub and Railway are connected; paid Railway plan signup is still pending. Project/database provisioning, local `DATABASE_URL` configuration, and the database connection check have not been verified.
 
 ## Phase 1 — Feed build (feed first, server second)
 
