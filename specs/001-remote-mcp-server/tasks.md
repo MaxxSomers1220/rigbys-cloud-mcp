@@ -7,11 +7,16 @@ How to run: In Codex, from the project root, use the Spec Kit skills mode: `$spe
 
 ## Current status — 2026-11-17
 
-Phase 1 completed under Maxx's explicit instruction after the correction below.
-T1.1–T1.8 and the local Postgres gate passed; **STOP before Phase 2**. Automated
-checks: 52 passed. No paid pass has been sold as of 2026-11-16, and T6.3 remains
-unchecked. Maxx states this project is definitely not part of what he does for
-work; no broader employer IP clearance is claimed. No production deployment.
+Phase 2 local MCP service is complete under Maxx's explicit instruction. All six
+T2 checks passed; **STOP before Phase 3**. Full suite: 110 passed, including the
+original 52. Authenticated MCP Inspector lists and calls exactly four tools
+against the real Phase 1 feed. Evidence: `docs/evidence/phase2/`.
+
+No paid pass has been sold. Synthetic test credentials and redemption references
+are not sales; they were removed after verification. T6.3 remains unchecked. Maxx
+states this project is definitely not part of what he does for work; no broader
+employer IP clearance is claimed. No redemption page, HTTP health endpoint,
+production deployment or later-phase work was started.
 
 ## Implementation status — 2026-11-12
 
@@ -70,18 +75,29 @@ Domain update confirmed 2026-11-12: use `mcp.rigbyscloud.com`, under Maxx's alre
 
 ## Phase 2 — MCP server
 
-- [ ] **T2.1** Scaffold FastAPI + FastMCP service, server name `rigbys-cloud`, version `1.0.0`, Streamable HTTP at `/mcp`, server instructions from `spec.md` §2.
+- [x] **T2.1** Scaffold FastAPI + FastMCP service, server name `rigbys-cloud`, version `1.0.0`, Streamable HTTP at `/mcp`, server instructions from `spec.md` §2.
   - Check: server starts locally, MCP Inspector connects and lists 4 tools.
-- [ ] **T2.2** Implement `opportunity_search` (FR-003) as a thin read over Postgres.
+  - **Passed 2026-11-17:** Actual MCP Inspector connected to local /mcp, initialized rigbys-cloud 1.0.0 and listed exactly four read-only tools; stateless Streamable HTTP JSON. `docs/evidence/phase2/t2-1-inspector.json`, `final-inspector.json`.
+- [x] **T2.2** Implement `opportunity_search` (FR-003) as a thin read over Postgres.
   - Check: topic + deadline filters return the right records from seeded data; limit caps at 25.
-- [ ] **T2.3** Implement `opportunity_get` (FR-004) — full unified record, all five layers.
+  - **Passed 2026-11-17:** Seeded topic/sponsor/inclusive UTC-deadline filters, 10/25 limits, observed-only gap threshold and neutral flags pass; actual feed search returns source-backed results. `tests/test_mcp_search.py`, `test_mcp_review.py`, `docs/evidence/phase2/t2-2-search.json`.
+- [x] **T2.3** Implement `opportunity_get` (FR-004) — full unified record, all five layers.
   - Check: returned record matches the seeded record field-for-field, including `methodology_version` and `source_refs`.
-- [ ] **T2.4** Implement `opportunity_links` (FR-005) — edges only.
+  - **Passed 2026-11-17:** Every seeded full record equals persisted JSON field-for-field; actual neutral record gg-355219 also matches exactly with all scores 50 and evidence flag retained. `tests/test_mcp_get.py`, `docs/evidence/phase2/t2-3-get.json`, `final-inspector.json`.
+- [x] **T2.4** Implement `opportunity_links` (FR-005) — edges only.
   - Check: edges match `opportunity_links` table; no scores/summaries in output.
-- [ ] **T2.5** Implement `gap_for_topic` (FR-006) — aggregation query.
+  - **Passed 2026-11-17:** Edges match stored fields and via_award topology, with confidence/URLs and no scores/summaries; actual six-edge graph verified by Inspector. `tests/test_mcp_links.py`, `docs/evidence/phase2/t2-4-links.json`.
+- [x] **T2.5** Implement `gap_for_topic` (FR-006) — aggregation query.
   - Check: counts and top-5 lists match a hand-computed aggregation on seeded data.
-- [ ] **T2.6** Implement auth middleware (FR-007–FR-010): Bearer check, tier + expiry, free-tier tool refusal, rate limits (paid 1,000 tool calls/day, free 20 searches/day, confirmed 2026-11-12), 401/429 plain messages.
+  - **Passed 2026-11-17:** Hand-computed fixture: 8 opportunities, 6 distinct awards, 6 papers; score medians 35/45/55/65 and both top-five lists match. Neutral/mixed/empty/year-window cases pass; real thin topic produces no invented rankings. `tests/test_mcp_gap.py`, `docs/evidence/phase2/t2-5-gap.json`.
+- [x] **T2.6** Implement auth middleware (FR-007–FR-010): Bearer check, tier + expiry, free-tier tool refusal, rate limits (paid 1,000 tool calls/day, free 20 searches/day, confirmed 2026-11-12), 401/429 plain messages.
   - Check: valid key passes; expired key → 401; free key on `opportunity_get` → paid-required error; rate limit → 429 with `Retry-After`.
+  - **Passed 2026-11-17:** Valid keys and all four paid calls pass; missing/expired/revoked keys HTTP 401, free paid tools HTTP 403, caps 20/1000 HTTP 429 with Retry-After. Twenty concurrent paid attempts at 999 yield one success and nineteen 429s. Genuine sealed snapshots obey the exact seven-day boundary and exclude paid fields; current real history is honestly unavailable. `tests/test_mcp_auth.py`, `test_mcp_snapshots.py`, `test_mcp_http.py`, `docs/evidence/phase2/t2-6-http-review.json`, `final-inspector.json`.
+
+**Phase 2 checks passed locally — STOP before Phase 3.** All 110 tests pass. No
+public deployment or real buyer/key-issuance flow is claimed; temporary synthetic
+credentials were cleaned up. The 789-record feed and its coverage limitations are
+preserved. Free history must age naturally before real free results are available.
 
 ## Phase 3 — Redeem page + keys
 

@@ -1,0 +1,158 @@
+{
+  "check": "Final Phase 2 secured MCP Inspector integration",
+  "result": "passed",
+  "checked_at": "2026-11-17T13:38:33.121929+00:00",
+  "client": "@modelcontextprotocol/inspector 2.15.0 CLI",
+  "endpoint": "http://127.0.0.1:37849/mcp",
+  "transport": "Streamable HTTP JSON/stateless",
+  "credentials": "Runtime-random synthetic local test keys, hash-only storage, cleaned afterward. The synthetic redemption is not a sale.",
+  "checks": {
+    "missing_bearer": {
+      "status": 401,
+      "plain_error": true
+    },
+    "phase_scope": {
+      "redeem_http": 404,
+      "health_http": 404,
+      "deployed": false
+    },
+    "free_paid_tool": {
+      "status": 403,
+      "plain_paid_required": true
+    },
+    "expired_key": {
+      "status": 401,
+      "plain_renewal_message": true
+    },
+    "paid_quota": {
+      "daily_cap": 1000,
+      "status": 429,
+      "retry_after_seconds": 37286,
+      "plain_error": true
+    },
+    "free_quota": {
+      "daily_cap": 20,
+      "status": 429,
+      "retry_after_seconds": 37286,
+      "plain_error": true
+    },
+    "initialize": {
+      "server_info": {
+        "name": "rigbys-cloud",
+        "version": "1.0.0"
+      },
+      "protocol_version": "2025-11-25",
+      "instructions_preserve_neutral_honesty": true
+    },
+    "tools_list": {
+      "count": 4,
+      "names": [
+        "opportunity_search",
+        "opportunity_get",
+        "opportunity_links",
+        "gap_for_topic"
+      ],
+      "all_read_only": true
+    },
+    "opportunity_search": {
+      "count": 3,
+      "ids": [
+        "gg-357570",
+        "gg-356879",
+        "gg-359645"
+      ],
+      "neutral_flags_present": true,
+      "feed_generated_at": "2026-11-17T04:54:38.690560+00:00"
+    },
+    "opportunity_get": {
+      "id": "gg-355219",
+      "matches_postgres_field_for_field": true,
+      "score_status": "insufficient_data_neutral_placeholder",
+      "neutral_scores": [
+        50,
+        50,
+        50,
+        50
+      ],
+      "methodology_version": "research-signals-1.0.0",
+      "title_matches": true
+    },
+    "opportunity_links": {
+      "id": "gg-353623",
+      "edge_count": 6,
+      "edge_types": [
+        "award",
+        "paper"
+      ],
+      "no_scores_or_summaries": true
+    },
+    "gap_neutral_honesty": {
+      "sample_status": "insufficient_data",
+      "thin_sample": true,
+      "scored_count": 0,
+      "neutral_count": 5,
+      "neglected_rank_count": 0,
+      "crowded_rank_count": 0,
+      "medians_are_null": true
+    },
+    "gap_for_topic": {
+      "response_keys": [
+        "as_of",
+        "award_period_unknown_count",
+        "awarded_grant_count",
+        "feed_generated_at",
+        "grouping_method",
+        "insufficient_data_count",
+        "median_gap_score",
+        "median_growth_score",
+        "median_momentum_score",
+        "median_novelty_score",
+        "methodology_version",
+        "methodology_versions",
+        "neutral_placeholder_count",
+        "neutral_placeholder_status",
+        "neutral_placeholder_value",
+        "notice",
+        "open_opportunity_count",
+        "opportunity_count_basis",
+        "paper_count",
+        "paper_period_unknown_count",
+        "sample_status",
+        "scored_opportunity_count",
+        "source_counts",
+        "thin_sample",
+        "top_crowded_subtopics",
+        "top_neglected_subtopics",
+        "topic",
+        "window_months",
+        "window_precision",
+        "window_start"
+      ],
+      "count_fields": {
+        "opportunity_count_basis": "open_in_last_successful_feed",
+        "open_opportunity_count": 5,
+        "awarded_grant_count": 25,
+        "paper_count": 0,
+        "source_counts": {
+          "grants_gov": 5,
+          "nih_reporter": 25,
+          "openalex": 0
+        },
+        "award_period_unknown_count": 0,
+        "paper_period_unknown_count": 0,
+        "methodology_version": "research-signals-1.0.0",
+        "scored_opportunity_count": 0,
+        "insufficient_data_count": 5,
+        "neutral_placeholder_count": 5
+      }
+    },
+    "free_search": {
+      "status": "delayed_feed_unavailable",
+      "record_count": 0,
+      "current_feed_fallback": false,
+      "no_aged_history_invented": true
+    }
+  },
+  "real_phase1_opportunities": 789,
+  "synthetic_credentials_cleaned": true
+}

@@ -1,0 +1,58 @@
+{
+  "task": "T2.6 independent real HTTP/MCP review",
+  "checked_at": "2026-11-17T13:39:03.512086+00:00",
+  "test_file": "tests/test_mcp_http.py",
+  "test_execution": "All nine real HTTP/MCP integration tests passed together in the final invocation: pytest -q tests/test_mcp_http.py (16.40 seconds).",
+  "passed": 9,
+  "failed": 0,
+  "transport": "Actual loopback uvicorn HTTP listener with FastAPI/FastMCP stateless Streamable HTTP JSON responses and isolated PostgreSQL.",
+  "credential_scope": "Random runtime test tokens in process environment; synthetic redemption references explicitly labeled not sales. No production credentials, sale, licensing flow, deployment or public hosting involved.",
+  "checks": [
+    {
+      "check": "MCP SDK initialization and all four paid tool calls",
+      "result": "passed",
+      "detail": "Server rigbys-cloud version 1.0.0, exactly four tools; search preserves evidence, get exact stored JSON, links graph-only, gap matches hand fixture. Handshake/list not charged; four calls charged."
+    },
+    {
+      "check": "HTTP authentication failures",
+      "result": "passed",
+      "detail": "Missing, Basic, empty, duplicate, unknown, short, prefix/tier mismatch, revoked and expired keys rejected HTTP 401; aged redemption cannot be extended by later stored expiry. GET/DELETE authenticated; query token cannot grant access."
+    },
+    {
+      "check": "Free authorization",
+      "result": "passed",
+      "detail": "Get/links/gap and min_gap_score refused HTTP 403 before search quota consumption. No-history search reports delayed_feed_unavailable and returns no current feed."
+    },
+    {
+      "check": "Genuine delayed history",
+      "result": "passed",
+      "detail": "Immutable DB-captured snapshot excluded one microsecond before seven days, available exactly seven days; scores/summaries/linked graph metadata absent recursively. Current paid record unchanged."
+    },
+    {
+      "check": "Daily quotas and concurrency",
+      "result": "passed",
+      "detail": "Free 20 calls accepted, 21st HTTP 429 with Retry-After to UTC midnight. Paid counter 999 with 20 concurrent attempts yields exactly one HTTP 200 and 19 HTTP 429 and final counter 1000."
+    },
+    {
+      "check": "Malformed/batch/oversized requests",
+      "result": "passed",
+      "detail": "Malformed JSON, array batches and null return HTTP 400 without quota charge. Actual chunked transfer over 64 KiB rejected HTTP 413. Paid unknown tool and invalid tool arguments count as attempts."
+    },
+    {
+      "check": "Revocation and session-header isolation",
+      "result": "passed",
+      "detail": "Revocation after successful call takes effect on next HTTP request; reused untrusted session header does not transfer paid privilege to free token."
+    },
+    {
+      "check": "Concurrent request-principal isolation",
+      "result": "passed",
+      "detail": "Twenty interleaved paid/free searches keep paid payloads and free unavailability/whitelist responses separate, with ten quota charges per key."
+    },
+    {
+      "check": "Trailing slash and phase boundaries",
+      "result": "passed",
+      "detail": "POST /mcp/ returns HTTP 200 without redirect and consumes exactly one call. /redeem, /health, /sse and /docs remain HTTP 404."
+    }
+  ],
+  "reviewer": "Independent coding agent; no independent human sign-off or external client launch certification claimed."
+}

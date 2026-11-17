@@ -1,10 +1,36 @@
 # Rigby's Cloud — Remote MCP Server (Spec Kit project)
 
-Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phase 1 feed implemented and verified on 2026-11-17; no MCP service is built or deployed.
+Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phase 1 feed and Phase 2 local MCP service implemented and verified on 2026-11-17. Nothing is deployed.
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
 
-Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phase 1 was explicitly authorized in this session and is complete; work stops before Phase 2. See the evidence in the plan and tasks.
+Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the production service and buyer client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phase 1 and Phase 2 were explicitly authorized and are complete; work stops before Phase 3. See the evidence in the plan and tasks.
+
+## Phase 2 handoff — 2026-11-17
+
+The local FastAPI/FastMCP service is implemented: `rigbys-cloud` version `1.0.0`,
+stateless Streamable HTTP JSON at `/mcp`, exactly four read-only tools. Search,
+full-record reads, stored edges and source-backed portfolio aggregation pass their
+seeded Postgres checks. Neutral evidence flags and source timestamps are retained;
+neutral placeholders are never turned into gap findings.
+
+Bearer verification, redemption-based expiry, immediate revocation, free-tier
+restrictions and atomic daily quotas are verified over real HTTP. Immutable basic
+search snapshots implement genuine seven-day delay. The current real snapshot is
+not old enough yet: free search returns `delayed_feed_unavailable` rather than
+backdating data or falling back to current rows. Synthetic aged-snapshot tests
+verify the eventual allowed response has no scores or summaries.
+
+**All 110 automated tests pass**, including the original 52. Authenticated MCP
+Inspector initializes the server, lists exactly four tools and calls all four
+against the real 789-record Phase 1 feed. Test credentials/redemptions are synthetic
+and are not sales; they were removed afterward. No paid pass has been sold and
+T6.3 remains unchecked.
+
+[Local setup and contracts](docs/mcp-service.md) · [Phase 2 evidence](docs/evidence/phase2/).
+Stop before Phase 3: there is no redemption/key-issuance/rotation page, HTTP health
+endpoint, public deployment or later-phase client verification. Railway remains
+unchanged. The Phase 1 handoff below is the historical feed checkpoint.
 
 ## Phase 1 handoff — 2026-11-17
 

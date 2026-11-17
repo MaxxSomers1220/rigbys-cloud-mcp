@@ -1,0 +1,42 @@
+{
+  "task": "T2.5",
+  "result": "passed",
+  "seeded_checks": "hand-computed distinct counts, medians and top-five lists; thin/neutral/mixed methods; source-year windows",
+  "real_feed_result": {
+    "topic": "rare disease",
+    "window_months": 12,
+    "window_start": "2025-11-17",
+    "as_of": "2026-11-17",
+    "window_precision": "source-year intervals overlap the requested calendar window; not exact award/publication dates",
+    "open_opportunity_count": 5,
+    "awarded_grant_count": 25,
+    "paper_count": 0,
+    "source_counts": {
+      "grants_gov": 5,
+      "nih_reporter": 25,
+      "openalex": 0
+    },
+    "award_period_unknown_count": 0,
+    "paper_period_unknown_count": 0,
+    "methodology_version": "research-signals-1.0.0",
+    "methodology_versions": [
+      "research-signals-1.0.0"
+    ],
+    "scored_opportunity_count": 0,
+    "insufficient_data_count": 5,
+    "neutral_placeholder_count": 5,
+    "neutral_placeholder_value": 50,
+    "neutral_placeholder_status": "insufficient_data_neutral_placeholder",
+    "median_growth_score": null,
+    "median_momentum_score": null,
+    "median_novelty_score": null,
+    "median_gap_score": null,
+    "grouping_method": "normalized opportunity-title groups; not scientific taxonomy",
+    "top_neglected_subtopics": [],
+    "top_crowded_subtopics": [],
+    "sample_status": "insufficient_data",
+    "thin_sample": true,
+    "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+    "notice": "Research counts are distinct source identifiers within overlapping fiscal/calendar-year intervals, not exact award or publication dates. Scores remain their original versioned portfolio proxies; they are not recalculated for the requested window. Neutral 50 placeholders are excluded from medians and rankings. A thin sample cannot establish a confident funding gap. Mixed or missing methodologies suppress comparative scores and rankings. Opportunity-title groups are not a scientific taxonomy. High gap proxies are not proof of neglect or underfunding; broad FOA and award-core publication associations do not prove current-opportunity funding or topic relevance."
+  }
+}

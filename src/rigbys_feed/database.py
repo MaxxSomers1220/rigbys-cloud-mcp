@@ -116,6 +116,8 @@ def publish_feed(conn, records, generated_at, source_counts, source_status, cach
         run_id = conn.execute('''INSERT INTO feed_runs
             (feed_generated_at,status,source_counts,source_status) VALUES (%s,'success',%s,%s)
             RETURNING run_id''', (generated_at,Jsonb(source_counts),Jsonb(source_status))).fetchone()[0]
+        from rigbys_mcp.snapshots import capture_snapshot
+        capture_snapshot(conn, run_id)
     return run_id
 
 

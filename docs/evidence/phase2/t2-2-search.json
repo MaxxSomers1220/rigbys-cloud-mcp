@@ -1,0 +1,16 @@
+{
+  "task": "T2.2",
+  "result": "passed",
+  "seeded_checks": "tests/test_mcp_search.py: topic, inclusive deadline filters, sponsor alias, limit 10/25, score filter, neutral flags, injection/invalid inputs",
+  "real_feed_check": {
+    "topic": "rare disease",
+    "sponsor": "NIH",
+    "count": 3,
+    "ids": [
+      "gg-357570",
+      "gg-356879",
+      "gg-359645"
+    ],
+    "feed_generated_at": "2026-11-17T04:54:38.690560+00:00"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "task": "T2.1",
+  "result": "passed",
+  "checked_at": "2026-11-17T13:19:57.179077+00:00",
+  "client": "@modelcontextprotocol/inspector 2.15.0 CLI (actual MCP Inspector)",
+  "node": "24.22.1",
+  "endpoint": "http://127.0.0.1:8802/mcp",
+  "transport": "Streamable HTTP, JSON responses, stateless",
+  "methods_checked": [
+    "initialize",
+    "tools/list"
+  ],
+  "server_info": {
+    "name": "rigbys-cloud",
+    "version": "1.0.0"
+  },
+  "protocol_version": "2025-11-25",
+  "instructions": "Rigby's Cloud Grants Feed #1: public US-federal opportunities from Grants.gov,\nNIH RePORTER awards and OpenAlex papers only. Read-only, four tools. Always show\nGrants.gov source URL and deadline; dates may be date-only or rolling, so check\nsource requirements. Show feed_generated_at and source timestamps; never present\nstale data as fresh. Preserve score_evidence and coverage: neutral insufficient-data\nscores are placeholders, not funding-gap findings. Scores are versioned descriptive\nproxies, never predictions of success or proof of neglect. Missing research links\nmean missing coverage, not no funding. Broad FOA/award-core paper associations do\nnot establish current-opportunity funding or topic relevance. Free search uses a\nreal snapshot at least seven days old with no scores or summaries; other tools\nrequire a paid pass. No trials, patents, global coverage, subscriptions, write\nactions or bulk-dump tools. Never invent opportunities, deadlines, amounts or links.\n",
+  "tool_count": 4,
+  "tools": [
+    {
+      "name": "opportunity_search",
+      "description": "Search public US-federal opportunities; preserve evidence flags and cite source URLs and dates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "sponsor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "deadline_before": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "deadline_after": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "min_gap_score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "limit": {
+            "default": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "opportunity_get",
+      "description": "Get a full source-backed opportunity, preserving all layers, coverage and score evidence.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "opportunity_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "opportunity_id"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "opportunity_links",
+      "description": "Read confirmed award and paper edges with confidence and source URLs; no scores or summaries.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "opportunity_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "opportunity_id"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    },
+    {
+      "name": "gap_for_topic",
+      "description": "Describe topic portfolios with source counts and explicit thin-evidence limitations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "window_months": {
+            "default": 12,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "_fastmcp": {
+          "tags": []
+        }
+      }
+    }
+  ],
+  "scope_note": "Scaffold task check before tool implementations and T2.6 auth. Tools are registered stubs at this checkpoint; no later-phase implementation is claimed.",
+  "command_templates": [
+    "npx --yes @modelcontextprotocol/inspector@2.15.0 --cli http://127.0.0.1:8802/mcp --transport http --method initialize --format json --quiet",
+    "npx --yes @modelcontextprotocol/inspector@2.15.0 --cli http://127.0.0.1:8802/mcp --transport http --method tools/list --format json --quiet"
+  ],
+  "secret_handling": "No key required before T2.6. Inspector secret store set to memory; acquired-token persistence disabled; local storage/cache paths ignored by Git."
+}

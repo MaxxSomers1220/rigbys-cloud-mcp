@@ -1,0 +1,7 @@
+{
+  "task": "T2.4",
+  "result": "passed",
+  "seeded_checks": "table fields match exactly, source parents follow via_award, no scores/summaries/trials, empty/unknown cases",
+  "real_feed_id": "gg-353623",
+  "real_edge_count": 6
+}

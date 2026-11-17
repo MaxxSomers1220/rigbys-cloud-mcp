@@ -5,7 +5,62 @@
 - Constitution: `.specify/memory/constitution.md` v1.0.0
 - Date: 2026-11-12
 
-Status: Phase 0 remains complete. Phase 1 feed implementation and local Postgres gate passed on 2026-11-17. **STOP before Phase 2.** No MCP service or Railway deployment has started.
+Status: Phase 1 remains complete. Phase 2 local MCP service checks passed on 2026-11-17. **STOP before Phase 3.** No redemption page, production HTTP health endpoint, deployment or later-phase work has started.
+
+## Phase 2 implementation status — 2026-11-17
+
+Maxx explicitly authorized T2.1–T2.6 only. The absent pre-sale remains absent;
+synthetic test credentials and redemption rows are not sale evidence. The
+constitution and feature spec are unchanged. No broader IP clearance is claimed.
+
+FastAPI mounts FastMCP `rigbys-cloud` 1.0.0 at `/mcp`, stateless Streamable HTTP
+with JSON responses and exactly four read-only tools. The supplied spec has no
+literal §2 instructions block: the server instructions faithfully derive from
+its contracts, the constitution and the explicit feed-honesty requirements.
+
+Search is parameterized English FTS, with inclusive UTC source-date filters,
+NIH/NSF shorthand, 10/25 limits, compact references and visible evidence flags.
+Explicit minimum-gap filters use observed proxies only; ordinary paid search and
+full reads preserve neutral values and flags unchanged. Full reads equal stored
+JSON field-for-field. Edge-only reads follow stored `via_award` associations and
+include confidence/URLs without scores or summaries.
+
+Topic aggregation deduplicates research IDs, discloses fiscal/calendar-year
+window overlap rather than inventing exact dates, excludes neutral placeholders
+from medians/rankings and suppresses comparisons across mixed methodologies.
+The top-five groups are explicitly source opportunity-title groups, not a newly
+invented scientific taxonomy. Counts describe the last successful feed, not a
+live upstream status check. Portfolio proxies are never claims of underfunding.
+
+Bearer middleware authenticates every MCP HTTP message. Paid expiry is bounded
+by original redemption plus 90 days and stored expiry, never purchase or key-row
+creation. DB revocation is checked on every request; no key issuance, redemption
+or rotation flow is implemented. UTC counters atomically enforce 1,000 paid/20
+free calls per day, with HTTP 429 Retry-After. Handshake/list messages are uncharged;
+unauthorized/free paid-tool refusals are uncharged; authorized tool attempts count.
+Plain 401/403/429 errors contain no stack traces or credentials. Request principals
+are isolated and a session identifier confers no access.
+
+Migration 002 adds sealed immutable free-search history, captured atomically with
+feed publication and bootstrapped from the existing feed at actual capture time.
+Both feed generation and capture must be seven days old. Free search reads only
+basic snapshot fields, matches titles only and rejects the paid score filter.
+There is no fabricated historical data or fallback to mutable current rows.
+The actual local feed currently returns delayed_feed_unavailable for free search;
+synthetic history and advanced-clock tests prove the exact seven-day boundary.
+
+All six task checks passed. Final full suite: **110 passed**, including the original
+52. Actual authenticated MCP Inspector initializes/lists/calls all four tools over
+local HTTP against the real 789-record feed; neutral scores remain 50 with flags,
+insufficient evidence yields null medians/empty rankings, and auth/quota HTTP cases
+pass. Temporary test credentials/redemptions/counters were removed and listeners
+stopped. All tests use the isolated workspace Postgres, never Railway production.
+
+Evidence: `docs/evidence/phase2/`; setup/contracts: `docs/mcp-service.md`. Wheel
+build includes both packages and both migrations. Schema tests were updated only
+for the two additive snapshot tables and second migration; all original checks
+remain passing. Phase 3 and later tasks remain unchecked; no deployment or buyer
+verification is claimed. **STOP before Phase 3.**
 
 ## Phase 1 implementation status — 2026-11-17
 
