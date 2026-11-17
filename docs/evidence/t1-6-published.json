@@ -1,0 +1,284 @@
+{
+  "task": "T1.6 published database supplement",
+  "checked_at": "2026-11-17T04:56:41.433168+00:00",
+  "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+  "reviewer": "Coding agent source-data inspection; no independent human sign-off claimed.",
+  "method": "Ten actual published Postgres summaries inspected against the same freshly fetched source records used in SC-002, including the corrected gg-355219 NCSES text. This supplements the earlier rolling/zero/restrictions-focused ten-record review.",
+  "sample_size": 10,
+  "correct": 10,
+  "invented_deadlines": 0,
+  "invented_amounts": 0,
+  "check_passed": true,
+  "records": [
+    {
+      "opportunity_id": "gg-349554",
+      "opportunity_number": "FA2391-23-S-2403",
+      "summary": "Air Force -- Research Lab: Pioneering Aerospace Capabilities, Engineering and Research (PACER) Source closing date: 2043-05-10 (date only; check announcement for time and rounds). Award bounds not specified. Eligibility: Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"; full qualifications and restrictions are listed below.",
+      "requirements_count": 1,
+      "source_opening": "<p>Pioneering Aerospace Capabilities, Engineering and Research (PACER)</p>",
+      "source_floor": "none",
+      "source_ceiling": "none",
+      "source_deadline": "2043-05-10-00-00-00",
+      "database_amount": null,
+      "database_deadline": "2043-05-10T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.724047+00:00",
+      "requirements": [
+        "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\""
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-355219",
+      "opportunity_number": "24-587",
+      "summary": "U.S. National Science Foundation: The National Center for Science and Engineering Statistics (NCSES) of the National Science Foundation (NSF) is one of the thirteen principal federal statistical agencies within the United States. It is responsible for the collection,… Source closing date: 2027-01-19 (date only; check announcement for time and rounds). Award bounds not specified. Eligibility: Others (see text field entitled \"Additional Information on Eligibility\" for clarification); *Who May Submit Proposals: Proposals may only be submitted by the…; full qualifications and restrictions are listed below.",
+      "requirements_count": 2,
+      "source_opening": "The National Center for Science and Engineering Statistics (NCSES) of the National Science Foundation (NSF) is one of the thirteen principal federal statistical agencies within the United States. It is responsible for the collection, acquisition, analysis, reporting and dissemination of objective, statistical data related to the science and technology (S&amp;T) enterprise in the United States and other nations that is relevant and useful to practitioners, researchers, policymakers and the public. NCSES uses this information to prepare a number ",
+      "source_floor": "none",
+      "source_ceiling": "none",
+      "source_deadline": "2027-01-19-00-00-00",
+      "database_amount": null,
+      "database_deadline": "2027-01-19T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:48.959004+00:00",
+      "requirements": [
+        "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+        "*Who May Submit Proposals: Proposals may only be submitted by the following: - Standard research proposals: Institutions of Higher Education (IHEs): Two- and four-year IHEs (including community colleges) accredited in, and having a campus located in the US, acting on behalf of their faculty members. Special Instructions for International Branch Campuses of US IHEs: If the proposal includes funding to be provided to an international branch campus of a US institution of higher education (including through use of subawards and consultant arrangements), the proposer must explain the benefit(s) to the project of performance at the international branch campus, and justify why the project activities cannot be performed at the US campus. Non-profit, non-academic organizations: Independent museums, observatories, research laboratories, professional societies and similar organizations located in the U.S. that are directly associated with educational or research activities. Tribal Nations: An American Indian or Alaska Native tribe, band, nation, pueblo, village, or community that the Secretary of the Interior acknowledges as a federally recognized tribe pursuant to the Federally Recognized Indian Tribe List Act of 1994, 25 U.S.C. §§ 5130-5131. Doctoral Dissertation Research Improvement Grant proposals: Doctoral Degree granting IHEs accredited in, and having a campus located in, the US acting on behalf of their faculty members. *Who May Serve as PI: Standard research proposals: No special restrictions or limits. Doctoral Dissertation Research Improvement Grant proposals: The dissertation advisor must be listed as the Principal Investigator and the student must be listed as the co-Principal Investigator."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-356623",
+      "opportunity_number": "DE-FOA-0003467",
+      "summary": "Advanced Research Projects Agency Energy: The purpose of this modification is to clarify the meaning of the Program Policy Factors in Section V.C. To obtain a copy of the Notice of Funding Opportunity (NOFO) please go to the ARPA-E website at https://arpa-e-foa.energy.gov. To… Source closing date: 2029-09-29 (date only; check announcement for time and rounds). Source award bounds (USD): floor $5,000,000.00, ceiling $20,000,000.00. Eligibility: Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"; See Section…; full qualifications and restrictions are listed below.",
+      "requirements_count": 3,
+      "source_opening": "<p>The purpose of this modification is to clarify the meaning of the Program Policy Factors in Section V.C.</p>\n<p><br></p>\n<p>To obtain a copy of the Notice of Funding Opportunity (NOFO) please go to the ARPA-E website at https://arpa-e-foa.energy.gov.&nbsp;To apply to this NOFO, Applicants must register with and submit application materials through ARPA-E eXCHANGE (<a href=\"https://arpa-e-foa.energy.gov/Registration.aspx\" target=\"_blank\">https://arpa-e-foa.energy.gov/Registration.aspx</a>).&nbsp;For detailed guidance on using ARPA-E eXCHANGE,",
+      "source_floor": "5000000",
+      "source_ceiling": "20000000",
+      "source_deadline": "2029-09-29-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 5000000,
+        "ceiling": 20000000,
+        "currency": "USD"
+      },
+      "database_deadline": "2029-09-29T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.459387+00:00",
+      "requirements": [
+        "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"",
+        "See Section II.A. of the NOFO.",
+        "Source deadline requirements: Open continuously until otherwise amended."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-360012",
+      "opportunity_number": "W911QY25R0023",
+      "summary": "ACC APG - Natick: The Soldier Center is seeking solutions in the following scientific and technical areas: Combat Feeding & Equipment – Ration development, field feeding systems Soldier Protection & Survivability – Headborne protection, modular armor,… Source closing date: 2030-02-27 (date only; check announcement for time and rounds). Award bounds not specified. Eligibility: Others (see text field entitled \"Additional Information on Eligibility\" for clarification); The DEVCOM Soldier Center will consider concept papers and proposals…; full qualifications and restrictions are listed below.",
+      "requirements_count": 2,
+      "source_opening": "<p>The Soldier Center is seeking solutions in the following scientific and technical areas:</p>\n<p><br></p>\n<ul>\n <li><strong>Combat Feeding &amp; Equipment</strong> – Ration development, field feeding systems</li>\n <li><strong>Soldier Protection &amp; Survivability</strong> – Headborne protection, modular armor, chemical/biological protection, nanotechnology</li>\n <li><strong>Modeling &amp; Simulation</strong> – Soldier effectiveness, operational survivability</li>\n <li><strong>Human Performance &amp; Biomechanics</strong> – Body-worn systems,",
+      "source_floor": "none",
+      "source_ceiling": "none",
+      "source_deadline": "2030-02-27-00-00-00",
+      "database_amount": null,
+      "database_deadline": "2030-02-27T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:48.686589+00:00",
+      "requirements": [
+        "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+        "The DEVCOM Soldier Center will consider concept papers and proposals based on this BAA from the following organizations and firms interested in conducting scientific research:• degree-granting colleges and universities,• nonprofit research institutes,• foreign organizations, and• commercial firms (including Large Businesses, Small Businesses, Small Disadvantaged Businesses, Women-Owned Small Businesses, Historically Underutilized Business Zone Small Businesses, Veteran-Owned Small Businesses, and Service-Disabled Veteran-Owned Small Businesses. Proposals from government facilities and organizations WILL NOT be considered under this program announcement."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-361822",
+      "opportunity_number": "HHS-2026-ACF-ORR-ZU-0019",
+      "summary": "Administration for Children and Families - ORR: This NOFO is modified. Changes are made to Step 1: Review the Opportunity. The Office of Refugee Resettlement (ORR) provides temporary housing and care for children who arrive in the United States alone. These are children who are under… Source closing date: 2027-10-01 (date only; check announcement for time and rounds). Source award bounds (USD): floor $1,000,000.00, ceiling $100,000,000.00. Eligibility: City or township governments; County governments; full qualifications and restrictions are listed below.",
+      "requirements_count": 17,
+      "source_opening": "This NOFO is modified. Changes are made to Step 1: Review the Opportunity. The Office of Refugee Resettlement (ORR) provides temporary housing and care for children who arrive in the United States alone. These are children who are under 18 years old, don't have legal permission to be in the U.S., and don't have a parent or legal guardian in the U.S. who can take care of them. ORR runs the Home Study and Post-Release Services Program to help these children. Before placing a child with a sponsor, ORR carefully checks potential homes to make sure ",
+      "source_floor": "1000000",
+      "source_ceiling": "100000000",
+      "source_deadline": "2027-10-01-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 1000000,
+        "ceiling": 100000000,
+        "currency": "USD"
+      },
+      "database_deadline": "2027-10-01T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.349663+00:00",
+      "requirements": [
+        "City or township governments",
+        "County governments",
+        "For profit organizations other than small businesses",
+        "Independent school districts",
+        "Native American tribal governments (Federally recognized)",
+        "Native American tribal organizations (other than Federally recognized tribal governments)",
+        "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+        "Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education",
+        "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+        "Private institutions of higher education",
+        "Public and State controlled institutions of higher education",
+        "Public housing authorities/Indian housing authorities",
+        "Small businesses",
+        "Special district governments",
+        "State governments",
+        "Current RecipientsCurrent recipients in the final year of their project period must check when their project period ends. If the project period end date aligns with this funding opportunity\"s projected award date, and the current recipient wants to apply to continue providing services, they must apply for this funding opportunity.Current recipients who are not in the final year of their project period and want to apply for this funding opportunity must propose services in a new facility and new location from where they are currently funded. ACF does not fund multiple projects that offer the same type of service in the same location. Applications from individuals (including sole proprietorships), federal entities, and foreign entities are not eligible and will be disqualified from the merit review and funding under this funding opportunity. Faith-based and community organizations that meet the eligibility requirements are eligible for awards under this funding opportunity.",
+        "Source deadline requirements: Electronically submitted applications must be submitted no later than 11:59 pm Eastern Standard Time on the listed application due date."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-361876",
+      "opportunity_number": "USDA-AMS-TM-SCMP-G-26-0020",
+      "summary": "Agricultural Marketing Service: The U.S. Department of Agriculture (USDA), Agricultural Marketing Service (AMS), requests applications for the fiscal year (FY) 2026 Specialty Crop Multi-State Grant Program (SCMP). The SCMP supports collaborative multi-state… Source closing date: 2026-12-04 (date only; check announcement for time and rounds). Source award bounds (USD): floor $250,000.00, ceiling $1,000,000.00. Eligibility: Native American tribal governments (Federally recognized); Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education; full qualifications and restrictions are listed below.",
+      "requirements_count": 5,
+      "source_opening": "The U.S. Department of Agriculture (USDA), Agricultural Marketing Service (AMS), requests applications for the fiscal year (FY) 2026 Specialty Crop Multi-State Grant Program (SCMP). The SCMP supports collaborative multi-state partnerships to enhance the competitiveness of specialty crops through competitively funded projects. A multi-state partnership is a project that implements activities with measurable outcomes that benefit two or more U.S. States and/or Territories along with non-profit entities. The focus is to address regional or nationa",
+      "source_floor": "250000",
+      "source_ceiling": "1000000",
+      "source_deadline": "2026-12-04-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 250000,
+        "ceiling": 1000000,
+        "currency": "USD"
+      },
+      "database_deadline": "2026-12-04T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.584429+00:00",
+      "requirements": [
+        "Native American tribal governments (Federally recognized)",
+        "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+        "Public and State controlled institutions of higher education",
+        "State governments",
+        "Source deadline requirements: Applications must be submitted electronically no later than 11:59 pm Eastern Time."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-363047",
+      "opportunity_number": "HHS-2026-ACF-ECD-TP-0039",
+      "summary": "Administration for Children and Families: This NOFO is modified. The webinar link was changed and the ECD website address changed. The U.S. Department of Health and Human Services (HHS), Administration for Children and Families (ACF), seeks applications for the Preschool… Source closing date: 2026-11-20 (date only; check announcement for time and rounds). Source award bounds (USD): floor $500,000.00, ceiling $15,000,000.00. Eligibility: Others (see text field entitled \"Additional Information on Eligibility\" for clarification); State governments; full qualifications and restrictions are listed below.",
+      "requirements_count": 4,
+      "source_opening": "This NOFO is modified. The webinar link was changed and the ECD website address changed. The U.S. Department of Health and Human Services (HHS), Administration for Children and Families (ACF), seeks applications for the Preschool Development Grant Birth through Five (PDG B-5) SMART Grant: Strategic Measurement, Analytics, and Results using Technology.   This funding opportunity will support states and territories to make targeted, one-year investments in statewide early care and education (ECE) technology and analytic data infrastructure that a",
+      "source_floor": "500000",
+      "source_ceiling": "15000000",
+      "source_deadline": "2026-11-20-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 500000,
+        "ceiling": 15000000,
+        "currency": "USD"
+      },
+      "database_deadline": "2026-11-20T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.039590+00:00",
+      "requirements": [
+        "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+        "State governments",
+        "Specific states and territories are eligible and will be identified in the NOFO. Applications from individuals (including sole proprietorships) and foreign entities are not eligible and will be disqualified from the merit review and funding under this funding opportunity.",
+        "Source deadline requirements: Electronically submitted applications must be submitted no later than 11:59 pm Eastern Standard Time on the listed application due date."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-363526",
+      "opportunity_number": "NOFOAFRLAFOSR20260004",
+      "summary": "Air Force Office of Scientific Research: The Department of Defense (DoD) announces the fiscal year 2026 (FY26) Defense Established Program to Stimulate Competitive Research (DEPSCoR) – Research Collaboration (RC) opportunity. The program is sponsored and managed by the Basic… Source closing date: 2027-04-05 (date only; check announcement for time and rounds). Source award bounds (USD): floor $200,000.00, ceiling $600,000.00. Eligibility: Others (see text field entitled \"Additional Information on Eligibility\" for clarification); This funding opportunity aims to create basic research collaborations…; full qualifications and restrictions are listed below.",
+      "requirements_count": 2,
+      "source_opening": "<p>The Department of Defense (DoD) announces the fiscal year 2026 (FY26) Defense Established Program to Stimulate Competitive Research (DEPSCoR) – Research Collaboration (RC) opportunity. The program is sponsored and managed by the Basic Research Office, Office of the Under Secretary of Defense for Research and Engineering (OUSD [R&amp;E]), awarded by the Air Force Office of Scientific Research (AFOSR), and administered through the Office of Naval Research (ONR). The DoD plans to award FY26 DEPSCoR appropriations through this announcement.&nbsp",
+      "source_floor": "200000",
+      "source_ceiling": "600000",
+      "source_deadline": "2027-04-05-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 200000,
+        "ceiling": 600000,
+        "currency": "USD"
+      },
+      "database_deadline": "2027-04-05T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.915761+00:00",
+      "requirements": [
+        "Others (see text field entitled \"Additional Information on Eligibility\" for clarification)",
+        "This funding opportunity aims to create basic research collaborations between a pair of researchers, namely 1) Applicant/Principal Investigator (PI), henceforth referred to as Applicant, a full-time faculty member who has never served as a PI on a prior DoD directly funded research Prime award and 2) Collaborator/co-Principal Investigator (co-PI), henceforth referred to as Collaborator, an investigator who will provide mentorship to the Applicant and has served as a PI on a DoD directly funded research Prime award actively between 1 October 2018 and 30 September 2026. This structure is aimed at introducing potential applicants to the DoD’s unique research challenges and its supportive research ecosystem. Tenured or tenure-track faculty members with appointments at IHE, in the following States/Territories are eligible to apply for DEPSCoR opportunities under this announcement: Alabama, Alaska, Arkansas, Connecticut, Delaware, District of Columbia, Guam, Hawaii, Idaho, Iowa, Kansas, Kentucky, Louisiana, Maine, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Dakota, Oklahoma, Oregon, Puerto Rico, Rhode Island, South Carolina, South Dakota, Tennessee, U.S. Virgin Islands, Vermont, West Virginia, Wisconsin, and Wyoming see eligibility table in III A."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-363946",
+      "opportunity_number": "AFPMB-BAA-27-01",
+      "summary": "ACC-APG-Detrick: The DWFP Program’s mission is to protect deployed military personnel from arthropod vectors of medically relevant disease pathogens, including (but not limited to) arthropod disease vectors of tick-borne pathogens and mosquito-borne… Source closing date: 2027-03-17 (date only; check announcement for time and rounds). Source award bounds (USD): floor $20,000.00, ceiling $1,100,000.00. Eligibility: Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\"; full qualifications and restrictions are listed below.",
+      "requirements_count": 1,
+      "source_opening": "<p><span style=\"color: rgb(27, 27, 27);\">The DWFP Program’s mission is to protect deployed military personnel from arthropod vectors of medically relevant disease pathogens, including (but not limited to) arthropod disease vectors of tick-borne pathogens and mosquito-borne arboviruses, as well as nuisance biting arthropods and emerging arthropod threats such as the New World Screwworm fly. The DWFP Program seeks to fund original and innovative research that supports the Advanced Technology Development of new insecticides, or improved formulatio",
+      "source_floor": "20000",
+      "source_ceiling": "1100000",
+      "source_deadline": "2027-03-17-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 20000,
+        "ceiling": 1100000,
+        "currency": "USD"
+      },
+      "database_deadline": "2027-03-17T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:49.034605+00:00",
+      "requirements": [
+        "Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled \"Additional Information on Eligibility\""
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    },
+    {
+      "opportunity_id": "gg-364213",
+      "opportunity_number": "DOW2027APEXACCELERATORCLOSED",
+      "summary": "ACC-APG-Aberdeen Division A: This funding opportunity is for existing APEX Accelerators to maintain an APEX Accelerator to serve as a resource for large and small businesses, including newly started businesses, to obtain procurement technical assistance. The FY27… Source closing date: 2027-07-04 (date only; check announcement for time and rounds). Source award bounds (USD): floor $60,000.00, ceiling $1,500,000.00. Eligibility: City or township governments; County governments; full qualifications and restrictions are listed below.",
+      "requirements_count": 8,
+      "source_opening": "<p>This funding opportunity is for existing APEX Accelerators to maintain an APEX Accelerator to serve as a resource for large and small businesses, including newly started businesses, to obtain procurement technical assistance. The FY27 performance and financial reporting templates will be distributed at a later date.</p>",
+      "source_floor": "60000",
+      "source_ceiling": "1500000",
+      "source_deadline": "2027-07-04-00-00-00",
+      "database_amount": {
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding.",
+        "floor": 60000,
+        "ceiling": 1500000,
+        "currency": "USD"
+      },
+      "database_deadline": "2027-07-04T00:00:00+00:00",
+      "source_fetched_at": "2026-11-17T04:55:48.701077+00:00",
+      "requirements": [
+        "City or township governments",
+        "County governments",
+        "Native American tribal governments (Federally recognized)",
+        "Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education",
+        "Public and State controlled institutions of higher education",
+        "Special district governments",
+        "State governments",
+        "See funding opportunity for details."
+      ],
+      "purpose_correct": true,
+      "deadline_correct": true,
+      "amount_correct": true,
+      "review_note": "Published summary excerpt matches source opening; date and stated monetary bounds match fresh Grants.gov fields. Unknown monetary bounds remain unspecified. Full extracted requirements remain attached."
+    }
+  ]
+}

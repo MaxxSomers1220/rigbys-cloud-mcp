@@ -1,0 +1,4 @@
+# Daily at 06:00 UTC. Run in the installed project environment with DATABASE_URL
+# and RIGBYS_RAW_DIR supplied by the host. The job checks its durable cache and
+# refreshes RePORTER/OpenAlex on first run and whenever seven days have elapsed.
+0 6 * * * cd /app && /app/.venv/bin/rigbys-feed build

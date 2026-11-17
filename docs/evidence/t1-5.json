@@ -1,0 +1,8 @@
+{
+  "task": "T1.5",
+  "date": "2026-11-17",
+  "check": "Determinism, bounds, thin neutral, complete-year comparisons and corn-in-a-rut fixture",
+  "result": "passed",
+  "tests": "tests/test_scoring.py",
+  "methodology_version": "research-signals-1.0.0"
+}

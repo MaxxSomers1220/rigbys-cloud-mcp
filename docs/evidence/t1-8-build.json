@@ -1,0 +1,59 @@
+{
+  "task": "T1.8",
+  "database": "isolated workspace PostgreSQL 16.2",
+  "result": "passed",
+  "build_mode": "full pipeline, recovering same-session live source requests by verified raw hashes",
+  "health": {
+    "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+    "last_build_status": "success",
+    "last_attempt_at": "2026-11-17T04:54:42.986594+00:00",
+    "sources": {
+      "openalex": {
+        "status": "ok",
+        "last_success_at": "2026-11-17T04:48:40.382731+00:00",
+        "oldest_response_at": "2026-11-17T04:44:57.567988+00:00",
+        "reused_weekly_cache": true
+      },
+      "grants_gov": {
+        "status": "ok",
+        "last_success_at": "2026-11-17T04:31:03.532864+00:00",
+        "oldest_response_at": "2026-11-17T04:30:31.058659+00:00",
+        "reused_weekly_cache": false
+      },
+      "nih_reporter": {
+        "status": "ok",
+        "last_success_at": "2026-11-17T04:38:42.221960+00:00",
+        "oldest_response_at": "2026-11-17T04:34:49.796148+00:00",
+        "reused_weekly_cache": true
+      }
+    },
+    "source_counts": {
+      "award_links": 14411,
+      "paper_links": 147744,
+      "openalex_papers": 138804,
+      "grants_gov_posted": 828,
+      "excluded_or_deduped": 39,
+      "nih_reporter_awards": 14601,
+      "linked_opportunities": 165,
+      "published_opportunities": 789,
+      "nih_reporter_publications": 0
+    },
+    "server_version": "feed-only-0.1.0"
+  },
+  "duration_seconds": 65.02,
+  "process_peak_rss_kib": 3011676,
+  "opportunities": 789,
+  "all_five_layers": 789,
+  "links": [
+    [
+      "award",
+      14411
+    ],
+    [
+      "paper",
+      147744
+    ]
+  ],
+  "source_cache_count": 30,
+  "trials": 0
+}

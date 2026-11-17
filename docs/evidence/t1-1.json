@@ -1,0 +1,10 @@
+{
+  "task": "T1.1",
+  "checked_at": "2026-11-17",
+  "source": "https://api.grants.gov/v1/api/search2",
+  "posted_count": 828,
+  "with_deadline": 781,
+  "raw_envelopes": 837,
+  "check_passed": true,
+  "note": "search2 posted status includes expired records; cleaner will exclude past closing dates. Raw runtime files ignored by Git."
+}

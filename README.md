@@ -1,10 +1,36 @@
 # Rigby's Cloud — Remote MCP Server (Spec Kit project)
 
-Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Nothing built yet.
+Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phase 1 feed implemented and verified on 2026-11-17; no MCP service is built or deployed.
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
 
-Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Work is stopped before Phase 1 for phase review; see the evidence in the plan and tasks.
+Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phase 1 was explicitly authorized in this session and is complete; work stops before Phase 2. See the evidence in the plan and tasks.
+
+## Phase 1 handoff — 2026-11-17
+
+The feed builder, source clients, cleaning, exact-identifier joins, versioned
+scoring, extractive summaries, Postgres migrations and daily job are implemented.
+Run/setup instructions: [feed operations](docs/feed-operations.md). Data meaning:
+[data contract](docs/feed-data-contract.md) and [scoring methodology](docs/scoring-methodology.md).
+
+Live source collection: 828 posted Grants.gov records, 14,601 NIH awards and
+138,804 OpenAlex papers. The isolated workspace Postgres feed contains **789**
+current/rolling opportunities (39 expired or unresolved records excluded),
+14,411 award links and 147,744 paper links. All 789 carry the five pipeline layers,
+traceability and methodology version. SC-002 data spot-check: **10/10**, with all
+10 source pages HTTP 200. Automated checks: **52 passed**.
+
+Coverage is not complete research intelligence: **165** opportunities have
+confirmed research links; **756** records have explicitly flagged neutral score
+placeholders because evidence is insufficient. Only 33 have observed descriptive
+proxy scores. Missing NIH/OpenAlex coverage does not mean an opportunity is
+underfunded. See [evidence](docs/evidence/) for task checks and sampled source proof.
+
+This is a local Postgres validation using live public data; Railway production
+was not accessed or deployed and the host schedule is not activated. No Phase 2
+MCP/auth code or later-phase redemption/client work has started. No paid pass has
+been sold as of 2026-11-16; T6.3 remains unchecked. Maxx states this project is
+definitely not part of what he does for work; no broader clearance is claimed.
 
 ## Layout
 

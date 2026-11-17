@@ -1,0 +1,51 @@
+{
+  "task": "T1.2",
+  "checked_at": "2026-11-17",
+  "check": "Both sources return exact identifiers joining to at least one open Grants.gov opportunity.",
+  "passed": true,
+  "award_count": 14601,
+  "fiscal_years": [
+    2024,
+    2025,
+    2026,
+    2027
+  ],
+  "sample": {
+    "grants_gov_id": "357812",
+    "opportunity_number": "PA-25-301",
+    "grants_gov_url": "https://www.grants.gov/search-results-detail/357812",
+    "nih_project_num": "5R01AI145687-07",
+    "nih_core_project_num": "R01AI145687",
+    "nih_project_url": "https://reporter.nih.gov/project-details/11381062",
+    "nih_ref": {
+      "source": "nih_reporter",
+      "url": "https://api.reporter.nih.gov/v2/projects/search",
+      "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+      "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+      "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+    },
+    "openalex_work_id": "https://openalex.org/W3045149055",
+    "openalex_funding_metadata": {
+      "id": "https://openalex.org/G9000916883",
+      "display_name": "Structural definition of CD4-induced HIV-1 Env conformational changes required for infection",
+      "funder_award_id": "R01AI145687",
+      "funder_id": "https://openalex.org/F4320337355",
+      "funder_display_name": "National Institute of Allergy and Infectious Diseases"
+    },
+    "openalex_ref": {
+      "source": "openalex",
+      "url": "https://api.openalex.org/works",
+      "fetched_at": "2026-11-17T04:42:41.787017+00:00",
+      "raw_path": "tmp/raw/openalex/553bc618b7e3c7f1980230167937c779aaf7745a2f4fedfcf6f95596bebfb2ea.json",
+      "sha256": "553bc618b7e3c7f1980230167937c779aaf7745a2f4fedfcf6f95596bebfb2ea"
+    }
+  },
+  "constraints": [
+    "NIH awards queried by exact typed NIH FOA and fiscal year; generic non-NIH FOAs excluded because NIH substring matching can return unrelated awards.",
+    "NIH publications offset is capped9999; single core UL1TR001863 returns16331, so fullfeed uses exact OpenAlex fundingmetadata instead.",
+    "OpenAlex cursor beyond firstpage requireskey; documented basicpagination is public up to10000rows. Queries recursivelypartition awardgroups/yearandvalidatecompleteness."
+  ],
+  "openalex_paper_count": 138804,
+  "all_query_partitions_complete": true,
+  "research_coverage_file": "tmp/research-coverage.json"
+}

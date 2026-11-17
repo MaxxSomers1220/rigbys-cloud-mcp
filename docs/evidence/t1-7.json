@@ -1,0 +1,19 @@
+{
+  "task": "T1.7",
+  "date": "2026-11-17",
+  "database": "isolated fresh PostgreSQL 16.2",
+  "tests": "tests/test_database.py",
+  "passed_tests": 9,
+  "checks": [
+    "fresh migrations",
+    "idempotent migration",
+    "immutable checksum",
+    "failed DDL rollback",
+    "all plan tables/indexes",
+    "full record roundtrip",
+    "atomic publication and last-good retention",
+    "bounded chunked source cache roundtrip/checksum",
+    "chunk replacement and failure rollback"
+  ],
+  "result": "passed"
+}

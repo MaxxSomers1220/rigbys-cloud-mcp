@@ -1,0 +1,563 @@
+{
+  "task": "T1.3",
+  "reviewed_at": "2026-11-17T04:34:33.026258+00:00",
+  "reviewer": "Coding agent: manual source-data inspection; no independent human sign-off claimed.",
+  "method": "20 deliberately diverse cleaned records compared by inspection against fresh Grants.gov fetchOpportunity data, the structured source behind the public detail page. Rolling/missing dates, zero/unknown/ranged amounts, encoded eligibility, restrictions and contact-name sponsor errors included.",
+  "passed_records": 20,
+  "sample_size": 20,
+  "check_passed": true,
+  "scope": "Source fidelity, not certification of Grants.gov accuracy or legal eligibility. Source contradictions and truncation preserved rather than resolved without evidence.",
+  "fixes_rechecked": [
+    "Rolling accepted-anytime dates no longer asserted as2076 submission deadlines.",
+    "HTML decoded before removal, including nested encoding.",
+    "Old unstructured FY2012 call gg-103313 excluded from open feed."
+  ],
+  "advisory": "Add source_eligibility_conflict or restriction-review flags where source boilerplate contradicts itself (PAR-25-274); no eligibility assertion should override full source restrictions.",
+  "records": [
+    {
+      "opportunity_id": "gg-358403",
+      "opportunity_number": "14-579",
+      "source_url": "https://www.grants.gov/search-results-detail/358403",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.004026+00:00",
+      "source_sha256": "6e3d7e7e8ee3be6105f3c60a61e510e2153b0892bfe7ebd8c69999a57cc3cbfe",
+      "source_deadline": "2076-10-14-00-00-00",
+      "source_deadline_description": "Proposals accepted anytime",
+      "parsed_deadline": null,
+      "deadline_precision": "rolling",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -Eligible predominantly undergraduate institutions (PUIs) are accredited colleges and universities (including two-year community colleges) that award Associate's degrees, Bachelor's degrees, and/or Master's degrees in NSF-supported fields, but have awarded 20 or fewer Ph.D./D.Sci. degrees in all NSF-supported fields during the combined previous two academic years.\n\n*Who May Serve as PI:\nSee Additional Eligibility Information in Section IV.B of this solicitation.",
+      "eligibility_review": "Source says proposals accepted anytime; 2076 is retained only as source date, not presented as submission deadline. PUI restriction and PhD limit retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-314126",
+      "opportunity_number": "19-570",
+      "source_url": "https://www.grants.gov/search-results-detail/314126",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.120605+00:00",
+      "source_sha256": "1e4b65935992c8c9eb001481dbfef08bc5cb2919d4ec45ae6e650fbc0753064a",
+      "source_deadline": "2076-10-01-00-00-00",
+      "source_deadline_description": "Proposals accepted anytime",
+      "parsed_deadline": null,
+      "deadline_precision": "rolling",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "35000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": null,
+        "ceiling": 35000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Accepted anytime, no deadline asserted. Ceiling USD35,000 with unknown floor; unrestricted eligibility remains subject to source clarification.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-328902",
+      "opportunity_number": "20-01",
+      "source_url": "https://www.grants.gov/search-results-detail/328902",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.113562+00:00",
+      "source_sha256": "f8aec64b8dfc5e7c2bc5cd1d4c85e3244fdae3ef3b6fc7ddba9e0ca45676c1a8",
+      "source_deadline": "2027-09-07-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2027-09-07T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "0",
+        "ceiling": "6000000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 0,
+        "ceiling": 6000000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 3,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Sep7 2027 date matches; explicit zero floor and USD6m ceiling preserved; higher-education/nonprofit categories retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-330296",
+      "opportunity_number": "21-544",
+      "source_url": "https://www.grants.gov/search-results-detail/330296",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.468797+00:00",
+      "source_sha256": "92a988fe8cc81e5df3a041a1b0a5e20ee60eee6215cfe97b9c9f6ff7b2d73497",
+      "source_deadline": null,
+      "source_deadline_description": "Proposals accepted anytime",
+      "parsed_deadline": null,
+      "deadline_precision": "rolling",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "600000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": null,
+        "ceiling": 600000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -Non-profit, non-academic organizations: Independent museums, observatories, research laboratories, professional societies and similar organizations located in the U.S. that are directly associated with educational or research activities.\n  -Institutions of Higher Education (IHEs): Two- and four-year IHEs (including community colleges) accredited in, and having a campus located in the US, acting on behalf of their faculty members. Special Instructions for International Branch Campuses of US IHEs: If the proposal includes funding to be provided to an international branch campus of a US institution of higher educati",
+      "eligibility_review": "Missing structured deadline correctly paired with explicit accepted-anytime wording. USD600,000 ceiling and US-location/international-campus conditions retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-352339",
+      "opportunity_number": "24-540",
+      "source_url": "https://www.grants.gov/search-results-detail/352339",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.443516+00:00",
+      "source_sha256": "37dfcf0288f5d2988ea016c3471d4e70265d4545e9941ae49fc1c7435ed3428b",
+      "source_deadline": null,
+      "source_deadline_description": "Proposals accepted anytime",
+      "parsed_deadline": null,
+      "deadline_precision": "rolling",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "200000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": null,
+        "ceiling": 200000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -\nProposals may be submittedonly from institutions or organizations within EPSCoR-eligible jurisdictions.Eligibility to participate in the EPSCoR Workshop Opportunities program is described on&lt;a href=&quot;https://new.nsf.gov/funding/initiatives/epscor/epscor-criteria-eligibility&quot;&gt;EPSCoR&amp;rsquo;s website&lt;/a&gt;.\n\n\nWithin EPSCoR-eligible jurisdictions, proposals may be submitted only by the following:\n\n&lt;ul&gt;\n&lt;li&gt;Institutions of higher education (PhD-granting and non-PhD-granting), acting on behalf of their faculty members, that are accredited in and have a campus in the United States, it",
+      "eligibility_review": "Rolling deadline; USD200,000 ceiling. Encoded HTML removed and EPSCoR jurisdiction, US organization and tribal restrictions preserved.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-357725",
+      "opportunity_number": "25-523",
+      "source_url": "https://www.grants.gov/search-results-detail/357725",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.585711+00:00",
+      "source_sha256": "421de85ed2157ea6fca025f955082805c572929de7b59f0696e32b5179742fe8",
+      "source_deadline": "2027-07-20-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-07-20T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "0",
+        "ceiling": "none"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 0,
+        "ceiling": null,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -Institutions of higher education (PhD- and non-PhD-granting) that are accredited and operate a campus within the United States, its territories, or possessions, may submit proposals on behalf of their faculty.\n\nDistinct academic campuses within multi-campus systems (e.g., campuses that award their own degrees and have independent administrative structures, admissions policies, and alumni associations) qualify as separate submission-eligible institutions.\nCampuses that plan to submit a proposal through the Sponsored Projects Office of other campuses or organizations should contact NSF EPSCoR to discuss eligibility",
+      "eligibility_review": "Jul20 2027 date; explicit zero floor distinct from unknown ceiling. EPSCoR restrictions and active-award exclusions retained, including source-truncated final sentence.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-364026",
+      "opportunity_number": "DE-FOA-0003577",
+      "source_url": "https://www.grants.gov/search-results-detail/364026",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.796780+00:00",
+      "source_sha256": "e770611f1bc44cba2d137095f0abf7d8b7fbf02bdf448db65edf12b07d8278be",
+      "source_deadline": "2026-12-07-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2026-12-07T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "0",
+        "ceiling": "62500000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 0,
+        "ceiling": 62500000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 12,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Dec7 2026 date; USD0–62.5m source range; all12 applicant categories retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-357305",
+      "opportunity_number": "PAR-25-274",
+      "source_url": "https://www.grants.gov/search-results-detail/357305",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.964377+00:00",
+      "source_sha256": "8f8110580d50aac6854ca72291040e4e5b49d4cd606e09f22364fffd77e8b473",
+      "source_deadline": "2026-11-17-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2026-11-17T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 15,
+      "source_eligibility_excerpt": "Other Eligible Applicants include the following: Alaska Native and Native Hawaiian Serving Institutions; Asian American Native American Pacific Islander Serving Institutions (AANAPISISs); Eligible Agencies of the Federal Government; Faith-based or Community-based Organizations; Hispanic-serving Institutions; Historically Black Colleges and Universities (HBCUs); Indian/Native American Tribal Governments (Other than Federally Recognized); Non-domestic (non-U.S.) Entities (Foreign Organizations); Regional Organizations; Tribally Controlled Colleges and Universities (TCCUs) ; U.S. Territory or Possession; Non-domestic (non-U.S.) Entities (Foreign Organizations) are not eligible to apply.Non-dome",
+      "eligibility_review": "Nov17 2026 date-only; no amount invented. Source contradictory foreign-organization boilerplate and explicit ineligibility both preserved; consumer must read restrictions.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-362842",
+      "opportunity_number": "2026-NTIA-NEGP",
+      "source_url": "https://www.grants.gov/search-results-detail/362842",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:31.982638+00:00",
+      "source_sha256": "8d0f8b076a1bde816a6043444d126382e3efc93192d1b82fe554be04ffb07bc1",
+      "source_deadline": "2026-11-17-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2026-11-17T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "The following entities are eligible to receive grants under the Native Entities Grant Program: 1. An Indian Tribe, an Alaska Native entity, or a Native Hawaiian organization (&ldquo;Native Entity&rdquo;); or 2. A partnership between Eligible Entities (&ldquo;Consortium&rdquo;). See Section III of this NOFO for additional information concerning the eligibility requirements for this program.",
+      "eligibility_review": "Nov17 2026 date; no amount specified. Agency metadata DOC NIST ERA used rather than Grantor contact name; Native Entity/Consortium eligibility retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-362843",
+      "opportunity_number": "2026-NTIA-TBCP",
+      "source_url": "https://www.grants.gov/search-results-detail/362843",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.094506+00:00",
+      "source_sha256": "33d3388a7dd538a64184bc2c1528f510298968e3af9f1b3cd30018819f252f6b",
+      "source_deadline": "2026-11-17-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2026-11-17T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "The following entities are eligible to receive grants under the TBCP: 1. a Tribal Government; 2. a Tribal College or University; 3. the Department of Hawaiian Home Lands on behalf of the Native Hawaiian Community, including Native Hawaiian Education Programs; 4. a Tribal organization; 5. or an Alaska Native Corporation. See Section III of this NOFO for additional information concerning the eligibility requirements for this program.",
+      "eligibility_review": "Nov17 2026 date; no amount specified. Sponsor comes from agency metadata, not contact. Tribal/Native Hawaiian/Alaska Native eligibility retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-363696",
+      "opportunity_number": "AC-08-28-26",
+      "source_url": "https://www.grants.gov/search-results-detail/363696",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.240272+00:00",
+      "source_sha256": "15de095d0119f43b5043ee25ffe915f6b6b180d28d56d7710bcc992b59ab18ab",
+      "source_deadline": "2027-01-13-00-00-00",
+      "source_deadline_description": "",
+      "parsed_deadline": "2027-01-13T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 11,
+      "source_eligibility_excerpt": "State Service Commission and/or States and US Territories",
+      "eligibility_review": "Jan13 2027 date; unknown amount. AmeriCorps metadata replaces contact name; state commission/states/territories restriction retained alongside categories.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-361480",
+      "opportunity_number": "20260511-PCS",
+      "source_url": "https://www.grants.gov/search-results-detail/361480",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.351172+00:00",
+      "source_sha256": "a3fce4a783e94772a7d959bf1c6e1f3c197aa866ba02efd0e3f2a0fbf8db705b",
+      "source_deadline": "2026-12-15-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2026-12-15T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "50000",
+        "ceiling": "500000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 50000,
+        "ceiling": 500000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 8,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Dec15 2026 date; USD50k–500k; eight applicant categories match.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-363880",
+      "opportunity_number": "20261209-EDK-EDU",
+      "source_url": "https://www.grants.gov/search-results-detail/363880",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.218513+00:00",
+      "source_sha256": "60a41181de91bbc527bf63b3115dc693ebccd5e8d0ad698af4f5ba054c620594",
+      "source_deadline": "2026-12-09-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2026-12-09T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "1",
+        "ceiling": "460000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 1,
+        "ceiling": 460000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 8,
+      "source_eligibility_excerpt": "See C. Eligibility Information in the Notice of Funding Opportunity.",
+      "eligibility_review": "Dec9 2026 date; USD1–460k; categories and instruction to read NOFO section C retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-364098",
+      "opportunity_number": "20261209-GE-GI-BP-BR-GGX",
+      "source_url": "https://www.grants.gov/search-results-detail/364098",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.379897+00:00",
+      "source_sha256": "3263ed9973aec862f10bd1df6807318dc364277dd4aff6367eed3f559ae73289",
+      "source_deadline": "2026-12-16-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2026-12-16T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "1",
+        "ceiling": "2000000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 1,
+        "ceiling": 2000000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 8,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Dec16 2026 date; USD1–2m; eight applicant categories match.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-364195",
+      "opportunity_number": "20270113-CHE",
+      "source_url": "https://www.grants.gov/search-results-detail/364195",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.513692+00:00",
+      "source_sha256": "375b1485a24a906b64c5ad51373c1d1bfefacd608ee0d23ed9bd754405d1597b",
+      "source_deadline": "2027-01-13-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-01-13T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "1000000",
+        "ceiling": "3100000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 1000000,
+        "ceiling": 3100000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 8,
+      "source_eligibility_excerpt": "",
+      "eligibility_review": "Jan13 2027 date; USD1m–3.1m; eight applicant categories match.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-359325",
+      "opportunity_number": "23-589",
+      "source_url": "https://www.grants.gov/search-results-detail/359325",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.569444+00:00",
+      "source_sha256": "c2df1f0fe67cb63e7d4f8e71f9baa5a561f1a7551edd03c68e57e21a758bb28f",
+      "source_deadline": "2027-09-10-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-09-10T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "50000",
+        "ceiling": "5000000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 50000,
+        "ceiling": 5000000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -Non-profit, non-academic organizations: Independent museums, observatories, research laboratories, professional societies and similar organizations located in the U.S. that are directly associated with educational or research activities.\n  -Institutions of Higher Education (IHEs): Two- and four-year IHEs (including community colleges) accredited in, and having a campus located in the US, acting on behalf of their faculty members. Special Instructions for International Branch Campuses of US IHEs: If the proposal includes funding to be provided to an international branch campus of a US institution of higher educati",
+      "eligibility_review": "Sep10 2027 date; USD50k–5m; US organization and PI employment requirements plus for-profit/overseas PI exclusion retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-351923",
+      "opportunity_number": "24-528",
+      "source_url": "https://www.grants.gov/search-results-detail/351923",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.882451+00:00",
+      "source_sha256": "8a67d9fa4a6b05dd9edc250130d8e93ef8ce631d48a9b07432d8f2e4392eb3ca",
+      "source_deadline": "2027-04-13-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-04-13T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -\nEPSCoR jurisdictions that are RII-eligible for the FY2024 competition are listed in the RII Eligibility table, which can be found&lt;a href=&quot;https://new.nsf.gov/funding/initiatives/epscor/epscor-criteria-eligibility&quot;&gt;here&lt;/a&gt;.\n\n\nProposals may only be submitted by organizations located in RII-eligible jurisdictions, as follows:\n\n&lt;ul&gt;\n&lt;li&gt;Institutions of higher education (Ph.D.-granting and non-Ph.D.-granting), acting on behalf of their faculty members, that are accredited in and have a campus in the United States, its territories or possessions. Distinct academic campuses (e.g., tha",
+      "eligibility_review": "Apr13 2027 date; amount unspecified. HTML removed; EPSCoR, early/mid-career/PI letter and no-co-PI restrictions retained. Source ends with truncated Prev.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-354269",
+      "opportunity_number": "24-573",
+      "source_url": "https://www.grants.gov/search-results-detail/354269",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.754287+00:00",
+      "source_sha256": "6e0905ace606186c01d09678610c2b716939bede4581760fd7319c592fe1335d",
+      "source_deadline": "2027-01-26-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-01-26T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "1000000",
+        "ceiling": "1500000"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 1000000,
+        "ceiling": 1500000,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -null\n  -Institutions or organizations in jurisdictions that meet the EPSCoR&amp;nbsp;eligibility&amp;nbsp;criteria.\nInstitutions of higher education (PhD-granting and non-PhD-granting), acting on behalf of their faculty members, that are accredited in and have a campus in the United States, its territories, or possessions. Distinct academic campuses (e.g., that award their own degrees, have independent administrative structures, admissions policies, alumni associations, etc.) within multi-campus systems qualify as separate submission-eligible organizations. Campuses that plan to submit a proposal through the Spon",
+      "eligibility_review": "Jan26 2027 date; USD1m–1.5m. EPSCoR jurisdiction, PI affiliation and current-FEC award exclusion retained; literal source null placeholder not interpreted as rule.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-314743",
+      "opportunity_number": "19-575",
+      "source_url": "https://www.grants.gov/search-results-detail/314743",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:32.848713+00:00",
+      "source_sha256": "9b67bc71127f4370e9acf4cec44909e8977bfa2e198ad9eaf8d18a0cbf440cc4",
+      "source_deadline": "2027-01-28-00-00-00",
+      "source_deadline_description": null,
+      "parsed_deadline": "2027-01-28T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "none",
+        "ceiling": "none"
+      },
+      "parsed_amount": null,
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Serve as PI:\nDoctoral Dissertation Research Improvement Awards: DDRI proposals must be submitted with a principal investigator (PI) and a co-principal investigator (co-PI). The PI must be the advisor of the doctoral student or another faculty member at the U.S. institution where the doctoral student is enrolled.&amp;nbsp; The co-PI must be the doctoral student whose dissertation research will be supported.\nFor all other types of awards, there are no restrictions or limits.\n&amp;nbsp;\n&amp;nbsp;",
+      "eligibility_review": "Jan28 2027 date; no amount invented. Doctoral dissertation PI advisor/co-PI student requirement and no-restrictions clause for other award types retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    },
+    {
+      "opportunity_id": "gg-324456",
+      "opportunity_number": "20-544",
+      "source_url": "https://www.grants.gov/search-results-detail/324456",
+      "verification_api": "https://api.grants.gov/v1/api/fetchOpportunity",
+      "source_fetched_at": "2026-11-17T04:34:33.026258+00:00",
+      "source_sha256": "05b10b1a19134bdd2380d9317a31336d68152690223178e5457b6e86d15f2735",
+      "source_deadline": "2027-03-31-00-00-00",
+      "source_deadline_description": "InTrans",
+      "parsed_deadline": "2027-03-31T00:00:00+00:00",
+      "deadline_precision": "date",
+      "source_amount": {
+        "floor": "15000000",
+        "ceiling": "none"
+      },
+      "parsed_amount": {
+        "currency": "USD",
+        "floor": 15000000,
+        "ceiling": null,
+        "note": "Source-stated bounds; zero is preserved, not an estimate of expected funding."
+      },
+      "source_applicant_type_count": 1,
+      "source_eligibility_excerpt": "*Who May Submit Proposals: Proposals may only be submitted by the following:\n  -\nInstitutions of Higher Education (IHEs)accredited in, and having a campus located in the U.S.,with undergraduate, masters, and doctoral programs in computer and information science and engineering fields may submit proposals as lead or collaborative institutions. Subawardees may include two-and four-year U.S. IHEs,non-profit non-academic organizationssuch as independent museums, institutes, observatories, professional societies and similar organizations located in the U.S. that are directly associated with education or research activities in the computer and information science and engineering fields. Other orga",
+      "eligibility_review": "Mar31 2027 date; USD15m floor, unknown ceiling. US IHE lead requirement and unsupported foreign/for-profit participation conditions retained.",
+      "deadline_pass": true,
+      "amount_pass": true,
+      "eligibility_pass": true,
+      "sponsor_pass": true
+    }
+  ]
+}

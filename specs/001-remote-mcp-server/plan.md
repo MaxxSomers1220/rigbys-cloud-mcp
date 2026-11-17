@@ -5,7 +5,48 @@
 - Constitution: `.specify/memory/constitution.md` v1.0.0
 - Date: 2026-11-12
 
-Status: Phase 0 setup checks passed on 2026-11-12. The four Open Decisions are confirmed. Feed and MCP application implementation have not started. **STOP before Phase 1 and show Maxx the Phase 0 checks for review.**
+Status: Phase 0 remains complete. Phase 1 feed implementation and local Postgres gate passed on 2026-11-17. **STOP before Phase 2.** No MCP service or Railway deployment has started.
+
+## Phase 1 implementation status — 2026-11-17
+
+Maxx explicitly authorized Phase 1 only after correcting the false pre-sale/IP
+record. No paid pass has been sold as of 2026-11-16; T6.3 remains unchecked. Maxx
+states the project is definitely not part of what he does for work; no broader
+clearance is claimed. The constitution and feature spec are unchanged.
+
+T1.1–T1.8 are implemented and checked in task order. Source clients retrieved 828
+posted opportunities, 14,601 awards (284 NIH FOAs, FY2024–2027), and 138,804 unique
+OpenAlex works. The complete local feed has 789 opportunities, 14,411 award edges
+and 147,744 paper edges; no trial edges. All records have normalized fields,
+join/coverage status, versioned scores, source-bound summaries and source times.
+
+Source access changed from the draft assumptions: NIH publications cap one core
+at 10,000 results; OpenAlex cursor paging requires a key. Complete bulk paper
+retrieval uses public basic paging, exact `awards.funder_award_id`, and recursively
+partitioned query groups with count proofs. The optional RePORTER PMID path was
+live-verified separately. No paid data, new API key, or extra source was added.
+
+Research coverage is limited: 165 opportunities have confirmed links and 756
+records carry flagged neutral score placeholders; only 33 have descriptive proxy
+scores supported by the minimum evidence thresholds. These are not observations
+of funding gaps. Broad parent FOAs and long-lived award cores do not establish
+current-opportunity causal funding or topic relevance.
+
+The isolated Postgres gate passed with 789/789 structurally complete records,
+SC-002 10/10 stored deadlines/source links matching fresh Grants.gov (all pages
+HTTP 200), 20/20 published direct paper chains, and 52 automated tests. Evidence:
+`docs/evidence/`; procedures: `docs/feed-operations.md`. The full build recovered
+same-session source requests using verified archive hashes; a second complete
+build exercised durable weekly cache reuse. Every source keeps its original time.
+Large source caches are chunked atomically; failed builds preserve the last good
+feed. The recovery run peaked around 2.9 GiB RSS: hosting-job capacity must be
+sized and verified in the deployment phase, rather than assuming the feed fits a
+small web-service process.
+
+Railway's private production database was not accessed; no public application or
+host schedule was activated. The schedule definition and job command are ready
+for later hosting setup. The Phase 1 health stub is a CLI JSON read, not the later
+HTTP endpoint. Phase 2 and all later tasks remain unchecked.
 
 ## Implementation status — 2026-11-12
 

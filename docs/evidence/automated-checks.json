@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-17",
+  "command": ".venv/bin/pytest -q",
+  "result": "passed",
+  "passed": 52,
+  "python": "3.12",
+  "database": "isolated PostgreSQL 16.2",
+  "wheel_build": "passed; packaged migration SQL verified"
+}

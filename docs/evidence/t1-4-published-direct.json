@@ -1,0 +1,787 @@
+{
+  "task": "T1.4 published direct-metadata edge verification",
+  "checked_at": "2026-11-17T04:55:53.757771+00:00",
+  "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+  "distinct_published_opportunities": 20,
+  "edges_checked": 20,
+  "edges_correct": 20,
+  "check_passed": true,
+  "method": "Twenty actual Postgres opportunity_links edges from twenty distinct opportunities; exact source FOA/project/application/core and OpenAlex funding-metadata IDs inspected. Source-response identity validation performed programmatically, with compact identifier rows manually reviewed separately.",
+  "limitation": "One direct paper edge per record was sampled; this does not claim manual inspection of all edges or establish that current FOA funded the paper.",
+  "records": [
+    {
+      "opportunity_id": "gg-351124",
+      "opportunity_number": "PA-23-317",
+      "award_id": "3R01HD043392-23S1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11121140",
+      "award_core": "R01HD043392",
+      "openalex_work": "https://openalex.org/W1509396976",
+      "openalex_funding_ids": [
+        "R01HD043392",
+        "R24HD041023"
+      ],
+      "publication_year": 2009,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "2225b4a156312c5b7b9d6671a155f54fa1260ddcdcec2ab842ec7b8d00f12ced",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/2225b4a156312c5b7b9d6671a155f54fa1260ddcdcec2ab842ec7b8d00f12ced.json",
+          "fetched_at": "2026-11-17T04:46:00.629071+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-352810",
+      "opportunity_number": "PAR-24-128",
+      "award_id": "3T32GM136577-06S2",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11413335",
+      "award_core": "T32GM136577",
+      "openalex_work": "https://openalex.org/W1503901506",
+      "openalex_funding_ids": [
+        "P01HL090554",
+        "T32GM136577",
+        "UL1TR000430"
+      ],
+      "publication_year": 2014,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c.json",
+          "fetched_at": "2026-11-17T04:34:56.629272+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "7e734d4fd424800f1169169ff68c08e96129c2665e4dee49d9394d83a9895aeb",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/7e734d4fd424800f1169169ff68c08e96129c2665e4dee49d9394d83a9895aeb.json",
+          "fetched_at": "2026-11-17T04:46:49.942333+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353458",
+      "opportunity_number": "PA-24-184",
+      "award_id": "1K23HL181397-01",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11214689",
+      "award_core": "K23HL181397",
+      "openalex_work": "https://openalex.org/W4391723917",
+      "openalex_funding_ids": [
+        "1I01BX004767",
+        "AI142742",
+        "K23HL181397",
+        "K99AI145762",
+        "R01AI176554",
+        "R01HL137052",
+        "R01HL142114",
+        "T30 IP0965",
+        "T32GM121318",
+        "U19AI142742"
+      ],
+      "publication_year": 2024,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "402fb13e6bb1c0b9f671bd73278b843ec65bd9e61b63666488413c98af62dad7",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/402fb13e6bb1c0b9f671bd73278b843ec65bd9e61b63666488413c98af62dad7.json",
+          "fetched_at": "2026-11-17T04:45:04.167949+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353461",
+      "opportunity_number": "PA-24-185",
+      "award_id": "1K23NS140491-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11230100",
+      "award_core": "K23NS140491",
+      "openalex_work": "https://openalex.org/W3108179367",
+      "openalex_funding_ids": [
+        "203151",
+        "203151/Z/16/Z",
+        "BB/P009867/1",
+        "BB/S001816/1",
+        "K23NS140491",
+        "MC_PC_12009",
+        "MC_PC_17230",
+        "MR/P00072X/1",
+        "MR/P00072X/2",
+        "MR/P010423/1",
+        "R01NS127830",
+        "R01NS131512",
+        "R21NS118280",
+        "T32NS007413"
+      ],
+      "publication_year": 2020,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "546336365bde950acb33f756fcc63a3fec3d50941a5c7a2be80c56edc4a6ef57",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/546336365bde950acb33f756fcc63a3fec3d50941a5c7a2be80c56edc4a6ef57.json",
+          "fetched_at": "2026-11-17T04:45:04.195070+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353623",
+      "opportunity_number": "PA-24-201",
+      "award_id": "3U24DA057611-03S2",
+      "award_fiscal_year": 2024,
+      "award_url": "https://reporter.nih.gov/project-details/11128157",
+      "award_core": "U24DA057611",
+      "openalex_work": "https://openalex.org/W4415192500",
+      "openalex_funding_ids": [
+        "R01DA057682",
+        "U24DA057611"
+      ],
+      "publication_year": 2025,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1.json",
+          "fetched_at": "2026-11-17T04:34:49.796148+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "6aec9180edb9b95520c8a05354d25f9c80a8713bb686521e0f2cde0c5e0439e9",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/6aec9180edb9b95520c8a05354d25f9c80a8713bb686521e0f2cde0c5e0439e9.json",
+          "fetched_at": "2026-11-17T04:47:24.858324+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353710",
+      "opportunity_number": "PA-24-191",
+      "award_id": "1K25HL175222-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11136668",
+      "award_core": "K25HL175222",
+      "openalex_work": "https://openalex.org/W4307313451",
+      "openalex_funding_ids": [
+        "K25HL175222",
+        "P20GM109035",
+        "R01DK095963",
+        "R01DK117491",
+        "T32HL007427"
+      ],
+      "publication_year": 2022,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "a9588e691cbf1cc12ba53852a07f4061c162d527ccec3478852aa4bcc21b0193",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/a9588e691cbf1cc12ba53852a07f4061c162d527ccec3478852aa4bcc21b0193.json",
+          "fetched_at": "2026-11-17T04:46:58.172630+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353745",
+      "opportunity_number": "PA-24-181",
+      "award_id": "1K08CA293156-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11136111",
+      "award_core": "K08CA293156",
+      "openalex_work": "https://openalex.org/W4414563661",
+      "openalex_funding_ids": [
+        "K08CA293156"
+      ],
+      "publication_year": 2025,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "54020770cbf72ff5f6d086af27b26101a7e4a35ca438f927547e490e442e44db",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/54020770cbf72ff5f6d086af27b26101a7e4a35ca438f927547e490e442e44db.json",
+          "fetched_at": "2026-11-17T04:34:59.918784+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "28cd9a59a7c28e099835bb854f28a41adc43cb21554f77e8aa106441633fd8e1",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/28cd9a59a7c28e099835bb854f28a41adc43cb21554f77e8aa106441633fd8e1.json",
+          "fetched_at": "2026-11-17T04:45:00.971060+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353746",
+      "opportunity_number": "PA-24-182",
+      "award_id": "1K08MH141190-01",
+      "award_fiscal_year": 2026,
+      "award_url": "https://reporter.nih.gov/project-details/11212229",
+      "award_core": "K08MH141190",
+      "openalex_work": "https://openalex.org/W3191320263",
+      "openalex_funding_ids": [
+        "K08MH141190",
+        "P30AG062421",
+        "R01AG058063",
+        "R01MH118233",
+        "R01MH137218"
+      ],
+      "publication_year": 2026,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "cedfe64ff5a03ba67c0e71e05f0168e8c5930e573f488230f3c9aaa0e6f3987c",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/cedfe64ff5a03ba67c0e71e05f0168e8c5930e573f488230f3c9aaa0e6f3987c.json",
+          "fetched_at": "2026-11-17T04:36:11.449825+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "9a7207e13f9ec92de355bda029ee2825ba5467fc9ed4d0fdc381cd8abf1c961c",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/9a7207e13f9ec92de355bda029ee2825ba5467fc9ed4d0fdc381cd8abf1c961c.json",
+          "fetched_at": "2026-11-17T04:45:02.020000+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353749",
+      "opportunity_number": "PA-24-175",
+      "award_id": "1K01HL175188-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11137503",
+      "award_core": "K01HL175188",
+      "openalex_work": "https://openalex.org/W4415354760",
+      "openalex_funding_ids": [
+        "K01HL175188",
+        "K24AG080168",
+        "L30 AG079374",
+        "R01AG065805",
+        "R01AG074989",
+        "R01HL139837",
+        "R01HL153646",
+        "R01HL155599",
+        "R01HL157108",
+        "R01HL157264"
+      ],
+      "publication_year": 2025,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c.json",
+          "fetched_at": "2026-11-17T04:34:56.629272+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "f9b7f557efb01da188779468e73f1f8e12908958e3b26f1163f0cad36ff0b21a",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/f9b7f557efb01da188779468e73f1f8e12908958e3b26f1163f0cad36ff0b21a.json",
+          "fetched_at": "2026-11-17T04:44:59.747339+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353751",
+      "opportunity_number": "PA-24-176",
+      "award_id": "1K01MH137689-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11135820",
+      "award_core": "K01MH137689",
+      "openalex_work": "https://openalex.org/W4388398547",
+      "openalex_funding_ids": [
+        "F31AG069439",
+        "F31AG074648",
+        "F32HL146064",
+        "F32HL164050",
+        "K01HL149987",
+        "K01MH137689",
+        "R01AG062690",
+        "R01HL127260"
+      ],
+      "publication_year": 2023,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "54020770cbf72ff5f6d086af27b26101a7e4a35ca438f927547e490e442e44db",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/54020770cbf72ff5f6d086af27b26101a7e4a35ca438f927547e490e442e44db.json",
+          "fetched_at": "2026-11-17T04:34:59.918784+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "f9b7f557efb01da188779468e73f1f8e12908958e3b26f1163f0cad36ff0b21a",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/f9b7f557efb01da188779468e73f1f8e12908958e3b26f1163f0cad36ff0b21a.json",
+          "fetched_at": "2026-11-17T04:44:59.747339+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353758",
+      "opportunity_number": "PA-24-179",
+      "award_id": "1K02AG088465-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11137367",
+      "award_core": "K02AG088465",
+      "openalex_work": "https://openalex.org/W4412653905",
+      "openalex_funding_ids": [
+        "K02AG088465",
+        "R01AG080047"
+      ],
+      "publication_year": 2025,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "dadc7c3e81caea2a1ed93dea5970b4b159c376e6be642846e4cd19900fc0e024",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/dadc7c3e81caea2a1ed93dea5970b4b159c376e6be642846e4cd19900fc0e024.json",
+          "fetched_at": "2026-11-17T04:45:00.101502+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353762",
+      "opportunity_number": "PA-24-194",
+      "award_id": "1K99HL175185-01A1",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11136177",
+      "award_core": "K99HL175185",
+      "openalex_work": "https://openalex.org/W4403257866",
+      "openalex_funding_ids": [
+        "16SFRN29020000",
+        "1R01HL177047-01",
+        "4R00HL168312-03",
+        "5T32DK091317",
+        "I01 BX006306",
+        "I01CX002291",
+        "K99HL168312",
+        "K99HL175185",
+        "P30CA042014",
+        "R01AG074535",
+        "R01DK107397",
+        "R01DK127979",
+        "R01GM144613",
+        "R01HL135121",
+        "R01HL141353",
+        "R01HL165797",
+        "R01HL166513",
+        "R35GM131854",
+        "T32DK091317",
+        "T32HL007576"
+      ],
+      "publication_year": 2026,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "998c190c7cd603e8c0975eb2b8e2a0892b38f7e4a7641e45ae1b8d09f9625465",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/998c190c7cd603e8c0975eb2b8e2a0892b38f7e4a7641e45ae1b8d09f9625465.json",
+          "fetched_at": "2026-11-17T04:35:07.839540+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "913743b8251383c87ec1d11c02fb7f2efd7d4ce06b61c11f2f2fc0a8b3dc46e9",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/913743b8251383c87ec1d11c02fb7f2efd7d4ce06b61c11f2f2fc0a8b3dc46e9.json",
+          "fetched_at": "2026-11-17T04:46:35.923299+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353763",
+      "opportunity_number": "PA-24-193",
+      "award_id": "1K99HD118079-01",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11113417",
+      "award_core": "K99HD118079",
+      "openalex_work": "https://openalex.org/W4401506753",
+      "openalex_funding_ids": [
+        "13904",
+        "K99HD118079",
+        "T32TR004904",
+        "TL1TR003169",
+        "UL1TR003167"
+      ],
+      "publication_year": 2024,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "d29a98302bcdcc52879de8abefcad64b16d6cc637df0c509f3bce9e9880d7ce2",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/d29a98302bcdcc52879de8abefcad64b16d6cc637df0c509f3bce9e9880d7ce2.json",
+          "fetched_at": "2026-11-17T04:45:08.222562+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353792",
+      "opportunity_number": "PA-24-187",
+      "award_id": "2K24DA051344-06",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11187729",
+      "award_core": "K24DA051344",
+      "openalex_work": "https://openalex.org/W2020212092",
+      "openalex_funding_ids": [
+        "K02DA033139",
+        "K24DA051344",
+        "R01DA022122"
+      ],
+      "publication_year": 2015,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c.json",
+          "fetched_at": "2026-11-17T04:34:56.629272+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "4b7c7b25f0002a169649cb55768060517d8d8ee6293080a5e8cbe4729a8e4c57",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/4b7c7b25f0002a169649cb55768060517d8d8ee6293080a5e8cbe4729a8e4c57.json",
+          "fetched_at": "2026-11-17T04:45:05.345288+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-353793",
+      "opportunity_number": "PA-24-188",
+      "award_id": "2K24AR070892-06",
+      "award_fiscal_year": 2026,
+      "award_url": "https://reporter.nih.gov/project-details/11372264",
+      "award_core": "K24AR070892",
+      "openalex_work": "https://openalex.org/W2392469561",
+      "openalex_funding_ids": [
+        "K12HD055931",
+        "K24AR070892",
+        "L30 AR060056",
+        "N01 \u2010 AR \u2010 2 \u2010 2261",
+        "N01-AR-2- 2262",
+        "N01AR22258",
+        "N01AR22258-16-0-1",
+        "N01AR22259",
+        "N01AR22259-12-0-1",
+        "N01AR22260-13-0-1",
+        "N01AR22261-13-0-1",
+        "N01AR22262-12-0-1",
+        "N01\u2010AR\u20102\u20102260",
+        "P60AR047785",
+        "R01AR062506",
+        "U54GM104941",
+        "U54\u2010GM\u2010104941, R01\u2010AR\u2010062506, AR\u201047785, AR\u201047785"
+      ],
+      "publication_year": 2016,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b.json",
+          "fetched_at": "2026-11-17T04:36:00.385404+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "f3c9618e902e719827255f770d21a1e18fe9598abe8a69ed9f283aa571f0e9c5",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/f3c9618e902e719827255f770d21a1e18fe9598abe8a69ed9f283aa571f0e9c5.json",
+          "fetched_at": "2026-11-17T04:45:04.698064+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-355353",
+      "opportunity_number": "PA-24-253",
+      "award_id": "6R44CA236253-04",
+      "award_fiscal_year": 2024,
+      "award_url": "https://reporter.nih.gov/project-details/11221193",
+      "award_core": "R44CA236253",
+      "openalex_work": "https://openalex.org/W4399872073",
+      "openalex_funding_ids": [
+        "1R44CA236253-01",
+        "R44CA236253"
+      ],
+      "publication_year": 2024,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1.json",
+          "fetched_at": "2026-11-17T04:34:49.796148+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "436e20fea54ba146cdb52762466f07ab59598cd3e7a0a27358727de0793603d8",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/436e20fea54ba146cdb52762466f07ab59598cd3e7a0a27358727de0793603d8.json",
+          "fetched_at": "2026-11-17T04:46:27.039314+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-355354",
+      "opportunity_number": "PA-24-254",
+      "award_id": "7R01EY022356-12",
+      "award_fiscal_year": 2025,
+      "award_url": "https://reporter.nih.gov/project-details/11324826",
+      "award_core": "R01EY022356",
+      "openalex_work": "https://openalex.org/W1016955318",
+      "openalex_funding_ids": [
+        "EY018571-05",
+        "EY022356-01",
+        "R01EY018571",
+        "R01EY022356"
+      ],
+      "publication_year": 2015,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c.json",
+          "fetched_at": "2026-11-17T04:34:56.629272+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "2eac347b5f96d840d9f74c47d4fda95c3368abc4be54ced7a14b91b152433cd5",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/2eac347b5f96d840d9f74c47d4fda95c3368abc4be54ced7a14b91b152433cd5.json",
+          "fetched_at": "2026-11-17T04:45:55.612699+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-356018",
+      "opportunity_number": "PAR-24-269",
+      "award_id": "2U01DA050239-06A1",
+      "award_fiscal_year": 2026,
+      "award_url": "https://reporter.nih.gov/project-details/11292237",
+      "award_core": "U01DA050239",
+      "openalex_work": "https://openalex.org/W3155758321",
+      "openalex_funding_ids": [
+        "27IR0047",
+        "AA006420",
+        "AA027301",
+        "F31DA047113",
+        "K99AA027301",
+        "P50AA006420",
+        "P60AA006420",
+        "R00AA027301",
+        "R01AA022977",
+        "R01AA026081",
+        "R01AA026281",
+        "U01DA043799",
+        "U01DA044451",
+        "U01DA050239",
+        "U01DA051972"
+      ],
+      "publication_year": 2021,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "5baa5ef7bd1decce6582181d71611cdc52ce1d32454438d37fd9b8842ad3e4c7",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/5baa5ef7bd1decce6582181d71611cdc52ce1d32454438d37fd9b8842ad3e4c7.json",
+          "fetched_at": "2026-11-17T04:37:22.131013+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "41ca8ed8350f7dabbe1b770439463434291a10cf937f7bcff09d32542c0c3ba8",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/41ca8ed8350f7dabbe1b770439463434291a10cf937f7bcff09d32542c0c3ba8.json",
+          "fetched_at": "2026-11-17T04:47:07.158928+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-356517",
+      "opportunity_number": "PAR-24-301",
+      "award_id": "2P41HD062499-16",
+      "award_fiscal_year": 2026,
+      "award_url": "https://reporter.nih.gov/project-details/11335339",
+      "award_core": "P41HD062499",
+      "openalex_work": "https://openalex.org/W1012429897",
+      "openalex_funding_ids": [
+        "HG 002273",
+        "HG000330",
+        "HG002273",
+        "P30CA034196",
+        "P41HD062499",
+        "P41HG000330",
+        "P41HG002273",
+        "R01HG002273",
+        "U41HG000330",
+        "U41HG002273"
+      ],
+      "publication_year": 2015,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "e7c4a2d4bc05cfd0fbe906b809c07ed129c2d50e601e377c28c8e114e34958d0",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/e7c4a2d4bc05cfd0fbe906b809c07ed129c2d50e601e377c28c8e114e34958d0.json",
+          "fetched_at": "2026-11-17T04:45:37.667813+00:00"
+        }
+      ],
+      "correct": true
+    },
+    {
+      "opportunity_id": "gg-356617",
+      "opportunity_number": "PA-25-080",
+      "award_id": "2R13AA020768-13",
+      "award_fiscal_year": 2026,
+      "award_url": "https://reporter.nih.gov/project-details/11466953",
+      "award_core": "R13AA020768",
+      "openalex_work": "https://openalex.org/W1868799628",
+      "openalex_funding_ids": [
+        "F31AA022566",
+        "K08AA021404",
+        "R01AA012034",
+        "R01AA015731",
+        "R01AA016959",
+        "R01AA017986",
+        "R01GM115257",
+        "R13AA020768",
+        "R21AA014238",
+        "R21AA022324",
+        "R21AA023193",
+        "R37AA015913",
+        "T32AA013527",
+        "U01AA023552"
+      ],
+      "publication_year": 2015,
+      "join_confidence": 0.95,
+      "relationship": "paper_reports_award_core_in_funding_metadata",
+      "source_refs": [
+        {
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "sha256": "325a4fdabf85c815d109f3d1bbb48d89771bf9c11b8c3c904a94426c73ee2894",
+          "source": "nih_reporter",
+          "raw_path": "tmp/raw/nih_reporter/325a4fdabf85c815d109f3d1bbb48d89771bf9c11b8c3c904a94426c73ee2894.json",
+          "fetched_at": "2026-11-17T04:36:14.742770+00:00"
+        },
+        {
+          "url": "https://api.openalex.org/works",
+          "sha256": "d0d7af902cfe7ca284bc107681396d79d16e135252b85784e3f91df8387433c2",
+          "source": "openalex",
+          "raw_path": "tmp/raw/openalex/d0d7af902cfe7ca284bc107681396d79d16e135252b85784e3f91df8387433c2.json",
+          "fetched_at": "2026-11-17T04:46:16.892185+00:00"
+        }
+      ],
+      "correct": true
+    }
+  ],
+  "reviewer": "Coding agent; compact identifier rows manually inspected after source-response identity validation. No independent human sign-off claimed.",
+  "manual_identifier_inspection_completed": true
+}

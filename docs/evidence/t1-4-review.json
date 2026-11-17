@@ -1,0 +1,935 @@
+{
+  "task": "T1.4",
+  "reviewed_at": "2026-11-17",
+  "reviewer": "Coding agent manual inspection of source identifier evidence; no independent human sign-off claimed.",
+  "sample_method": "20 distinct opportunities with the smallest positive award graphs; all32 award edges reviewed against archived live source records. Supplemental5 paper edges reviewed from PA-25-301, with explicit intermediate award/core/PMID evidence.",
+  "joined_records_reviewed": 20,
+  "award_edges_reviewed": 32,
+  "award_edges_correct": 32,
+  "supplemental_paper_records_reviewed": 1,
+  "supplemental_paper_edges_reviewed": 5,
+  "supplemental_paper_edges_correct": 5,
+  "correct_fraction": 1.0,
+  "required_fraction": 0.8,
+  "trial_edges_created": 0,
+  "check_passed": true,
+  "limitations": [
+    "20 primary records are award-joined records; paper linkage is not claimed for all20.",
+    "PA-25-301 has a larger graph: only5 supplemental paper edges were manually inspected; no claim that every edge in that larger graph was manually inspected.",
+    "Core-project publication association is not evidence that the current opportunity caused or funded each paper. Source application match does not change that limitation.",
+    "This is a deliberately compact verification sample, not a statistical estimate of whole-feed joining precision."
+  ],
+  "award_edges": [
+    {
+      "opportunity_id": "gg-352635",
+      "number": "PAR-24-149",
+      "target": "1K01DC023235-01A1",
+      "appl_id": 11440183,
+      "foa_in_reporter": "PAR-24-149",
+      "core": "K01DC023235",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11440183",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:22.446070+00:00",
+          "raw_path": "tmp/raw/nih_reporter/d99785e2bd417b9514e5e69b52c8bc1c1a9757c107df1bbc7b4f5ca48845ca93.json",
+          "sha256": "d99785e2bd417b9514e5e69b52c8bc1c1a9757c107df1bbc7b4f5ca48845ca93"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/352635",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-353623",
+      "number": "PA-24-201",
+      "target": "3U24DA057611-03S2",
+      "appl_id": 11128157,
+      "foa_in_reporter": "PA-24-201",
+      "core": "U24DA057611",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11128157",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:34:49.796148+00:00",
+          "raw_path": "tmp/raw/nih_reporter/e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1.json",
+          "sha256": "e9fda3f9de3caa7c5af676e5589ed41895220541ee4edb18bc71d764a7a592a1"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/353623",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356018",
+      "number": "PAR-24-269",
+      "target": "1U01DA064597-01",
+      "appl_id": 11281968,
+      "foa_in_reporter": "PAR-24-269",
+      "core": "U01DA064597",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11281968",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:18.170787+00:00",
+          "raw_path": "tmp/raw/nih_reporter/c5d477fec9e56256c45c96c6aa953f779e04b9bd42a5c896b5fa1699a1cbc958.json",
+          "sha256": "c5d477fec9e56256c45c96c6aa953f779e04b9bd42a5c896b5fa1699a1cbc958"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356018",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356517",
+      "number": "PAR-24-301",
+      "target": "2P41HD062499-16",
+      "appl_id": 11335339,
+      "foa_in_reporter": "PAR-24-301",
+      "core": "P41HD062499",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11335339",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356517",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356800",
+      "number": "PAR-25-059",
+      "target": "1R61NS146351-01",
+      "appl_id": 11288689,
+      "foa_in_reporter": "PAR-25-059",
+      "core": "R61NS146351",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11288689",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:26.128050+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0.json",
+          "sha256": "a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356800",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357256",
+      "number": "PAR-25-052",
+      "target": "1UG3NS150909-01",
+      "appl_id": 11439959,
+      "foa_in_reporter": "PAR-25-052",
+      "core": "UG3NS150909",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11439959",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:33.242865+00:00",
+          "raw_path": "tmp/raw/nih_reporter/14acbd32c01de622c6c2d41c3f479df669e232e2336e8e282caa0e6b1d58efd4.json",
+          "sha256": "14acbd32c01de622c6c2d41c3f479df669e232e2336e8e282caa0e6b1d58efd4"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357256",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-358082",
+      "number": "PAR-25-068",
+      "target": "1R21DK146753-01A1",
+      "appl_id": 11410984,
+      "foa_in_reporter": "PAR-25-068",
+      "core": "R21DK146753",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11410984",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:36.700523+00:00",
+          "raw_path": "tmp/raw/nih_reporter/f3055b56681cdd36798498cd1d37dbe0fae4ac7c519c311e736e7dae52e01290.json",
+          "sha256": "f3055b56681cdd36798498cd1d37dbe0fae4ac7c519c311e736e7dae52e01290"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/358082",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-358114",
+      "number": "PAR-25-250",
+      "target": "1F32DC023413-01",
+      "appl_id": 11318001,
+      "foa_in_reporter": "PAR-25-250",
+      "core": "F32DC023413",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11318001",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:59.465024+00:00",
+          "raw_path": "tmp/raw/nih_reporter/d4b33b6e20504894aaa6eaa4059727c84aa6b1524e82a6677e4cc869884a9f11.json",
+          "sha256": "d4b33b6e20504894aaa6eaa4059727c84aa6b1524e82a6677e4cc869884a9f11"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/358114",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-354081",
+      "number": "PAR-24-214",
+      "target": "1R15AA031809-01A1",
+      "appl_id": 11124372,
+      "foa_in_reporter": "PAR-24-214",
+      "core": "R15AA031809",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11124372",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:04.422734+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01.json",
+          "sha256": "0701bbeacc33c552d6f1a4f4c278a209e966e949ab07e74506317744dc92ef01"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/354081",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-354081",
+      "number": "PAR-24-214",
+      "target": "1R15HL173855-01A1",
+      "appl_id": 11125257,
+      "foa_in_reporter": "PAR-24-214",
+      "core": "R15HL173855",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11125257",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:34:56.629272+00:00",
+          "raw_path": "tmp/raw/nih_reporter/65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c.json",
+          "sha256": "65087416bb2c24877df105d5a9cdba481d10f4edbabb8ba9ed7da35ff29b8d2c"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/354081",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-355987",
+      "number": "PAR-24-260",
+      "target": "1R24GM161856-01",
+      "appl_id": 11265758,
+      "foa_in_reporter": "PAR-24-260",
+      "core": "R24GM161856",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11265758",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:04.751654+00:00",
+          "raw_path": "tmp/raw/nih_reporter/7b693d58c774c477d6fcd234b71fe6deca6479189fb369fd53556f5b611be7dd.json",
+          "sha256": "7b693d58c774c477d6fcd234b71fe6deca6479189fb369fd53556f5b611be7dd"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/355987",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-355987",
+      "number": "PAR-24-260",
+      "target": "1R24GM162196-01",
+      "appl_id": 11267471,
+      "foa_in_reporter": "PAR-24-260",
+      "core": "R24GM162196",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11267471",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:11.449825+00:00",
+          "raw_path": "tmp/raw/nih_reporter/cedfe64ff5a03ba67c0e71e05f0168e8c5930e573f488230f3c9aaa0e6f3987c.json",
+          "sha256": "cedfe64ff5a03ba67c0e71e05f0168e8c5930e573f488230f3c9aaa0e6f3987c"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/355987",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356310",
+      "number": "PAR-24-236",
+      "target": "1UE5GM161514-01",
+      "appl_id": 11263499,
+      "foa_in_reporter": "PAR-24-236",
+      "core": "UE5GM161514",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11263499",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:50.491453+00:00",
+          "raw_path": "tmp/raw/nih_reporter/d9dafbdca8fecaadb0cb5112d24c9943d6633ce863acffd978026ae2ac4154ab.json",
+          "sha256": "d9dafbdca8fecaadb0cb5112d24c9943d6633ce863acffd978026ae2ac4154ab"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356310",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356310",
+      "number": "PAR-24-236",
+      "target": "1UE5GM161880-01",
+      "appl_id": 11265238,
+      "foa_in_reporter": "PAR-24-236",
+      "core": "UE5GM161880",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11265238",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:00.385404+00:00",
+          "raw_path": "tmp/raw/nih_reporter/025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b.json",
+          "sha256": "025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356310",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356610",
+      "number": "PAR-24-293",
+      "target": "1UG3NS143075-01A1",
+      "appl_id": 11264066,
+      "foa_in_reporter": "PAR-24-293",
+      "core": "UG3NS143075",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11264066",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:47.206634+00:00",
+          "raw_path": "tmp/raw/nih_reporter/fe607aa41e42ae4b5b4fba820b6db09af78de003fab5e53e5f50411cd09b10c0.json",
+          "sha256": "fe607aa41e42ae4b5b4fba820b6db09af78de003fab5e53e5f50411cd09b10c0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356610",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356610",
+      "number": "PAR-24-293",
+      "target": "1UG3NS149390-01",
+      "appl_id": 11372655,
+      "foa_in_reporter": "PAR-24-293",
+      "core": "UG3NS149390",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11372655",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356610",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356637",
+      "number": "PA-25-093",
+      "target": "1R34AR087022-01A1",
+      "appl_id": 11451670,
+      "foa_in_reporter": "PA-25-093",
+      "core": "R34AR087022",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11451670",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:33.242865+00:00",
+          "raw_path": "tmp/raw/nih_reporter/14acbd32c01de622c6c2d41c3f479df669e232e2336e8e282caa0e6b1d58efd4.json",
+          "sha256": "14acbd32c01de622c6c2d41c3f479df669e232e2336e8e282caa0e6b1d58efd4"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356637",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356637",
+      "number": "PA-25-093",
+      "target": "1R34AR087629-01",
+      "appl_id": 11355883,
+      "foa_in_reporter": "PA-25-093",
+      "core": "R34AR087629",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11355883",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356637",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356691",
+      "number": "PAR-25-062",
+      "target": "2UH3DE029169-07",
+      "appl_id": 11364274,
+      "foa_in_reporter": "PAR-25-062",
+      "core": "UH3DE029169",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11364274",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:14.742770+00:00",
+          "raw_path": "tmp/raw/nih_reporter/325a4fdabf85c815d109f3d1bbb48d89771bf9c11b8c3c904a94426c73ee2894.json",
+          "sha256": "325a4fdabf85c815d109f3d1bbb48d89771bf9c11b8c3c904a94426c73ee2894"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356691",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356691",
+      "number": "PAR-25-062",
+      "target": "2UH3DE030431-05",
+      "appl_id": 11368829,
+      "foa_in_reporter": "PAR-25-062",
+      "core": "UH3DE030431",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11368829",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:44.101838+00:00",
+          "raw_path": "tmp/raw/nih_reporter/614909985a4ae06cdf13fdfe0062cc9e1a1c3bace4285c415c656da932cb72ab.json",
+          "sha256": "614909985a4ae06cdf13fdfe0062cc9e1a1c3bace4285c415c656da932cb72ab"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356691",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356978",
+      "number": "PAR-25-103",
+      "target": "1U34CA304677-01A1",
+      "appl_id": 11368956,
+      "foa_in_reporter": "PAR-25-103",
+      "core": "U34CA304677",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11368956",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:04.751654+00:00",
+          "raw_path": "tmp/raw/nih_reporter/7b693d58c774c477d6fcd234b71fe6deca6479189fb369fd53556f5b611be7dd.json",
+          "sha256": "7b693d58c774c477d6fcd234b71fe6deca6479189fb369fd53556f5b611be7dd"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356978",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-356978",
+      "number": "PAR-25-103",
+      "target": "1U34CA308743-01",
+      "appl_id": 11291983,
+      "foa_in_reporter": "PAR-25-103",
+      "core": "U34CA308743",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11291983",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:53.726625+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8973c1190feea3930bebfbe38f37f46cfdef423fbd429eaaf710cef9cffb13a.json",
+          "sha256": "a8973c1190feea3930bebfbe38f37f46cfdef423fbd429eaaf710cef9cffb13a"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/356978",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357002",
+      "number": "PAR-24-311",
+      "target": "1R01CA307210-01A1",
+      "appl_id": 11446651,
+      "foa_in_reporter": "PAR-24-311",
+      "core": "R01CA307210",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11446651",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:26.128050+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0.json",
+          "sha256": "a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357002",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357002",
+      "number": "PAR-24-311",
+      "target": "1R01CA316361-01",
+      "appl_id": 11430903,
+      "foa_in_reporter": "PAR-24-311",
+      "core": "R01CA316361",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11430903",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:50.491453+00:00",
+          "raw_path": "tmp/raw/nih_reporter/d9dafbdca8fecaadb0cb5112d24c9943d6633ce863acffd978026ae2ac4154ab.json",
+          "sha256": "d9dafbdca8fecaadb0cb5112d24c9943d6633ce863acffd978026ae2ac4154ab"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357002",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357018",
+      "number": "PAR-25-079",
+      "target": "1R01CA315012-01",
+      "appl_id": 11423457,
+      "foa_in_reporter": "PAR-25-079",
+      "core": "R01CA315012",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11423457",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:29.796189+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0768ef8499aed59a457dadf4fae53fb29b752982b1b29691e375936ac91c264e.json",
+          "sha256": "0768ef8499aed59a457dadf4fae53fb29b752982b1b29691e375936ac91c264e"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357018",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357018",
+      "number": "PAR-25-079",
+      "target": "9R01CA309741-05",
+      "appl_id": 11306403,
+      "foa_in_reporter": "PAR-25-079",
+      "core": "R01CA309741",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11306403",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:26.128050+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0.json",
+          "sha256": "a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357018",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357203",
+      "number": "PAR-25-070",
+      "target": "1R21CA301170-01A1",
+      "appl_id": 11303823,
+      "foa_in_reporter": "PAR-25-070",
+      "core": "R21CA301170",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11303823",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:26.128050+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0.json",
+          "sha256": "a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357203",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357203",
+      "number": "PAR-25-070",
+      "target": "1R21CA313262-01",
+      "appl_id": 11356678,
+      "foa_in_reporter": "PAR-25-070",
+      "core": "R21CA313262",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11356678",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:26.128050+00:00",
+          "raw_path": "tmp/raw/nih_reporter/a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0.json",
+          "sha256": "a8e2cc62ff0e301d483ab067c8944cc25779010a9aabec549d6fff15d7058fa0"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357203",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357543",
+      "number": "PAR-25-026",
+      "target": "1R61HL185680-01",
+      "appl_id": 11342260,
+      "foa_in_reporter": "PAR-25-026",
+      "core": "R61HL185680",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11342260",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357543",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357543",
+      "number": "PAR-25-026",
+      "target": "1R61HL187358-01",
+      "appl_id": 11424576,
+      "foa_in_reporter": "PAR-25-026",
+      "core": "R61HL187358",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11424576",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:36.700523+00:00",
+          "raw_path": "tmp/raw/nih_reporter/f3055b56681cdd36798498cd1d37dbe0fae4ac7c519c311e736e7dae52e01290.json",
+          "sha256": "f3055b56681cdd36798498cd1d37dbe0fae4ac7c519c311e736e7dae52e01290"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357543",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357941",
+      "number": "PAR-25-101",
+      "target": "1R21DA065065-01",
+      "appl_id": 11300723,
+      "foa_in_reporter": "PAR-25-101",
+      "core": "R21DA065065",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11300723",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:00.385404+00:00",
+          "raw_path": "tmp/raw/nih_reporter/025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b.json",
+          "sha256": "025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357941",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    },
+    {
+      "opportunity_id": "gg-357941",
+      "number": "PAR-25-101",
+      "target": "1R21DA066282-01",
+      "appl_id": 11392635,
+      "foa_in_reporter": "PAR-25-101",
+      "core": "R21DA066282",
+      "confidence": 1.0,
+      "url": "https://reporter.nih.gov/project-details/11392635",
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:36:00.385404+00:00",
+          "raw_path": "tmp/raw/nih_reporter/025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b.json",
+          "sha256": "025ef66c5a2e75964991d84c1c9c0255df1c0fe15ef5c0ba16e4f9e7dc858c7b"
+        }
+      ],
+      "opportunity_source_url": "https://www.grants.gov/search-results-detail/357941",
+      "verdict": "correct",
+      "reason": "Grants.gov opportunity number equals RePORTER opportunity_number; target project number, core number and application ID match stored source record."
+    }
+  ],
+  "paper_edges": [
+    {
+      "opportunity_id": "gg-357812",
+      "number": "PA-25-301",
+      "reporter_foa": "PA-25-301",
+      "award": "5R01AI145687-07",
+      "award_core": "R01AI145687",
+      "publication_core": "R01AI145687",
+      "pmid": "31787378",
+      "openalex_pmid": "https://pubmed.ncbi.nlm.nih.gov/31787378",
+      "work": "https://openalex.org/W2990052415",
+      "publication_year": 2019,
+      "award_fiscal_year": 2026,
+      "application_matches": true,
+      "relationship": "publication_associated_with_award_core_project",
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        },
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/publications/search",
+          "fetched_at": "2026-11-17T04:32:46.387436+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c.json",
+          "sha256": "0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c"
+        },
+        {
+          "source": "openalex",
+          "url": "https://api.openalex.org/works",
+          "fetched_at": "2026-11-17T04:32:47.475287+00:00",
+          "raw_path": "tmp/raw/openalex/4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618.json",
+          "sha256": "4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618"
+        }
+      ],
+      "verdict": "correct",
+      "reason": "Exact FOA award link, exact RePORTER coreproject publication link and exact PMID OpenAlex work identity. Association with award core project only; publication can predate current award/FOA."
+    },
+    {
+      "opportunity_id": "gg-357812",
+      "number": "PA-25-301",
+      "reporter_foa": "PA-25-301",
+      "award": "5R01AI145687-07",
+      "award_core": "R01AI145687",
+      "publication_core": "R01AI145687",
+      "pmid": "31980614",
+      "openalex_pmid": "https://pubmed.ncbi.nlm.nih.gov/31980614",
+      "work": "https://openalex.org/W3002297978",
+      "publication_year": 2020,
+      "award_fiscal_year": 2026,
+      "application_matches": true,
+      "relationship": "publication_associated_with_award_core_project",
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        },
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/publications/search",
+          "fetched_at": "2026-11-17T04:32:46.387436+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c.json",
+          "sha256": "0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c"
+        },
+        {
+          "source": "openalex",
+          "url": "https://api.openalex.org/works",
+          "fetched_at": "2026-11-17T04:32:47.475287+00:00",
+          "raw_path": "tmp/raw/openalex/4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618.json",
+          "sha256": "4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618"
+        }
+      ],
+      "verdict": "correct",
+      "reason": "Exact FOA award link, exact RePORTER coreproject publication link and exact PMID OpenAlex work identity. Association with award core project only; publication can predate current award/FOA."
+    },
+    {
+      "opportunity_id": "gg-357812",
+      "number": "PA-25-301",
+      "reporter_foa": "PA-25-301",
+      "award": "5R01AI145687-07",
+      "award_core": "R01AI145687",
+      "publication_core": "R01AI145687",
+      "pmid": "32492407",
+      "openalex_pmid": "https://pubmed.ncbi.nlm.nih.gov/32492407",
+      "work": "https://openalex.org/W3030146162",
+      "publication_year": 2020,
+      "award_fiscal_year": 2026,
+      "application_matches": true,
+      "relationship": "publication_associated_with_award_core_project",
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        },
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/publications/search",
+          "fetched_at": "2026-11-17T04:32:46.387436+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c.json",
+          "sha256": "0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c"
+        },
+        {
+          "source": "openalex",
+          "url": "https://api.openalex.org/works",
+          "fetched_at": "2026-11-17T04:32:47.475287+00:00",
+          "raw_path": "tmp/raw/openalex/4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618.json",
+          "sha256": "4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618"
+        }
+      ],
+      "verdict": "correct",
+      "reason": "Exact FOA award link, exact RePORTER coreproject publication link and exact PMID OpenAlex work identity. Association with award core project only; publication can predate current award/FOA."
+    },
+    {
+      "opportunity_id": "gg-357812",
+      "number": "PA-25-301",
+      "reporter_foa": "PA-25-301",
+      "award": "5R01AI145687-07",
+      "award_core": "R01AI145687",
+      "publication_core": "R01AI145687",
+      "pmid": "32699321",
+      "openalex_pmid": "https://pubmed.ncbi.nlm.nih.gov/32699321",
+      "work": "https://openalex.org/W3045149055",
+      "publication_year": 2020,
+      "award_fiscal_year": 2026,
+      "application_matches": true,
+      "relationship": "publication_associated_with_award_core_project",
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        },
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/publications/search",
+          "fetched_at": "2026-11-17T04:32:46.387436+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c.json",
+          "sha256": "0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c"
+        },
+        {
+          "source": "openalex",
+          "url": "https://api.openalex.org/works",
+          "fetched_at": "2026-11-17T04:32:47.475287+00:00",
+          "raw_path": "tmp/raw/openalex/4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618.json",
+          "sha256": "4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618"
+        }
+      ],
+      "verdict": "correct",
+      "reason": "Exact FOA award link, exact RePORTER coreproject publication link and exact PMID OpenAlex work identity. Association with award core project only; publication can predate current award/FOA."
+    },
+    {
+      "opportunity_id": "gg-357812",
+      "number": "PA-25-301",
+      "reporter_foa": "PA-25-301",
+      "award": "5R01AI145687-07",
+      "award_core": "R01AI145687",
+      "publication_core": "R01AI145687",
+      "pmid": "33306985",
+      "openalex_pmid": "https://pubmed.ncbi.nlm.nih.gov/33306985",
+      "work": "https://openalex.org/W3108737416",
+      "publication_year": 2020,
+      "award_fiscal_year": 2026,
+      "application_matches": true,
+      "relationship": "publication_associated_with_award_core_project",
+      "confidence": 0.95,
+      "source_refs": [
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/projects/search",
+          "fetched_at": "2026-11-17T04:35:11.120992+00:00",
+          "raw_path": "tmp/raw/nih_reporter/8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62.json",
+          "sha256": "8c15c40cdd6810b6c9e0799ad29740f4d0d665d8cf291f28da3dae060a256e62"
+        },
+        {
+          "source": "nih_reporter",
+          "url": "https://api.reporter.nih.gov/v2/publications/search",
+          "fetched_at": "2026-11-17T04:32:46.387436+00:00",
+          "raw_path": "tmp/raw/nih_reporter/0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c.json",
+          "sha256": "0706749a46897130bdeab626b32a7d3c904f4b8ec3866343aef2687ebed8041c"
+        },
+        {
+          "source": "openalex",
+          "url": "https://api.openalex.org/works",
+          "fetched_at": "2026-11-17T04:32:47.475287+00:00",
+          "raw_path": "tmp/raw/openalex/4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618.json",
+          "sha256": "4886e9a9b1f2367a366036580ad6fd68f98d8da883a66c952d95ee802dfdb618"
+        }
+      ],
+      "verdict": "correct",
+      "reason": "Exact FOA award link, exact RePORTER coreproject publication link and exact PMID OpenAlex work identity. Association with award core project only; publication can predate current award/FOA."
+    }
+  ]
+}

@@ -5,6 +5,14 @@
 
 How to run: In Codex, from the project root, use the Spec Kit skills mode: `$speckit-tasks` to regenerate, `$speckit-implement` to build. Work phases in order — do not start a phase until the previous phase's checks pass. Mark each task [x] only when its check passes.
 
+## Current status — 2026-11-17
+
+Phase 1 completed under Maxx's explicit instruction after the correction below.
+T1.1–T1.8 and the local Postgres gate passed; **STOP before Phase 2**. Automated
+checks: 52 passed. No paid pass has been sold as of 2026-11-16, and T6.3 remains
+unchecked. Maxx states this project is definitely not part of what he does for
+work; no broader employer IP clearance is claimed. No production deployment.
+
 ## Implementation status — 2026-11-12
 
 Restored from the supplied task-list PDF. **All four Phase 0 tasks passed on 2026-11-12:** decisions are dated, the public GitHub repository contains the committed governing documents, DNS routes the approved hostname to Railway, and the local empty-Postgres TLS migration preflight passed with temporary public access removed afterward. **STOP before Phase 1 and show Maxx these results for phase review. Phase 1 has not started; all 29 later tasks remain unchecked.** Stop after each phase and show Maxx what passed its checks before moving on.
@@ -33,24 +41,32 @@ Domain update confirmed 2026-11-12: use `mcp.rigbyscloud.com`, under Maxx's alre
 
 ## Phase 1 — Feed build (feed first, server second)
 
-- [ ] **T1.1** Implement Grants.gov fetcher: POST `search2` + `fetchOpportunity`, paginated, store raw responses.
+- [x] **T1.1** Implement Grants.gov fetcher: POST `search2` + `fetchOpportunity`, paginated, store raw responses.
   - Check: fetcher returns ≥ 100 open opportunities with deadlines, run logged with count.
-- [ ] **T1.2** Implement NIH RePORTER fetcher (`/v2`, awards) and OpenAlex fetcher (`/works`, papers/linkage).
+  - **Passed 2026-11-17:** 828 posted records, 781 source deadlines, paginated raw archives. `docs/evidence/t1-1.json`.
+- [x] **T1.2** Implement NIH RePORTER fetcher (`/v2`, awards) and OpenAlex fetcher (`/works`, papers/linkage).
   - Check: both return records with IDs that join to at least one Grants.gov opportunity in a sample.
-- [ ] **T1.3** Implement cleaning: normalize titles/sponsors, parse `deadline_parsed` (ISO), `eligibility_parsed[]`, `award_amount_parsed`, `dedupe_key`, `source_ids[]`.
+  - **Passed 2026-11-17:** 14,601 scoped awards and 138,804 unique OpenAlex works; exact identifier sample and complete partition counts. Bulk works use explicit OpenAlex award-core metadata; optional RePORTER PMID route separately verified. `docs/evidence/t1-2.json`.
+- [x] **T1.3** Implement cleaning: normalize titles/sponsors, parse `deadline_parsed` (ISO), `eligibility_parsed[]`, `award_amount_parsed`, `dedupe_key`, `source_ids[]`.
   - Check: 20 hand-checked Grants.gov records parse correctly (deadline + amount + eligibility match the source page).
-- [ ] **T1.4** Implement joining: link opportunities → awards → papers with `join_confidence` per link; store in `opportunity_links`.
+  - **Passed 2026-11-17:** 20/20 source reviews; expired/unresolved calls excluded, rolling dates and zero/unknown amounts preserved. `docs/evidence/t1-3-review.json`.
+- [x] **T1.4** Implement joining: link opportunities → awards → papers with `join_confidence` per link; store in `opportunity_links`.
   - Check: sample of 20 joined records — at least 80% of links are correct on manual review; no trial links created.
-- [ ] **T1.5** Implement scoring: `growth_score`, `momentum_score`, `novelty_score`, `gap_score` (0–100), with `methodology_version` stamped on every record. Document the methodology in one page (`docs/scoring-methodology.md`).
+  - **Passed 2026-11-17:** 20 joined-record reviews plus 20 complete chains; final published direct edges 20/20 correct, no trial links. All edges stored in Postgres. `docs/evidence/t1-4-review.json`, `t1-4-chains-supplement.json`, `t1-4-published-direct.json`.
+- [x] **T1.5** Implement scoring: `growth_score`, `momentum_score`, `novelty_score`, `gap_score` (0–100), with `methodology_version` stamped on every record. Document the methodology in one page (`docs/scoring-methodology.md`).
   - Check: scores are deterministic for the same input; corn-in-a-rut fixture (high funding + papers, low novelty/momentum) scores low on novelty/momentum.
-- [ ] **T1.6** Implement summarizing: `summary_short` + `extracted_requirements[]` per opportunity.
+  - **Passed 2026-11-17:** Determinism, bounds and saturated corn-in-a-rut fixture pass; thin/unsupported coverage flagged neutral. `docs/evidence/t1-5.json` and `tests/test_scoring.py`.
+- [x] **T1.6** Implement summarizing: `summary_short` + `extracted_requirements[]` per opportunity.
   - Check: 10 summaries read correctly against their source opportunity — no invented deadlines or amounts.
-- [ ] **T1.7** Create Postgres schema (`opportunities`, `opportunity_links`, `api_keys`, `redemptions`, `rate_limit_counters`) + indexes from `plan.md`.
+  - **Passed 2026-11-17:** 10/10 source-bound summaries; no invented deadlines or amounts. `docs/evidence/t1-6-review.json`.
+- [x] **T1.7** Create Postgres schema (`opportunities`, `opportunity_links`, `api_keys`, `redemptions`, `rate_limit_counters`) + indexes from `plan.md`.
   - Check: migrations run clean on a fresh database.
-- [ ] **T1.8** Wire the feed builder as a scheduled job: daily Grants.gov, weekly RePORTER/OpenAlex in v1. Log `feed_generated_at` + per-source counts every run.
+  - **Passed 2026-11-17:** Fresh PostgreSQL migrations, indexes, checksum/rollback and chunked-cache checks pass (9 database tests). `docs/evidence/t1-7.json` and `tests/test_database.py`.
+- [x] **T1.8** Wire the feed builder as a scheduled job: daily Grants.gov, weekly RePORTER/OpenAlex in v1. Log `feed_generated_at` + per-source counts every run.
   - Check: a full build runs end-to-end and `/health` (stub) would report its timestamp.
+  - **Passed 2026-11-17:** Complete Postgres build and weekly-cache rerun passed; health JSON reports the successful timestamp and source counts. Daily schedule definition in `deploy/feed.crontab`; not activated on host. `docs/evidence/t1-8-build.json`.
 
-**Phase 1 gate:** a full feed exists in Postgres with all five layers, and SC-002 spot-check (10 records vs Grants.gov) passes. Do not start Phase 2 until it does.
+**Phase 1 gate passed locally — 2026-11-17:** 789/789 records carry the five pipeline layers; 14,411 award links and 147,744 paper links are stored. SC-002: 10/10 stored deadlines/links match fresh Grants.gov, all source pages HTTP 200 (`docs/evidence/sc-002.json`). Feed timestamp: `2026-11-17T04:54:38.690560+00:00`. Confirmed research links exist for 165 opportunities; 756 records have explicitly flagged neutral scores for insufficient evidence, not observed gaps. Source retrieval times and coverage remain visible. Railway production and HTTP/client verification are later-phase work. **STOP before Phase 2.**
 
 ## Phase 2 — MCP server
 
