@@ -1,0 +1,21 @@
+{
+  "task": "T3.1",
+  "result": "passed with synthetic fixtures only",
+  "checks": [
+    "fixed HTTPS Gumroad license API with increment_uses_count=false",
+    "configured product/9900USD/email/receipt eligibility enforced",
+    "valid synthetic license shows one key and both client commands",
+    "invalid or reused license produces plain error, no new key",
+    "concurrent case and sale aliases issue at most one key",
+    "CSRF, no-store, no-referrer, escaped form and bounded input"
+  ],
+  "test_files": [
+    "tests/test_gumroad.py",
+    "tests/test_redemption_schema.py",
+    "tests/test_redeem.py",
+    "tests/test_redeem_review.py"
+  ],
+  "live_gumroad_product": "not configured or confirmed in this environment",
+  "live_sale_verification": "not performed; test licenses only",
+  "open_item": "Maxx must confirm/create the separate one-time $99 MCP pass, enable license keys and supply GUMROAD_PRODUCT_ID. Real-sale validation remains untested and outside these fixture checks."
+}

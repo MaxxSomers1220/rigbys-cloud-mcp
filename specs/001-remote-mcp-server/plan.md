@@ -5,7 +5,63 @@
 - Constitution: `.specify/memory/constitution.md` v1.0.0
 - Date: 2026-11-12
 
-Status: Phase 1 remains complete. Phase 2 local MCP service checks passed on 2026-11-17. **STOP before Phase 3.** No redemption page, production HTTP health endpoint, deployment or later-phase work has started.
+Status: Phase 3 implementation and local fixture/HTTP checks passed on 2026-11-17. **STOP before Phase 4.** Live Gumroad product configuration and real-sale verification remain open; no deployment, schedule activation or sale is claimed.
+
+## Phase 3 implementation status — 2026-11-17
+
+Maxx explicitly authorized T3.1–T3.4 only, using test licenses/keys and permitting
+synthetic provider fixtures when a live product is unavailable. The constitution
+and feature spec are unchanged. No paid pass has been sold; no broader employer
+clearance is claimed beyond Maxx's statement that the project is definitely not
+part of what he does for work.
+
+`/redeem` is a bounded, same-origin/CSRF-protected server-rendered form taking a
+license and purchase email. The Gumroad adapter posts only to its fixed HTTPS
+license-verification API with configured product ID and increment_uses_count=false;
+it does not use the feed client's raw archive. Product/email/receipt/9900USD/one-unit
+checks reject refunded/disputed/chargebacked, test, recurring and preorder receipts.
+Provider failures fail closed without exposing inputs, payloads or exception text.
+No OAuth, provider polling, production fixture mode or real buyer request was added.
+
+Issuance atomically stores the canonical license hash and verified gumroad: sale
+reference with a random paid-key hash, permitted support prefix and original
+90-day clock. Migration003 adds a partial unique verified-sale index so case or
+sale aliases cannot issue extra passes while legacy references remain unchanged.
+A success response contains the raw key once, with fixed client-command templates;
+GET, replay and duplicate redemption cannot recover it. No-store, no-referrer and
+restrictive CSP headers are applied. Raw keys/licenses never persist in rows/logs.
+
+Explicit `/redeem/rotate` re-verifies license/email, observes the current key before
+provider I/O, then locks redemption and key to replace only that generation. The
+old hash is revoked immediately; the original redemption and effective expiry are
+preserved. All UTC quota counters transfer, including exhausted/in-flight usage.
+Concurrent same-generation rotation has one winner; failure rolls the entire
+transaction back. This is paid-pass recovery, not free-key issuance or renewal.
+
+`/health` reads actual persisted last-success and latest-attempt feed status through
+a read-only transaction. It exposes only status/time/cache-reuse metadata for the
+three public sources, version1.0.0 and the original successful feed timestamp.
+Failures preserve stale timestamps; an unbuilt database reports never_run/null,
+and database failure returns plain503 without credentials or stack traces.
+
+Local task checks passed in order. Full suite: **227 passed**, retaining the existing
+110. Independent actual-HTTP review passed18cases (redemption11/rotation6/health1),
+and the final loopback smoke passed against the unchanged real789-record feed.
+All provider responses were injected synthetic fixtures, with zero real Gumroad
+requests, buyer keys or sales; temporary rows/listeners were removed afterward.
+Wheel build includes the Phase3 modules and migration003. Evidence lives under
+`docs/evidence/phase3/`; the exact verification and local procedures are in
+`docs/runbook.md`. Earlier route-absence/schema assertions now reflect the two
+explicitly authorized web endpoints and third migration; all original tests pass.
+
+**Open item for Maxx:** no live MCP-pass product ID is configured or confirmed in
+this environment. Confirm/create the separate one-time $99 product with licensing
+enabled and supply GUMROAD_PRODUCT_ID through the environment. Do not substitute
+the snapshot product. Live eligibility verification is untested until separately
+authorized against a real qualifying sale; Phase3 does not perform that test.
+
+No Railway configuration, production database, deployment, schedule activation,
+production client onboarding or later-phase work was touched. **STOP before Phase4.**
 
 ## Phase 2 implementation status — 2026-11-17
 

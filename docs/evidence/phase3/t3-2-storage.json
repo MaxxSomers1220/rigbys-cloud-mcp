@@ -1,0 +1,12 @@
+{
+  "task": "T3.2",
+  "result": "passed",
+  "checks": [
+    "full API key and license absent from every public database table and captured debug logs",
+    "only SHA256 key/license hashes and permitted support prefix persisted",
+    "expiry exactly90days after original redemption; purchase timestamp does not startclock",
+    "paid key expires at exact boundary"
+  ],
+  "test_file": "tests/test_key_storage.py",
+  "credentials": "synthetic runtime values only; no real buyer or sale"
+}

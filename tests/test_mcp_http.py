@@ -288,6 +288,10 @@ def test_trailing_slash_is_not_a_redirect_or_double_charge_and_later_phase_route
     assert 'location' not in response.headers
     assert len(payload(response)['opportunities'])==8
     assert counter(service,'paid')==1
-    for path in ('/redeem','/health','/sse','/docs'):
+    for path in ('/sse','/docs'):
         assert service.client.get(path,follow_redirects=False).status_code==404
     assert counter(service,'paid')==1
+
+
+# The Phase 2 absence check now covers only still-absent endpoints. Phase 3
+# explicitly adds /redeem and /health; their behavior is checked independently.

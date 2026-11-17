@@ -1,0 +1,22 @@
+{
+  "task": "T3.1 independent redemption HTTP review",
+  "checked_at": "2026-11-17T18:28:54.082609+00:00",
+  "test_file": "tests/test_redeem_review.py",
+  "command": "pytest -q tests/test_redeem_review.py",
+  "passed": 11,
+  "failed": 0,
+  "elapsed_seconds": 15.69,
+  "environment": "Actual loopback uvicorn/FastAPI HTTP listener and isolated PostgreSQL. Gumroad traffic intercepted by httpx.MockTransport; no real provider request, buyer, product or sale.",
+  "checks": [
+    "GET serves password-type license input and fixed terms, no-store/no-referrer/CSP/frame protections and HttpOnly SameSite=Strict CSRF cookie.",
+    "Missing/wrong CSRF cookie or token, foreign Origin, cross-site fetch and duplicate form fields rejected before provider verification.",
+    "Valid synthetic receipt creates one hashed paid key and redemption; raw key appears exactly once in initial HTML, alongside fixed client commands.",
+    "Fresh GET and replayed redemption do not redisplay the key; duplicate submission returns a plain already-redeemed error.",
+    "DB serialization and captured logs contain neither raw API key nor raw license; expiry is exactly 90 days after redemption, not purchase.",
+    "Wrong license/email, refunded or disputed receipt and provider transport failure never issue a key or echo secret error detail.",
+    "Two concurrent case-alias submissions create exactly one key/redemption; different licenses naming the same verified sale cannot create a second key.",
+    "Malicious email input, wrong content type and an actual oversized chunked form return bounded plain errors without issuing credentials."
+  ],
+  "reviewer": "Independent coding agent. Tests are synthetic verification, not paid pre-sale evidence or independent human sign-off.",
+  "remaining_phases": "Storage audit, rotation and HTTP health checks are reviewed separately in T3.2\u2013T3.4. No deployment or host schedule activation."
+}

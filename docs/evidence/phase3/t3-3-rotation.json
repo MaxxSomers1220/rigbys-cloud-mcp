@@ -1,0 +1,19 @@
+{
+  "task": "T3.3",
+  "result": "passed",
+  "service_tests": 16,
+  "test_files": [
+    "tests/test_key_rotation.py",
+    "tests/test_rotation_route.py",
+    "tests/test_rotate_http.py"
+  ],
+  "checks": [
+    "old key HTTP401 immediately after rotation, new key calls MCP successfully",
+    "license/email ownership reverified against synthetic provider only",
+    "original redemption timestamp and effective expiry unchanged",
+    "daily quota copied including exhausted limit and in-flight calls",
+    "same-generation concurrent replacements produce one success and one409",
+    "late transaction failures roll back new key/revocation/mapping/quota changes"
+  ],
+  "credential_scope": "runtime-generated test credentials only; no real buyer or sale"
+}

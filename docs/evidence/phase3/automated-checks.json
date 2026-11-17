@@ -1,0 +1,13 @@
+{
+  "phase": 3,
+  "date": "2026-11-17",
+  "command": ".venv/bin/pytest -q",
+  "passed": 227,
+  "failed": 0,
+  "existing_tests": 110,
+  "new_tests": 117,
+  "duration_seconds": 98.72,
+  "scope": "isolated PostgreSQL, injected synthetic provider receipts and actual local HTTP; zero real Gumroad sale/license calls",
+  "wheel_build": "passed; Phase3 modules and migration003 included",
+  "baseline_adjustments": "Schema migration assertions advance to3; Phase2 route absence assertion now covers only /sse and /docs, with explicit new /redeem and /health behavior tested."
+}

@@ -1,4 +1,4 @@
-"""Local FastAPI/FastMCP service. No redemption or deployment endpoints."""
+"""Local FastAPI/FastMCP service with pass redemption; no deployment."""
 from datetime import date
 from functools import partial
 import anyio
@@ -10,6 +10,10 @@ from mcp.types import ToolAnnotations
 import uvicorn
 from .repository import Repository, QueryError
 from .auth import BearerMiddleware
+from .redeem import router as redeem_router
+from .gumroad import GumroadVerifier
+from .health import router as health_router
+from . import SERVER_VERSION
 from fastmcp.server.dependencies import get_http_request
 
 INSTRUCTIONS = """Rigby's Cloud Grants Feed #1: public US-federal opportunities from Grants.gov,
@@ -37,7 +41,7 @@ def create_app():
         verified=get_http_request().scope.get('rigbys_principal')
         if verified is None:raise ToolError('Authorization is required')
         return verified
-    mcp = FastMCP('rigbys-cloud', version='1.0.0', instructions=INSTRUCTIONS, mask_error_details=True)
+    mcp = FastMCP('rigbys-cloud', version=SERVER_VERSION, instructions=INSTRUCTIONS, mask_error_details=True)
 
     @mcp.tool(annotations=ANNOTATIONS)
     async def opportunity_search(topic: str, sponsor: str | None = None,
@@ -83,6 +87,9 @@ def create_app():
 
     http = mcp.http_app(path='/mcp', transport='streamable-http', stateless_http=True, json_response=True)
     app = FastAPI(lifespan=http.lifespan, docs_url=None, redoc_url=None, openapi_url=None)
+    app.state.license_verifier=GumroadVerifier()
+    app.include_router(redeem_router)
+    app.include_router(health_router)
     app.mount('/', http)
     app.add_middleware(BearerMiddleware)
     return app

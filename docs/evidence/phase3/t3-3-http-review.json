@@ -1,0 +1,22 @@
+{
+  "task": "T3.3 independent rotation HTTP review",
+  "checked_at": "2026-11-17T18:35:45.471359+00:00",
+  "test_file": "tests/test_rotate_http.py",
+  "command": "pytest -q tests/test_rotate_http.py",
+  "passed": 6,
+  "failed": 0,
+  "elapsed_seconds": 12.05,
+  "environment": "Actual local HTTP listener, isolated PostgreSQL and synthetic provider MockTransport. No live product, buyer, license or sale.",
+  "checks": [
+    "Verified license/email rotation immediately makes the old key return HTTP 401; new key lists four tools and successfully searches through actual /mcp.",
+    "Advancing the clock seven days before rotation leaves original redemption and expiration unchanged. Historical and current UTC-day counters are copied, and handshake/list calls remain uncharged.",
+    "A counter at 999 permits one remaining call after rotation, then returns HTTP 429. Another rotation preserves the exhausted 1000-call counter.",
+    "CSRF, ownership, refunded purchase and provider failure do not create a new key or revoke the active key.",
+    "Two requests verifying the same generation, synchronized at provider verification, produce exactly one successful rotation and one HTTP 409; only one active key remains.",
+    "An injected database failure after new insertion/revocation/counter copy rolls back the entire transaction, leaving the old active key, redemption and usage intact.",
+    "Rotation at the exact original 90-day expiry is rejected; it cannot extend the pass.",
+    "Stored rows, captured logs, later GETs and error responses do not reveal raw API keys or licenses."
+  ],
+  "reviewer": "Independent coding agent. Synthetic checks do not establish a pre-sale or independent human sign-off.",
+  "remaining_work": "HTTP /health and final Phase3 suite are checked separately. No deployment, public schedule or real buyer processing."
+}

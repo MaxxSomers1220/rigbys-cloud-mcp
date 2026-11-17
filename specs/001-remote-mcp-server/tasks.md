@@ -7,16 +7,17 @@ How to run: In Codex, from the project root, use the Spec Kit skills mode: `$spe
 
 ## Current status — 2026-11-17
 
-Phase 2 local MCP service is complete under Maxx's explicit instruction. All six
-T2 checks passed; **STOP before Phase 3**. Full suite: 110 passed, including the
-original 52. Authenticated MCP Inspector lists and calls exactly four tools
-against the real Phase 1 feed. Evidence: `docs/evidence/phase2/`.
+Phase3 T3.1–T3.4 local checks passed in order under Maxx's explicit authorization.
+Full suite:227 passed, including the existing110. Independent local HTTP and real
+789-record store smoke checks passed with synthetic Gumroad responses only.
+**STOP before Phase4:** no deployment, Railway schedule or later phase started.
 
-No paid pass has been sold. Synthetic test credentials and redemption references
-are not sales; they were removed after verification. T6.3 remains unchecked. Maxx
-states this project is definitely not part of what he does for work; no broader
-employer IP clearance is claimed. No redemption page, HTTP health endpoint,
-production deployment or later-phase work was started.
+Live Gumroad verification is NOT established. No MCP-pass GUMROAD_PRODUCT_ID is
+configured or confirmed here. Maxx must confirm/create the separate $99 one-time
+pass with license keys and supply the product ID; a separately authorized real-sale
+check remains open. No real buyer key, license or sale was used or claimed.
+T6.3 stays unchecked. Maxx states this project is definitely not part of what he
+does for work; no broader employer IP clearance is claimed.
 
 ## Implementation status — 2026-11-12
 
@@ -101,14 +102,22 @@ preserved. Free history must age naturally before real free results are availabl
 
 ## Phase 3 — Redeem page + keys
 
-- [ ] **T3.1** Implement `/redeem`: form (Gumroad license key + email), verify license against Gumroad sale record (document the exact verification step in `docs/runbook.md`), generate API key, show once with Codex + Claude Code commands.
+- [x] **T3.1** Implement `/redeem`: form (Gumroad license key + email), verify license against Gumroad sale record (document the exact verification step in `docs/runbook.md`), generate API key, show once with Codex + Claude Code commands.
   - Check: valid license → key shown once; invalid/redeemed license → plain error, no key issued.
-- [ ] **T3.2** Implement key storage: store `key_hash` only, never the raw key; `key_prefix` for support; `expires_at` = redemption + 90 days (confirmed 2026-11-12).
+  - **Passed locally with synthetic credentials — 2026-11-17:** Synthetic Gumroad API and actual local form checks pass: valid receipt shows one key and both commands; invalid/refunded/wrong-owner/replayed licenses and sale aliases issue no extra key. Exact verification and missing live-product open item are documented in docs/runbook.md. `docs/evidence/phase3/t3-1-redemption.json`, `final-http-review.json`, `local-http-smoke.json`.
+- [x] **T3.2** Implement key storage: store `key_hash` only, never the raw key; `key_prefix` for support; `expires_at` = redemption + 90 days (confirmed 2026-11-12).
   - Check: raw key is not present in the database or logs after redemption.
-- [ ] **T3.3** Implement rotation: new key works immediately, old key revoked immediately.
+  - **Passed locally with synthetic credentials — 2026-11-17:** All database tables and captured logs were scanned: no full API key or license remains; hashes/prefix only. Expiry equals original redemption plus90days, not purchase time. `tests/test_key_storage.py`, `docs/evidence/phase3/t3-2-storage.json`.
+- [x] **T3.3** Implement rotation: new key works immediately, old key revoked immediately.
   - Check: old key returns 401 after rotation; new key passes.
-- [ ] **T3.4** Implement `/health`: `feed_generated_at`, last build status per source, server version.
+  - **Passed locally with synthetic credentials — 2026-11-17:** Actual HTTP old key401/new key200; original clock and quotas preserved, concurrency single winner, late-failure rollback and in-flight counters verified. 16service tests plus independent HTTP checks pass. `docs/evidence/phase3/t3-3-rotation.json`, `t3-3-http-review.json`, `local-http-smoke.json`.
+- [x] **T3.4** Implement `/health`: `feed_generated_at`, last build status per source, server version.
   - Check: endpoint returns JSON with all three fields.
+  - **Passed locally with synthetic credentials — 2026-11-17:** HTTP JSON includes actual feed_generated_at, per-source build status and server1.0.0; failures retain last successful timestamp and redact details. Actual real-feed timestamp remains2026-11-17T04:54:38.690560+00:00. `docs/evidence/phase3/t3-4-health.json`, `local-http-smoke.json`.
+
+**Phase3 local checks passed — STOP before Phase4.** All227tests pass. Live
+Gumroad product/real-sale verification remains explicitly open; fixture success
+is not sale evidence. No deployment or Railway schedule was activated.
 
 ## Phase 4 — Deploy
 

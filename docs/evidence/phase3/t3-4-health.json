@@ -1,0 +1,15 @@
+{
+  "task": "T3.4",
+  "result": "passed",
+  "test_files": [
+    "tests/test_health.py"
+  ],
+  "checks": [
+    "HTTP JSON includes real last-success feed_generated_at, per-source last build statuses and server_version1.0.0",
+    "failed latest attempt preserves last good feed timestamp",
+    "unbuilt database reports null/never_run, not a fabricated timestamp",
+    "database failure plain503 with no connection or secret details",
+    "health reads consume no MCP quota"
+  ],
+  "real_feed_check": "See local-http-smoke.json when final local verification completes."
+}

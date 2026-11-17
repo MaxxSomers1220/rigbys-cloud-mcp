@@ -1,16 +1,18 @@
-# Local MCP service — Phase 2
+# Local MCP service
 
 Python 3.12, FastAPI and FastMCP. The MCP identity is `rigbys-cloud`, version
 `1.0.0`. The only transport is Streamable HTTP at `/mcp`, with stateless sessions
 and JSON responses. There is no legacy SSE endpoint. Exactly four read-only
-tools are registered. No redemption, key issuance, rotation page, HTTP health
-endpoint, deployment, or buyer onboarding flow is included in this phase.
+tools are registered. Phase 3 adds the separate `/redeem`, `/redeem/rotate` and
+`/health` HTTP routes; see [the local runbook](runbook.md). Nothing is deployed and
+no live Gumroad sale is claimed.
 
 Install with `uv sync --extra test`. Supply `DATABASE_URL` in the process
 **environment**, run `uv run rigbys-feed migrate`, then `uv run rigbys-mcp`.
 It binds to `127.0.0.1:8000` by default (`PORT` changes the local port).
-The server reads existing hashed keys from Postgres; it does not create a buyer
-key or record a sale. Tests generate temporary credentials in memory/environment
+MCP authorization reads hashed keys from Postgres. The separate redemption page
+can issue a key only after configured Gumroad verification; without the live
+product configuration it fails closed. Tests generate temporary credentials in memory/environment
 and mark synthetic redemption references explicitly as test data, never sales.
 Do not put real credentials in commands saved to a file, config, or Git.
 
@@ -62,7 +64,8 @@ Keys must match their stored tier and their SHA-256 hash; revocation/expiry is
 checked on every request, without a credential cache. Paid access expires at the
 earlier of stored `expires_at` and the original redemption plus 90 days. Purchase
 or key-row creation does not start or reset that clock. Rotation state is verified
-through existing database records; no rotation or redemption flow is built here.
+through database records updated by the Phase 3 license/email-verified rotation
+transaction, which preserves the original expiry and quotas.
 
 Only authorized `tools/call` attempts consume quota, including paid invalid-argument,
 unknown-tool or not-found attempts. Initialization/listing and protocol notifications (`notifications/*`) do not.

@@ -1,0 +1,66 @@
+{
+  "check": "Phase 3 local actual-HTTP smoke",
+  "checked_at": "2026-11-17T18:38:58.354426+00:00",
+  "result": "passed",
+  "scope": "Loopback HTTP only; real 789-record local Postgres feed; mock provider, no real Gumroad request or sale.",
+  "provider_product_originally_configured": false,
+  "production_product_configuration": "open item",
+  "checks": {
+    "health_before": {
+      "status": 200,
+      "server_version": "1.0.0",
+      "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+      "matches_persisted_feed": true,
+      "source_statuses": {
+        "grants_gov": "ok",
+        "nih_reporter": "ok",
+        "openalex": "ok"
+      }
+    },
+    "missing_product_configuration": {
+      "status": 503,
+      "provider_sends": 0,
+      "key_issued": false
+    },
+    "valid_redemption": {
+      "status": 200,
+      "key_display_count": 1,
+      "hash_only_storage": true,
+      "clock_starts_at_redemption": true,
+      "duration_days": 90,
+      "codex_and_claude_commands": true,
+      "purchase_age_does_not_reduce_duration": true,
+      "synthetic_receipt_not_a_sale": true
+    },
+    "invalid_replay_and_once_display": {
+      "invalid_license_status": 400,
+      "replayed_license_status": 409,
+      "no_extra_key": true,
+      "refresh_does_not_redisplay": true
+    },
+    "rotation": {
+      "status": 200,
+      "new_key_display_count": 1,
+      "old_key_before": 200,
+      "old_key_after": 401,
+      "new_key_after": 200,
+      "expiry_unchanged": true,
+      "old_key_revoked": true,
+      "original_redemption_retained": true,
+      "quota_preserved": true,
+      "raw_keys_absent_from_database": true
+    },
+    "health_after": {
+      "status": 200,
+      "unchanged": true,
+      "feed_generated_at": "2026-11-17T04:54:38.690560+00:00"
+    }
+  },
+  "real_feed_records_before": 789,
+  "real_feed_records_after": 789,
+  "feed_unchanged": true,
+  "gumroad_network_requests": 0,
+  "mock_provider_requests": 4,
+  "synthetic_rows_cleaned": true,
+  "local_http_server_stopped": true
+}

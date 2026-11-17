@@ -1,10 +1,39 @@
 # Rigby's Cloud — Remote MCP Server (Spec Kit project)
 
-Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phase 1 feed and Phase 2 local MCP service implemented and verified on 2026-11-17. Nothing is deployed.
+Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phases 1–3 implemented and locally verified on 2026-11-17. Nothing is deployed; live Gumroad verification is untested.
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
 
-Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the production service and buyer client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phase 1 and Phase 2 were explicitly authorized and are complete; work stops before Phase 3. See the evidence in the plan and tasks.
+Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the production service and buyer client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phases 1–3 were explicitly authorized and their local checks are complete; work stops before Phase 4. See the evidence in the plan and tasks.
+
+## Phase 3 handoff — 2026-11-17
+
+The local `/redeem` page accepts a Gumroad license and matching email, verifies
+the configured one-time $99 pass, and shows a new paid API key exactly once beside
+the Codex/Claude Code commands. Only key/license hashes, support prefix and allowed
+metadata persist. Expiry is exactly 90 days from original redemption.
+
+Explicit replacement at `/redeem/rotate` immediately revokes the old key and
+preserves the original expiry and daily quotas. `/health` now reads real feed-run
+status, including last good timestamp and per-source statuses, with server1.0.0.
+There are still exactly four read-only MCP tools; none of their evidence flags or
+feed data was changed.
+
+**All 227 tests pass**, including the existing 110. Independent local HTTP checks
+and a smoke test against the real 789-record local feed passed. Every Gumroad
+success was an injected synthetic fixture, not a real license check or sale.
+Temporary test credentials were cleaned up and local test listeners stopped.
+
+**Open item for Maxx:** no live MCP-pass `GUMROAD_PRODUCT_ID` is configured or
+confirmed here. Confirm/create the separate one-time $99 MCP pass with license
+keys enabled and supply its product ID through the environment. Live verification
+remains untested until separately authorized against a real qualifying sale.
+Missing configuration fails closed and issues no key. No paid pass has been sold;
+T6.3 remains unchecked.
+
+[Local runbook and exact verification](docs/runbook.md) · [Phase 3 evidence](docs/evidence/phase3/).
+**Stop before Phase 4.** No deployment, Railway schedule activation or later-phase
+work was performed. Earlier handoffs below are historical checkpoints.
 
 ## Phase 2 handoff — 2026-11-17
 
