@@ -4,7 +4,7 @@ Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Nothing built 
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
 
-Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Maxx also confirmed employer IP clearance and one paid pre-sale on 2026-11-12; these statements have not been independently audited. All four Phase 0 setup checks passed on 2026-11-12. Work is stopped before Phase 1 for phase review; see the evidence in the plan and tasks.
+Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable; the service and client connections are not live or verified. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Work is stopped before Phase 1 for phase review; see the evidence in the plan and tasks.
 
 ## Layout
 
@@ -70,6 +70,6 @@ These are historical references from the supplied README PDF; those original sou
 ## Guardrails (from the constitution)
 
 - Outside chance only, narrow and consulting-first — pre-sell before building. One paid pass is the validation signal.
-- Employer IP / conflict check: the source constitution records it as unverified and says do not sell until checked. Maxx confirmed clearance on 2026-11-12, as recorded in the plan and tasks.
+- Employer IP / conflict check: the source constitution records it as unverified and says do not sell until checked. Maxx states this project is definitely not part of what he does for work; no broader clearance is claimed.
 - Dropped directions stay dropped: research-ops, governance/catalog, adherence.
 - No trials in v1. No subscriptions for now. Secrets in env vars only.
