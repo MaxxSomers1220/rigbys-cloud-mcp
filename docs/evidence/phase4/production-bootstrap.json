@@ -1,0 +1,99 @@
+{
+  "phase": 4,
+  "observed_at": "2026-11-18T02:41:25.711209+00:00",
+  "status": "Web bootstrap deployed; Phase4 gate incomplete pending production feed capacity",
+  "railway": {
+    "account_verified": true,
+    "project_id": "bc2ef276-6d7f-431e-b5ad-ca8aa706f7a8",
+    "environment": "production",
+    "app_service_id": "e8ee5640-6647-4a1c-be5b-e33b524798fa",
+    "deployment_id": "1001155a-4c58-4807-82cd-82be4a0bf85a",
+    "deployment_status": "SUCCESS",
+    "source_repo": "MaxxSomers1220/rigbys-cloud-mcp",
+    "source_branch": "main",
+    "initial_upload": "Allowlisted locally prepared source; changes remain uncommitted pending gate",
+    "image_digest": "sha256:2cecc5fed149542f6eae6901818ab368616525c52b07261fcb694839e0663ecd"
+  },
+  "tests": {
+    "passed": 261,
+    "original_phase3_tests_retained": 227,
+    "new_phase4_checks": 34
+  },
+  "hosted_configuration": {
+    "database_url_present": true,
+    "gumroad_product_id_matches_user_supplied_id": true,
+    "public_origin": "https://mcp.rigbyscloud.com",
+    "host": "0.0.0.0",
+    "port": 8000,
+    "wildcard_forwarded_header_trust": false,
+    "healthcheck": "/health",
+    "predeploy_command": "/app/.venv/bin/rigbys-feed migrate",
+    "sleep_application": false
+  },
+  "capacity": {
+    "is_trialing": true,
+    "memory_limit_bytes": 1000000000,
+    "volume_max_mb": 500,
+    "observed_phase1_peak_rss_gib": 2.9,
+    "local_raw_archive_size_mib_approx": 845,
+    "local_postgres_directory_gib_approx": 1.1,
+    "action_required": "Activate paid capacity; verify increased limits before production feed job and volume sizing"
+  },
+  "public_endpoints": {
+    "/health": {
+      "http_status": 200,
+      "content_type": "application/json",
+      "json": {
+        "feed_generated_at": null,
+        "last_build_status": "never_run",
+        "last_attempt_at": null,
+        "sources": {
+          "grants_gov": {
+            "status": "never_run"
+          },
+          "nih_reporter": {
+            "status": "never_run"
+          },
+          "openalex": {
+            "status": "never_run"
+          }
+        },
+        "last_build_status_per_source": {
+          "grants_gov": "never_run",
+          "nih_reporter": "never_run",
+          "openalex": "never_run"
+        },
+        "server_version": "1.0.0"
+      }
+    },
+    "/mcp": {
+      "http_status": 401,
+      "content_type": "application/json",
+      "json": {
+        "error": "Authorization: Bearer <API key> is required"
+      }
+    },
+    "/redeem": {
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "secure_csrf_cookie": true,
+      "no_store": true,
+      "limits_visible": true
+    }
+  },
+  "tasks": {
+    "T4.1": "Incomplete: HTTPS service responds but no live feed timestamp yet",
+    "T4.2": "Not started: no production build or activated schedule",
+    "T4.3": "Not started: current status and product correction only"
+  },
+  "gumroad": {
+    "product": "Existing unpublished $99 draft with licensing saved, per Maxx",
+    "configured_in_railway": true,
+    "real_sale_verification": "untested",
+    "duplicate_product_created": false
+  },
+  "production_license_submissions": 0,
+  "production_keys_issued": 0,
+  "git_commit_or_push": false,
+  "phase5_or_phase6_started": false
+}

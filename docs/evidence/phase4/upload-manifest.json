@@ -1,0 +1,155 @@
+{
+  "strategy": "Allowlisted source-only staging; no local data, credentials, tests, logs or Git uploaded",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "eaf8e188c7bb08c564e0a1e7d4438c8f581ed5dfb622a0c9d9c93335b9370968",
+      "bytes": 332
+    },
+    {
+      "path": ".python-version",
+      "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+      "bytes": 5
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "dea3e27536dff78c7a4661014445b260b23c072d2266b8a4ded4f06f203f9996",
+      "bytes": 760
+    },
+    {
+      "path": "README.md",
+      "sha256": "d53fff98d307aba12af96525fa328f784e299bc2dd72939821a0d61224420421",
+      "bytes": 10104
+    },
+    {
+      "path": "migrations/001_feed.sql",
+      "sha256": "901cbcf96a31994f8c735cf956e0648235f043296f9aa731e730be420472b070",
+      "bytes": 3958
+    },
+    {
+      "path": "migrations/002_free_search_snapshots.sql",
+      "sha256": "b29cce2b5bf0215316ae2f73d9ce127108cc2f04a232650c38bd03ffbcdb5ed7",
+      "bytes": 7286
+    },
+    {
+      "path": "migrations/003_verified_gumroad_sales.sql",
+      "sha256": "dcc32e25573b0c676b96e0e8cafa7c3011721513b839350afc8aa42b336e276b",
+      "bytes": 304
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "ad6fc70263b0fa36a7c008044d6fa9170f4deef5fc624b16f3240df6a176e7be",
+      "bytes": 773
+    },
+    {
+      "path": "src/rigbys_feed/__init__.py",
+      "sha256": "b18f12d6ecf9a53c4afe9e47be5bbcd8a88d38b4c50ffd0f4a5765337c4aa52e",
+      "bytes": 71
+    },
+    {
+      "path": "src/rigbys_feed/builder.py",
+      "sha256": "5e81edbd432e88f3161892605a80d204ba8f0955b951504227105679c5c35139",
+      "bytes": 8228
+    },
+    {
+      "path": "src/rigbys_feed/cleaning.py",
+      "sha256": "a40d622e1990078d80705e5c7881151a69c292a9d35e6bf7072fa31a8cfb9533",
+      "bytes": 7701
+    },
+    {
+      "path": "src/rigbys_feed/cli.py",
+      "sha256": "2b69edeed635df36cc5aa526981cd645809d286f74d4efc78e2a16c6fec7d8e4",
+      "bytes": 1581
+    },
+    {
+      "path": "src/rigbys_feed/database.py",
+      "sha256": "54062af16bf107d7d0fdffcef0681bfd4d886438351556fdea73d051d3f84c5d",
+      "bytes": 11373
+    },
+    {
+      "path": "src/rigbys_feed/joining.py",
+      "sha256": "48e8b08d37379d3c22e6aab2d37c92e4cbebb66029f2dbf874344b164563fecd",
+      "bytes": 6279
+    },
+    {
+      "path": "src/rigbys_feed/research.py",
+      "sha256": "e679609a85f223cf70a9e488cdd60bdca47c7336ce7cfcbd064fb015f0c2a18b",
+      "bytes": 14207
+    },
+    {
+      "path": "src/rigbys_feed/scoring.py",
+      "sha256": "d2f24645a4cecece56028c858658810217e15317e878ca5bf0e3f6606f52f87c",
+      "bytes": 2526
+    },
+    {
+      "path": "src/rigbys_feed/sources.py",
+      "sha256": "8a28db7ed4e22a00db42ef2c8dc856b1e86dae2201d6afb842573b0e8921a79f",
+      "bytes": 4938
+    },
+    {
+      "path": "src/rigbys_feed/summarizing.py",
+      "sha256": "f752949574fe1c07fecdb3db50b3a7dd7cae02a30b6efbb69932158a7c120885",
+      "bytes": 2187
+    },
+    {
+      "path": "src/rigbys_mcp/__init__.py",
+      "sha256": "4311a746d2c61ea0e6ddd911d9e0e03135c40fd33cf5f9aa1ee72f15578e913a",
+      "bytes": 85
+    },
+    {
+      "path": "src/rigbys_mcp/aggregation.py",
+      "sha256": "b63374923a9fd1a36a67ba03fb3e51fd817cdb0ae4fbd905b98e7efd4d88f20c",
+      "bytes": 9768
+    },
+    {
+      "path": "src/rigbys_mcp/app.py",
+      "sha256": "d12aaa523f840aa1a0d0cede15b4911e29f41afaa4a68eb9e930320e33b16c94",
+      "bytes": 5407
+    },
+    {
+      "path": "src/rigbys_mcp/auth.py",
+      "sha256": "e5a60cc5ef6a771534105616a21d2b5b191e3dfb98f3a23b4d8c1e2473867884",
+      "bytes": 6960
+    },
+    {
+      "path": "src/rigbys_mcp/gumroad.py",
+      "sha256": "153213b64e506dd2592dce407daaa4b755746a493e58db63ad8e884d13f1d26a",
+      "bytes": 5511
+    },
+    {
+      "path": "src/rigbys_mcp/health.py",
+      "sha256": "028e8e1ec7256935f680e75a540ae6b7dc833ee79d3525e633a175dc2530e00b",
+      "bytes": 2379
+    },
+    {
+      "path": "src/rigbys_mcp/keys.py",
+      "sha256": "67e701e9c0396db1cfc16e6e1f8368693596eb0bceaffeb7e574be7f3c4c8341",
+      "bytes": 7920
+    },
+    {
+      "path": "src/rigbys_mcp/origin.py",
+      "sha256": "454d19285f89f3cc11f1411f995f1e8469445056526dcb5a9c08795fa45c1123",
+      "bytes": 1646
+    },
+    {
+      "path": "src/rigbys_mcp/redeem.py",
+      "sha256": "e0e9e1ffb383e6abbb83ec9f853f056c958c86e30c8a99e6f6bd774d1bd94a7d",
+      "bytes": 6579
+    },
+    {
+      "path": "src/rigbys_mcp/repository.py",
+      "sha256": "9df8ee5a6e2bc4c7dfd5e1aacad85156a03c634c0b724c0e13539d745fd9664e",
+      "bytes": 8186
+    },
+    {
+      "path": "src/rigbys_mcp/snapshots.py",
+      "sha256": "f7df5a007db0328445431515f39ddb01f602bb43e94be24383fcfcb09d5cf443",
+      "bytes": 3467
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "33e19524835dd27d8f96e4148218cbe58a788486ea2dfba5814357d8564ef860",
+      "bytes": 130989
+    }
+  ]
+}

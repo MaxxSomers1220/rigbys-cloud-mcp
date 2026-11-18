@@ -1,0 +1,78 @@
+{
+  "phase": 4,
+  "task": "T4.2",
+  "passed": true,
+  "observed_at": "2026-11-18T18:15:52.549767+00:00",
+  "scheduled_service_id": "ce342721-ae5e-4f7e-8265-b764570c28ce",
+  "deployment_id": "2c978aab-2a16-4e99-a0a7-f68a5abdb5e1",
+  "cron_schedule": "0 6 * * *",
+  "schedule_timezone": "UTC",
+  "local_schedule": "01:00 America/New_York during standard time; 02:00 during daylight saving time",
+  "next_scheduled_run_at": "2026-11-19T06:00:00.000Z",
+  "deployment_manifest_includes_cron": true,
+  "restart_policy": "NEVER",
+  "job_memory_bytes": 6000000000,
+  "volumes_mb": {
+    "postgres": 5000,
+    "raw": 5000
+  },
+  "verification_method": "Manually triggered real cron execution; future timer occurrence is not claimed",
+  "execution": {
+    "id": "96945506-9d90-4e4c-b54f-8a026c564138",
+    "deploymentId": "2c978aab-2a16-4e99-a0a7-f68a5abdb5e1",
+    "status": "EXITED",
+    "createdAt": "2026-11-18T18:10:02.077Z",
+    "completedAt": "2026-11-18T18:13:26.630Z",
+    "durationSeconds": 204
+  },
+  "feed_build_success": {
+    "event": "feed_build_success",
+    "research_refreshed": false,
+    "feed_generated_at": "2026-11-18T18:10:23.488529+00:00",
+    "per_source_counts": {
+      "award_links": 14371,
+      "excluded_or_deduped": 19,
+      "grants_gov_posted": 805,
+      "linked_opportunities": 160,
+      "nih_reporter_awards": 14561,
+      "nih_reporter_publications": 0,
+      "openalex_papers": 138849,
+      "paper_links": 147794,
+      "published_opportunities": 786
+    },
+    "timestamp": "2026-11-18T18:13:32.668809048Z"
+  },
+  "public_health": {
+    "feed_generated_at": "2026-11-18T18:10:23.488529+00:00",
+    "last_build_status": "success",
+    "last_attempt_at": "2026-11-18T18:10:27.451881+00:00",
+    "sources": {
+      "grants_gov": {
+        "status": "ok",
+        "last_success_at": "2026-11-18T18:10:21.576838+00:00",
+        "oldest_response_at": "2026-11-18T18:10:04.517529+00:00",
+        "reused_weekly_cache": false
+      },
+      "nih_reporter": {
+        "status": "ok",
+        "last_success_at": "2026-11-18T17:49:39.124413+00:00",
+        "oldest_response_at": "2026-11-18T17:46:31.856044+00:00",
+        "reused_weekly_cache": true
+      },
+      "openalex": {
+        "status": "ok",
+        "last_success_at": "2026-11-18T17:53:08.038299+00:00",
+        "oldest_response_at": "2026-11-18T17:49:39.904627+00:00",
+        "reused_weekly_cache": true
+      }
+    },
+    "last_build_status_per_source": {
+      "grants_gov": "ok",
+      "nih_reporter": "ok",
+      "openalex": "ok"
+    },
+    "server_version": "1.0.0"
+  },
+  "no_seeded_or_test_data": true,
+  "no_production_keys_or_licenses": true
+}

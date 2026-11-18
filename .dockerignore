@@ -1,0 +1,26 @@
+# Allow only build inputs. Local data, credentials, fixtures and Git stay out.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!uv.lock
+!README.md
+!.python-version
+!src/
+!src/**
+!migrations/
+!migrations/**
+
+**/__pycache__/**
+**/*.py[cod]
+**/.env*
+**/*.pem
+**/*.key
+.git/
+.venv/
+tmp/
+tests/
+docs/
+.pytest_cache/
+.uv-cache/
+.npm-cache/

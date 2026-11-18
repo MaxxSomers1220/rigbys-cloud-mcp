@@ -1,0 +1,21 @@
+{
+  "task": "T4.3",
+  "passed": true,
+  "observed_at": "2026-11-18T18:18:51.096449+00:00",
+  "runbook": "docs/runbook.md",
+  "procedure_word_counts": {
+    "1. Check feed health, schedule and recovery": 246,
+    "2. Rotate a lost or compromised paid key manually": 217,
+    "3. Verify a Gumroad license": 238,
+    "4. Roll back a deployment": 219
+  },
+  "review": "All four procedures reviewed and each fits under one page; no real key/license or rollback operation performed in Phase4",
+  "covers": [
+    "production health and schedule/recovery",
+    "manual key rotation preserving original expiry/quotas",
+    "exact Gumroad verification and existing unpublished draft status",
+    "deployment rollback with database/feed/raw limits"
+  ],
+  "gumroad_real_sale_verification": "untested",
+  "phase5_or6_started": false
+}

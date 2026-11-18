@@ -1,0 +1,47 @@
+{
+  "phase": 4,
+  "observed_at": "2026-11-18T17:36:29.096973+00:00",
+  "status": "Paid Hobby verified; job prepared; waiting for existing Postgres dashboard resize before bootstrap feed",
+  "account": {
+    "plan": "HOBBY",
+    "is_trialing": false,
+    "is_usage_subscriber": true,
+    "plan_memory_bytes": 8000000000,
+    "volume_max_mb": 5000
+  },
+  "feed_job": {
+    "service_id": "ce342721-ae5e-4f7e-8265-b764570c28ce",
+    "name": "feed-builder",
+    "start_command": "/app/.venv/bin/rigbys-feed build",
+    "restart_policy": "NEVER",
+    "replicas": 1,
+    "memory_bytes": 6000000000,
+    "vcpus": 2,
+    "raw_volume_id": "795870a3-48ca-4cea-917d-0f4736a4730c",
+    "raw_volume_size_mb": 5000,
+    "mount_path": "/data",
+    "raw_dir": "/data/raw",
+    "database_variable": "Private Postgres hosted reference; no connection value recorded",
+    "cron_schedule": null,
+    "deployment_started": false
+  },
+  "existing_postgres": {
+    "volume_id": "e63f5b89-e165-44b0-9566-ac01fd45f47a",
+    "volume_size_mb": 500,
+    "current_usage_mb": 104.275968,
+    "required_next_action": "Dashboard volume settings Live Resize to5GB; public CLI/API do not expose resize",
+    "data_recreated_or_deleted": false
+  },
+  "tests": {
+    "passed": 261,
+    "runtime_inputs_unchanged_since_test": true
+  },
+  "tasks": {
+    "T4.1": "Partial: web responds; first live feed timestamp pending",
+    "T4.2": "Not started: no production feed or active schedule",
+    "T4.3": "Not started"
+  },
+  "no_production_keys_or_license_submissions": true,
+  "no_git_commit_or_push": true,
+  "phase5_or6_started": false
+}

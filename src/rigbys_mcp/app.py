@@ -13,6 +13,7 @@ from .auth import BearerMiddleware
 from .redeem import router as redeem_router
 from .gumroad import GumroadVerifier
 from .health import router as health_router
+from .origin import configured_public_origin
 from . import SERVER_VERSION
 from fastmcp.server.dependencies import get_http_request
 
@@ -34,6 +35,7 @@ ANNOTATIONS = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
 
 
 def create_app():
+    public_origin = configured_public_origin()
     if not os.environ.get('DATABASE_URL'):
         raise RuntimeError('DATABASE_URL must be supplied through the environment')
     repository = Repository()
@@ -87,6 +89,7 @@ def create_app():
 
     http = mcp.http_app(path='/mcp', transport='streamable-http', stateless_http=True, json_response=True)
     app = FastAPI(lifespan=http.lifespan, docs_url=None, redoc_url=None, openapi_url=None)
+    app.state.public_origin=public_origin
     app.state.license_verifier=GumroadVerifier()
     app.include_router(redeem_router)
     app.include_router(health_router)
@@ -96,5 +99,7 @@ def create_app():
 
 
 def main():
-    uvicorn.run('rigbys_mcp.app:create_app', factory=True, host='127.0.0.1',
-                port=int(os.environ.get('PORT','8000')), access_log=False)
+    uvicorn.run('rigbys_mcp.app:create_app', factory=True, host=os.environ.get('HOST','127.0.0.1'),
+                port=int(os.environ.get('PORT','8000')), access_log=False,
+                proxy_headers=True,
+                forwarded_allow_ips=os.environ.get('FORWARDED_ALLOW_IPS','127.0.0.1'))

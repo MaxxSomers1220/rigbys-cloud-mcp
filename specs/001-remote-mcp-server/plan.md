@@ -5,7 +5,76 @@
 - Constitution: `.specify/memory/constitution.md` v1.0.0
 - Date: 2026-11-12
 
-Status: Phase 3 implementation and local fixture/HTTP checks passed on 2026-11-17. **STOP before Phase 4.** Live Gumroad product configuration and real-sale verification remain open; no deployment, schedule activation or sale is claimed.
+Status: Phase 4 T4.1–T4.3 passed in order on 2026-11-18. The real production
+feed and active daily schedule are verified; T4.3 runbook review has passed.
+All 261 tests pass, including the original 227. All three checks passed; commit/push is now authorized by the phase gate.
+Phase 5 and Phase 6 remain out of scope.
+
+## Phase 4 production deployment — 2026-11-18
+
+The existing Railway account/project/production environment were verified through
+official CLI authorization. Paid Hobby is active. Both existing Postgres and the
+new persistent raw volume are 5 GB; the feed job has 6 GB memory and 2 vCPU. The first
+production build peaked around 3.7 GB, within its configured limit. No database
+volume was recreated or exposed publicly.
+
+The GitHub-connected application serves HTTPS at the locked hostname. Public
+checks pass: /mcp 401 without a bearer, /redeem 200 with Secure CSRF cookie and
+stated limits, /health 200 with version 1.0.0 and a real successful feed timestamp.
+An explicit validated RIGBYS_PUBLIC_ORIGIN controls redemption Origin checks and
+Secure cookies without wildcard forwarded-header trust. The locked Python 3.12
+Docker image excludes local data, Git, test fixtures and credentials; migrations
+run before web startup. Host variables contain the private database reference
+and Maxx's supplied existing Gumroad product ID; neither is written into Git.
+
+First production source collection: 805 posted Grants.gov records, 14,561 NIH awards,
+138,849 OpenAlex papers; publication: 786 opportunities, 14,371 award edges and 147,794
+paper edges. Confirmed research links exist for 160 opportunities. Score evidence
+and neutral flags are preserved; none are promoted into funding-gap findings.
+The initial full build published at 2026-11-18T17:53:12.620386+00:00. A subsequent
+manual cron execution published at 2026-11-18T18:10:23.488529+00:00 with fresh
+Grants.gov and original-time weekly research cache reuse.
+
+The deployed feed-builder schedule is 0 6 * * * UTC, with restart NEVER and a
+single replica. Deployment 2c978aab-2a16-4e99-a0a7-f68a5abdb5e1 includes the cron
+setting. Execution 96945506-9d90-4e4c-b54f-8a026c564138 is EXITED, completed at
+2026-11-18T18:13:26.630Z (204 seconds). Next timer: 2026-11-19T06:00Z. The manual
+execution is observed; a future timer occurrence is not claimed. T4.1/T4.2 proof:
+docs/evidence/phase4/t4-1-deploy.json and t4-2-feed-and-schedule.json.
+
+No production keys, synthetic licenses, test feed rows or real buyer sale were
+used. The existing unpublished $99 Gumroad draft has licensing saved and its
+product ID configured; real-sale verification remains untested. No duplicate
+product was created and no paid pass has been sold. Free snapshots begin aging
+from actual production publication; no seven-day history was fabricated.
+No Phase 5/client verification or Phase 6/discovery/pre-sale work was performed.
+
+## Historical Phase 4 preparation — 2026-11-17 (superseded by deployment above)
+
+The production image, restricted Docker context, configurable network bind and
+explicit proxy trust are prepared locally. Four new checks plus the existing227
+pass (231 total). The image was built with a session-only BuildKit CA mount for
+this workspace's proxy; the certificate is absent from the runtime. A container
+using the real local789-record feed passed health, unauthenticated MCP 401, HTTPS
+Secure-cookie and empty-form validation checks without keys or license inputs.
+
+The earlier access block was resolved by official Railway device authorization
+on 2026-11-18. The account, workspace, project and production environment match
+the existing Phase 0 infrastructure. The application runtime and hosted variables
+are configured, the GitHub main source is connected, and a source-only local
+upload deployed successfully. T4.1 is not yet passed because /health has no
+production feed timestamp. Deployment 1001155a-4c58-4807-82cd-82be4a0bf85a is SUCCESS;
+see docs/evidence/phase4/production-bootstrap.json. The earlier GitHub connection
+queued the previous Phase 3 commit, whose build failed because it has no
+Dockerfile; the successful local upload supersedes that attempt. Changes remain local because Maxx
+requested commit/push only after all three Phase 4 checks pass.
+
+Maxx now confirms the existing $99 MCP-pass product is an unpublished Gumroad
+draft with licensing saved. Its supplied product ID is configured only in the
+Railway application environment; no duplicate product is created. Live-sale
+verification remains untested. No paid pass, production test key, synthetic
+production license or real buyer sale is claimed. No Phase 5 or Phase 6 work was
+performed. See docs/evidence/phase4/ for dated observations.
 
 ## Phase 3 implementation status — 2026-11-17
 
@@ -40,7 +109,7 @@ transaction back. This is paid-pass recovery, not free-key issuance or renewal.
 
 `/health` reads actual persisted last-success and latest-attempt feed status through
 a read-only transaction. It exposes only status/time/cache-reuse metadata for the
-three public sources, version1.0.0 and the original successful feed timestamp.
+three public sources, version 1.0.0 and the original successful feed timestamp.
 Failures preserve stale timestamps; an unbuilt database reports never_run/null,
 and database failure returns plain503 without credentials or stack traces.
 
@@ -49,19 +118,20 @@ Local task checks passed in order. Full suite: **227 passed**, retaining the exi
 and the final loopback smoke passed against the unchanged real789-record feed.
 All provider responses were injected synthetic fixtures, with zero real Gumroad
 requests, buyer keys or sales; temporary rows/listeners were removed afterward.
-Wheel build includes the Phase3 modules and migration003. Evidence lives under
+Wheel build includes the Phase 3 modules and migration003. Evidence lives under
 `docs/evidence/phase3/`; the exact verification and local procedures are in
 `docs/runbook.md`. Earlier route-absence/schema assertions now reflect the two
 explicitly authorized web endpoints and third migration; all original tests pass.
 
-**Open item for Maxx:** no live MCP-pass product ID is configured or confirmed in
-this environment. Confirm/create the separate one-time $99 product with licensing
-enabled and supply GUMROAD_PRODUCT_ID through the environment. Do not substitute
-the snapshot product. Live eligibility verification is untested until separately
-authorized against a real qualifying sale; Phase3 does not perform that test.
+**Historical Phase 3 open item:** the product ID was not confirmed at that
+handoff. Update 2026-11-18: Maxx confirms the existing unpublished $99 pass draft
+with licensing saved, and its supplied ID is configured in the Railway application
+environment. Do not create a duplicate or substitute the snapshot product. Live
+eligibility verification remains untested until separately authorized against a
+real qualifying sale; neither Phase 3 fixtures nor Phase 4 deployment prove it.
 
 No Railway configuration, production database, deployment, schedule activation,
-production client onboarding or later-phase work was touched. **STOP before Phase4.**
+production client onboarding or later-phase work was touched. **STOP before Phase 4.**
 
 ## Phase 2 implementation status — 2026-11-17
 

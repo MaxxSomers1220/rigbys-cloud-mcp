@@ -1,118 +1,124 @@
-# Rigby's Cloud local operations — Phase 3
+# Rigby's Cloud production operations — Phase 4
 
-This runbook currently covers local redemption and key handling only. Nothing is
-deployed, no Railway schedule is activated, and no paid pass has been sold.
-The original employer statement remains limited to Maxx saying this project is
-definitely not part of what he does for work; no broader clearance is claimed.
+Verified on 2026-11-18: HTTPS `/redeem` returns 200, unauthenticated `/mcp` returns
+401, and `/health` returns server version 1.0.0. Production Postgres contains 786
+opportunities, including 160 with confirmed research links; source collection has
+14,561 NIH awards and 138,849 OpenAlex papers. The latest successful feed timestamp
+is `2026-11-18T18:10:23.488529+00:00`; all three source statuses are `ok`.
 
-## Exact Gumroad license verification
+The daily cron is enabled. A manual execution through Railway's cron service
+completed successfully; the first scheduled timer firing has not yet occurred.
+Its next scheduled run is 2026-11-19 at 06:00 UTC. See [Phase 4 evidence](evidence/phase4/).
+Phase 5/6 client verification and discovery work have not started.
 
-The adapter posts to the fixed HTTPS endpoint
-`https://api.gumroad.com/v2/licenses/verify` with form fields:
-`product_id` from the process environment's `GUMROAD_PRODUCT_ID`, the submitted
-`license_key`, and `increment_uses_count=false`. No OAuth or access token is needed
-for this endpoint. Requests time out after 15 seconds and never follow redirects.
-Raw license keys are never placed in URLs, database rows, errors or application
-logs. The generic feed HTTP client must not be used: its raw archival behavior
-is intentionally unsuitable for payment credentials.
+The existing $99 Gumroad pass is an unpublished draft with licensing saved and
+its product ID configured in Railway. **Real-sale verification remains untested.**
+No production API keys, license submissions or buyer sales were used in Phase 4;
+no paid pass has been sold. Maxx states the project is definitely not part of what
+he does for work; no broader employer clearance is claimed.
 
-A successful HTTP status alone does not authorize a pass. Require explicit
-`success: true` and a purchase receipt matching the configured product and
-case-normalized submitted email. Require sale ID, exactly one unit at 9,900 USD
-cents, and explicit false refund/dispute/chargeback flags. Reject subscriptions,
-recurring charges, preorder authorizations and Gumroad creator/test purchases.
-The optional `test` flag is present/true on test purchases and can be omitted on
-ordinary receipts; no nonexistent mandatory payment-status field is assumed.
-If the receipt includes a license, it must match the submitted canonical license.
-Imported customers with no paid purchase receipt do not qualify. Provider errors,
-malformed responses, redirects, rate limits and missing product configuration
-fail closed; no API key is issued. Invalid/disabled licenses produce a plain
-invalid-license message. Provider bodies and exception messages are never shown.
+## 1. Check feed health, schedule and recovery
 
-The adapter returns only the verified sale reference, normalized email and a
-SHA-256 canonical license hash. Canonical hashing trims and uppercases the
-license; the unmodified trimmed input is sent to Gumroad. Local one-time use is
-enforced by the license-hash primary key plus a unique verified `gumroad:` sale
-reference, atomically with hashed API-key insertion. Gumroad's `uses` counter is
-not the local ledger and is not incremented by verification. An already-used
-license or alias for the same sale cannot issue another pass.
+Run `curl -fsS https://mcp.rigbyscloud.com/health`. After the daily job completes,
+expect today's UTC `feed_generated_at`, `last_build_status=success`, three `ok`
+entries in `last_build_status_per_source`, and `server_version=1.0.0`. Check
+`sources` for original retrieval times and weekly-cache reuse. HTTP 200 alone is
+insufficient: `never_run`/null means no published feed; failure retains the last
+good timestamp. Database unavailability returns plain HTTP 503.
 
-References: [Gumroad license keys](https://gumroad.com/help/article/76-license-keys),
-[official license controller](https://github.com/antiwork/gumroad/blob/main/app/controllers/api/v2/licenses_controller.rb),
-[official receipt payload](https://github.com/antiwork/gumroad/blob/main/app/modules/purchase/ping_notification.rb).
-These public sources were inspected without buyer credentials or sale requests.
+In Railway's production project, inspect `feed-builder` job logs for
+`feed_build_success`, matching timestamp and per-source counts, plus completed
+execution status. Its command is `/app/.venv/bin/rigbys-feed build`, cron
+`0 6 * * *` UTC, restart policy `NEVER`, one replica, 6 GB memory and two CPUs.
+This is 01:00 New York standard time or 02:00 during daylight time. Keep the 5 GB
+raw volume mounted at `/data`, `RIGBYS_RAW_DIR=/data/raw`, private `DATABASE_URL`
+reference and 5 GB Postgres volume. Every run fetches Grants.gov; research refreshes
+initially, after seven days, or when its fiscal-year window changes.
 
-## Live product remains an open item for Maxx
+For failure, inspect the logged stage/type and resolve source, storage or capacity
+problems. Wait for any active build to exit. After interrupted collection, set the
+job's start command to `/app/.venv/bin/rigbys-feed build --resume-raw` and deploy
+once. Trigger **Run now** in Railway and wait for EXITED and matching healthy
+metadata. It reuses hash-verified public responses from the preceding 12 hours, preserving original
+timestamps. After recovery exits, restore the normal command in a fresh deployment.
+Never replace missing data with fixtures, reset timestamps or backdate free snapshots; free access needs seven
+days of actual snapshot aging. Preserve raw archives alongside database backups.
 
-No MCP-pass `GUMROAD_PRODUCT_ID` is configured in this environment and no live
-$99 MCP product or real sale has been verified here. Maxx must confirm/create the
-separate one-time $99 MCP pass with license keys enabled and supply its product ID
-through the environment. The existing snapshot product must not be used as the
-MCP pass. This does not authorize a real sale, publication or deployment.
+## 2. Rotate a lost or compromised paid key manually
 
-All current successful-provider tests inject `httpx.MockTransport` fixtures with
-synthetic, runtime-generated test licenses and simulated ordinary-purchase
-receipts. They are not requests against real buyer keys, not real Gumroad sales,
-and not proof that the live product works. Genuine Gumroad test purchases are
-rejected by the production adapter; no runtime fixture/test-mode bypass exists.
-Live verification remains **untested** until separately authorized and checked
-against a real qualifying sale. No such check is performed in Phase 3.
+Open `https://mcp.rigbyscloud.com/redeem` in a private browser session. Enter the
+original Gumroad license and matching purchase email, then choose **Replace my
+API key**. Use the page's explicit rotation action; submitting another redemption
+must not issue a second pass. The original raw API key is unnecessary. Gumroad
+eligibility is verified again, so knowing a stored email alone is insufficient.
 
-## Initial redemption and one-time display
+Copy the replacement when shown and keep it private. Set `RIGBYS_API_KEY` privately
+in each client's environment and reconnect. Expected behavior: subsequent calls
+with the old key return 401, while the replacement inherits the original access.
+Rotation preserves the original redemption time, earlier effective expiry and all
+daily usage counters. It cannot restart the 90 days or restore exhausted quota.
 
-After configuring `DATABASE_URL` through the environment, run the local migration
-command (`uv run rigbys-feed migrate`) and service (`uv run rigbys-mcp`). Do not
-put credentials into tracked files. `/redeem` takes a license and matching email,
-uses same-origin/CSRF checks, and returns a key only in the successful POST.
-Save that key privately when shown. GET, reload/replay and a second redemption
-cannot recover or display it again. HTML contains the raw key only once; client
-commands refer to `RIGBYS_API_KEY` instead of repeating it. Responses use no-store,
-no-referrer and a restrictive CSP, with no third-party scripts or analytics.
+Only key hashes, a support prefix and permitted metadata persist. A reload cannot
+recover the raw replacement. Never place keys or licenses in chat, tickets, URLs,
+tracked files or logs. Expired/revoked passes, ownership mismatches and provider
+failures issue no replacement; a failed transaction leaves the previous key active.
 
-Only `key_hash`, support `key_prefix`, tier, email and timestamps persist in `api_keys`;
-only license hash, API-key hash, original redemption time and verified sale
-reference persist in `redemptions`. Access expires exactly 90 days after initial
-redemption. Purchase time does not start the clock. There is no subscription or
-auto-renewal. Paid quota is 1,000 tool calls/day, free quota 20 searches/day with
-seven-day delay and no scores/summaries. API keys and licenses are accepted only
-in request bodies/Authorization where appropriate, never query strings.
+This is the documented production procedure; Phase 4 performs no key rotation or
+authenticated client check. Paid access is 1,000 calls/day for 90 days from initial
+redemption; free access is 20 delayed searches/day without scores or summaries.
+There is no subscription or automatic renewal.
 
-## Replace a lost or compromised paid key
+## 3. Verify a Gumroad license
 
-On `/redeem`, enter the original license and purchase email, then choose
-**Replace my API key**. This is an explicit rotation action, not another
-redemption. Gumroad eligibility is verified again; matching a stored email alone
-is insufficient. A valid license/email pair permits lost-key recovery without
-requiring the old raw key. No dashboard or account is created.
+Use `/redeem` with a license and matching email when a qualifying real sale is
+available. The adapter POSTs to the fixed HTTPS endpoint
+`https://api.gumroad.com/v2/licenses/verify` with form fields `product_id` from
+`GUMROAD_PRODUCT_ID`, submitted `license_key`, and `increment_uses_count=false`.
+No OAuth/access token is required. Timeout is 15 seconds; redirects are refused.
+Do not use the feed HTTP client: its raw archiver must never receive payment
+credentials. Never log/store a raw license, API key or provider response.
 
-The transaction locks the original redemption and current key, issues a fresh
-random key, revokes the old hash and moves the redemption link to the new hash.
-It preserves the original redemption time and earlier effective expiry. The
-90-day clock never restarts. It also copies all daily counters, including an
-exhausted current-day quota; repeated rotations cannot reset limits. In-flight
-old-key calls finish under the existing shared lock before usage is copied.
+Require explicit `success: true`, matching product and case-normalized email,
+a sale ID, quantity one, price 9,900 USD cents, and explicit false refund,
+dispute and chargeback flags. Reject imported customers without paid receipts,
+subscriptions, recurring charges, preorder authorizations and creator/test
+purchases. Ordinary receipts may omit the optional `test` flag. If a license is
+included in the receipt, it must match the submitted canonical license. Provider
+failures, malformed receipts and missing configuration fail closed with plain
+errors; HTTP success alone grants no access.
 
-The replacement is shown once with the same client commands. Update the local
-`RIGBYS_API_KEY` value and reconnect. The old key returns HTTP 401 immediately
-on subsequent requests. Expired/revoked passes, ownership mismatches and provider
-failures issue no new key. A concurrent change may return a plain retry message;
-a failed database transaction leaves the previous key active. This flow rotates
-paid keys redeemed through the Gumroad pass; it does not introduce free-key
-issuance, renewal, subscription billing or email delivery.
+The existing unpublished $99 draft already has licensing saved and its supplied
+ID configured only in Railway. Do not create another product or substitute the
+snapshot product. **Live real-sale verification is untested**; synthetic fixture
+tests and deployment do not establish a sale. Phase 4 submits no licenses.
 
-## Read actual local feed health
+Local redemption enforces one-time use through the trimmed/uppercased license's
+SHA-256 hash and unique verified sale reference. Store API-key hashes only; show
+the raw key once. Verification does not increment Gumroad's uses counter.
+[Provider reference](https://gumroad.com/help/article/76-license-keys).
 
-`GET /health` reads the persisted feed-run metadata through a read-only database
-transaction. It returns the last successful `feed_generated_at`, latest global
-`last_build_status`, `last_build_status_per_source`, the corresponding per-source
-retrieval times/cache-reuse flags in `sources`, and MCP `server_version=1.0.0`.
-No API key is required and this read consumes no tool quota. Responses are not
-cached and contain no credentials, buyer email, raw provider/error payloads or
-connection details.
+## 4. Roll back a deployment
 
-A failed refresh keeps the last good feed timestamp visible and reports failure;
-it never substitutes the current time to make old data look fresh. A database
-with no feed returns a null timestamp and `never_run`. An unavailable database
-returns a plain HTTP 503, not invented health. The endpoint does not trigger a
-feed refresh or activate the schedule. Local fixture and real Phase 1 store
-checks are not evidence that the production domain is deployed.
+In Railway, select the existing `rigbys-cloud-mcp` project, production environment
+and web service. Record the failing deployment ID and the last healthy deployment
+before acting. The initial known-good web deployment is
+`1001155a-4c58-4807-82cd-82be4a0bf85a`; choose the appropriate prior successful
+deployment when newer verified releases exist. Open its deployment menu and use
+**Rollback**. Confirm the private database reference and
+`RIGBYS_PUBLIC_ORIGIN=https://mcp.rigbyscloud.com` remain correctly configured.
+
+Wait for deployment success, then check `/health` for version, feed timestamp and
+build statuses, `/redeem` for HTTP 200 with a Secure CSRF cookie, and unauthenticated
+`/mcp` for the expected plain 401. Do not create a key or submit a license to check
+a rollback. Compare the result with the recorded healthy state.
+
+A web rollback does not roll back the separate feed job. If that job is affected,
+pause its schedule, choose its known-good image/configuration, and complete a manual
+run before resuming the schedule. Cron changes need a fresh deployment carrying the updated
+schedule; simply redeploying an older deployment retains its older configuration.
+
+Deployment rollback restores application image/configuration, **not** database
+schema, published feed contents or raw archives. Do not drop tables or volumes to
+undo a deploy. Preserve database/raw backups and assess migration compatibility
+before any separate data restoration. Commit the corrective source change so the
+next GitHub deployment does not restore the failing release.

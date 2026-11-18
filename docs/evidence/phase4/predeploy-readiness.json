@@ -1,0 +1,34 @@
+{
+  "phase": 4,
+  "observed_at": "2026-11-17T23:38:52.935976+00:00",
+  "status": "T4.1 local readiness passed; actual deployment blocked pending authenticated Railway connection",
+  "tests": {
+    "passed": 231,
+    "existing_tests": 227,
+    "new_runtime_checks": 4
+  },
+  "docker_build": "passed with session CA mounted as a BuildKit secret for local HTTPS; not copied into runtime",
+  "container_smoke": "passed; see local-container-preflight.json",
+  "public_endpoints": {
+    "/health": {
+      "http_status": 404,
+      "provider_message": "Application not found"
+    },
+    "/mcp": {
+      "http_status": 404,
+      "provider_message": "Application not found"
+    },
+    "/redeem": {
+      "http_status": 404,
+      "provider_message": "Application not found"
+    }
+  },
+  "railway_access": "Railway connector not installed; no Railway API token configured; no desktop/browser control tool available",
+  "tasks": {
+    "T4.1": "not passed: no Railway deployment performed",
+    "T4.2": "not started; production build and schedule not activated",
+    "T4.3": "not started; existing runbook product status updated only"
+  },
+  "gumroad": "Product does not exist per Maxx Nov17 empty products list; GUMROAD_PRODUCT_ID remains unset; live verification untested",
+  "mutations": "No production service/database/schedule changes; no production keys or licenses used; no git commit or push because all three checks have not passed"
+}

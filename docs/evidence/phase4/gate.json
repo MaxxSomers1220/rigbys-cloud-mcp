@@ -1,0 +1,33 @@
+{
+  "phase": 4,
+  "passed": true,
+  "observed_at": "2026-11-18T18:18:51.097083+00:00",
+  "tasks": {
+    "T4.1": "passed: HTTPS service and live production timestamp",
+    "T4.2": "passed: full real feed and completed manual cron execution; daily schedule enabled",
+    "T4.3": "passed: four concise reviewed runbook procedures"
+  },
+  "tests_passed": 261,
+  "existing_phase3_tests_retained": 227,
+  "feed_records": 786,
+  "confirmed_research_linked_opportunities": 160,
+  "feed_generated_at": "2026-11-18T18:10:23.488529+00:00",
+  "manual_cron_execution": "96945506-9d90-4e4c-b54f-8a026c564138",
+  "manual_cron_execution_status": "EXITED",
+  "next_timer_occurrence": "2026-11-19T06:00:00.000Z",
+  "first_timer_occurrence_observed": false,
+  "gumroad": "Existing unpublished draft configured; real-sale verification untested",
+  "production_keys_or_license_submissions": 0,
+  "paid_pass_sold": false,
+  "phase5_or6_started": false,
+  "historical_evidence": [
+    "predeploy-readiness.json",
+    "production-bootstrap.json",
+    "capacity-and-job-preparation.json"
+  ],
+  "current_evidence": [
+    "t4-1-deploy.json",
+    "t4-2-feed-and-schedule.json",
+    "t4-3-runbook.json"
+  ]
+}

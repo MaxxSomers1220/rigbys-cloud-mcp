@@ -63,7 +63,8 @@ async def read_form(request):
     if any(len(values)!=1 for values in fields.values()):
         raise KeyErrorResponse(400,'Submit each form field once.')
     origin=request.headers.get('origin')
-    if origin is not None and origin.rstrip('/')!=str(request.base_url).rstrip('/'):
+    expected_origin=request.app.state.public_origin or str(request.base_url).rstrip('/')
+    if origin is not None and origin.rstrip('/')!=expected_origin:
         raise KeyErrorResponse(403,'Reload the access page and submit its form.')
     if request.headers.get('sec-fetch-site')=='cross-site':
         raise KeyErrorResponse(403,'Reload the access page and submit its form.')
@@ -86,7 +87,9 @@ async def redeem_page(request:Request):
 <p>Already redeemed? Replace a lost or compromised key below. Your old key stops
 working immediately. Rotation does not extend expiry or reset your daily quota.</p>
 <button type="submit" formaction="/redeem/rotate">Replace my API key</button></form>''')
-    response.set_cookie(COOKIE,token,max_age=900,httponly=True,secure=request.url.scheme=='https',samesite='strict',path='/redeem')
+    response.set_cookie(COOKIE,token,max_age=900,httponly=True,
+                        secure=bool(request.app.state.public_origin) or request.url.scheme=='https',
+                        samesite='strict',path='/redeem')
     return response
 
 

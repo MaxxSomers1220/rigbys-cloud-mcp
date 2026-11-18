@@ -5,19 +5,19 @@
 
 How to run: In Codex, from the project root, use the Spec Kit skills mode: `$speckit-tasks` to regenerate, `$speckit-implement` to build. Work phases in order — do not start a phase until the previous phase's checks pass. Mark each task [x] only when its check passes.
 
-## Current status — 2026-11-17
+## Current status — 2026-11-18
 
-Phase3 T3.1–T3.4 local checks passed in order under Maxx's explicit authorization.
-Full suite:227 passed, including the existing110. Independent local HTTP and real
-789-record store smoke checks passed with synthetic Gumroad responses only.
-**STOP before Phase4:** no deployment, Railway schedule or later phase started.
+Phase 4 T4.1 and T4.2 production checks passed in order. The live feed contains 786
+opportunities, and a real cron execution completed successfully with daily
+Grants.gov retrieval and weekly research-cache reuse. T4.3 runbook review passed. Full suite: 261 passed, including all 227 Phase 3 tests. Earlier handoffs
+below are historical. Phase 5 and Phase 6 remain unchecked and out of scope.
 
-Live Gumroad verification is NOT established. No MCP-pass GUMROAD_PRODUCT_ID is
-configured or confirmed here. Maxx must confirm/create the separate $99 one-time
-pass with license keys and supply the product ID; a separately authorized real-sale
-check remains open. No real buyer key, license or sale was used or claimed.
-T6.3 stays unchecked. Maxx states this project is definitely not part of what he
-does for work; no broader employer IP clearance is claimed.
+The existing one-time $99 Gumroad product is an unpublished draft with licensing
+saved and its supplied product ID configured in Railway. No second product was
+created. Live real-sale verification remains untested. No production test key,
+synthetic license, seeded feed/history or real buyer sale was used. T6.3 stays
+unchecked. Maxx states this project is definitely not part of what he does for
+work; no broader employer IP clearance is claimed.
 
 ## Implementation status — 2026-11-12
 
@@ -115,18 +115,23 @@ preserved. Free history must age naturally before real free results are availabl
   - Check: endpoint returns JSON with all three fields.
   - **Passed locally with synthetic credentials — 2026-11-17:** HTTP JSON includes actual feed_generated_at, per-source build status and server1.0.0; failures retain last successful timestamp and redact details. Actual real-feed timestamp remains2026-11-17T04:54:38.690560+00:00. `docs/evidence/phase3/t3-4-health.json`, `local-http-smoke.json`.
 
-**Phase3 local checks passed — STOP before Phase4.** All227tests pass. Live
+**Phase 3 local checks passed — STOP before Phase 4.** All227 tests pass. Live
 Gumroad product/real-sale verification remains explicitly open; fixture success
 is not sale evidence. No deployment or Railway schedule was activated.
 
 ## Phase 4 — Deploy
 
-- [ ] **T4.1** Deploy service to Railway, serving `https://mcp.rigbyscloud.com/mcp` and `https://mcp.rigbyscloud.com/redeem` over HTTPS, env vars set in host dashboard.
+- [x] **T4.1** Deploy service to Railway, serving `https://mcp.rigbyscloud.com/mcp` and `https://mcp.rigbyscloud.com/redeem` over HTTPS, env vars set in host dashboard.
   - Check: `https://mcp.rigbyscloud.com/mcp` responds; `/health` returns live feed timestamp.
-- [ ] **T4.2** Run a full feed build in production; verify `/health` timestamp is today.
+  - **Passed 2026-11-18:** GitHub source is connected; production HTTPS /redeem 200, unauthenticated /mcp 401, /health 200/server 1.0.0 with live feed_generated_at 2026-11-18T17:53:12.620386+00:00. First full production source build published 786 opportunities, 14,561 awards and 138,849 papers; all three sources ok. Both volumes 5 GB, job 6 GB memory; 261 tests pass. No production test keys, license submissions or seeded data. `docs/evidence/phase4/t4-1-deploy.json`.
+- [x] **T4.2** Run a full feed build in production; verify `/health` timestamp is today.
   - Check: production Postgres has a fresh feed (not seeded test data).
-- [ ] **T4.3** Write `docs/runbook.md`: how to check feed health, rotate a key manually, verify a Gumroad license, and roll back a deploy.
+  - **Passed 2026-11-18:** Production feed has 786 real opportunities, 14,371 award edges and 147,794 paper edges; source counts 14,561 awards/138,849 papers. The daily 06:00 UTC cron is active in the deployment manifest and next run is 2026-11-19T06:00Z. Manual cron execution 96945506-9d90-4e4c-b54f-8a026c564138 is EXITED with completedAt 2026-11-18T18:13:26.630Z; fresh Grants.gov and reused weekly research are confirmed by logs and /health. No timer occurrence is claimed yet. `docs/evidence/phase4/t4-2-feed-and-schedule.json`.
+- [x] **T4.3** Write `docs/runbook.md`: how to check feed health, rotate a key manually, verify a Gumroad license, and roll back a deploy.
   - Check: runbook covers all four procedures in under one page each.
+  - **Passed 2026-11-18:** The existing runbook now covers all four production procedures, each under 300 words/one page. Exact verification, hash-only handling, expiry/quota-preserving rotation, live feed/schedule checks and application-versus-data rollback limits are explicit. The existing Gumroad draft is configured; real-sale verification remains untested. `docs/evidence/phase4/t4-3-runbook.json`.
+
+**Phase 4 gate passed — STOP before Phase 5/6.** All 261 tests pass, including the original 227. The real 786-record production feed, HTTPS endpoints and completed cron execution are verified. No production test keys, synthetic licenses, seeded history or buyer sale was used. T6.3 remains unchecked.
 
 ## Phase 5 — Client verification (mandatory)
 

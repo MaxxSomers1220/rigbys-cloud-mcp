@@ -1,0 +1,25 @@
+{
+  "scope": "Local production-image preflight only; not a Railway deployment",
+  "production_test_keys": 0,
+  "license_submissions": 0,
+  "health": {
+    "status": 200,
+    "feed_generated_at": "2026-11-17T04:54:38.690560+00:00",
+    "server_version": "1.0.0",
+    "last_build_status": "success",
+    "local_feed_records": 789
+  },
+  "unauthenticated_mcp_status": 401,
+  "redeem_proxy_check": {
+    "get_status": 200,
+    "secure_cookie": true,
+    "empty_form_validation_status": 400,
+    "provider_credential_submitted": false
+  },
+  "result": "passed",
+  "no_test_dependencies_or_local_archives_in_image": true,
+  "all_migrations_packaged": true,
+  "no_build_secret_in_runtime": true,
+  "feed_and_credential_tables_unchanged": true,
+  "image_id": "sha256:7c83164bd6c0d68e822c0aa6067715282b0e893e694f34307288b518bc6d07a5"
+}
