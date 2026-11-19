@@ -18,7 +18,7 @@ $1 self-purchase toward T6.3.
 | Directory | Submission status | Verified live listing |
 | --- | --- | --- |
 | Official MCP Registry | Published and verified as active using version 1.0.0. | [Public registry entry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.MaxxSomers1220%2Frigbys-cloud/versions/1.0.0) |
-| Glama | Eligible for hourly import from the official registry. The expected connector URL returned HTTP 404 on the immediate post-publication check. | Pending |
+| Glama | Imported and verified live. The endpoint and short price description match. The README link, exact tool names, and full free-tier terms need a claimed listing edit. | [Public Glama connector](https://glama.ai/mcp/connectors/io.github.MaxxSomers1220/rigbys-cloud) |
 | Smithery | Publisher accounts, API keys, API, and CLI ended October 31, 2026. The legacy submission page returned HTTP 404. The remaining site is a curated directory, and its public documentation exposed no submission path. | None verified |
 | PulseMCP | New servers and changes are paused. The directory directs publishers to the Official MCP Registry and says it will resume automatic intake when the pause ends. | None verified |
 
@@ -36,11 +36,18 @@ returned HTTP 401 with a Bearer challenge when opened without credentials.
 
 ## Glama
 
-Glama documents hourly import of hosted connectors from the official registry.
-Its manual hosted submission uses a name, description, and endpoint, followed
-by review and an ownership claim. If the imported page omits the full terms or
-README, the owner must sign in with the matching GitHub account, claim the
-connector, and edit the listing. [Glama submission and claim FAQ](https://glama.ai/mcp/faq#how-do-i-submit-an-mcp-connector)
+Glama's expected connector URL returned HTTP 404 through 12:59:52 p.m. EST and
+HTTP 200 at 1:00:07 p.m. EST on November 19. The public page displays
+`https://mcp.rigbyscloud.com/mcp` and the official manifest's short description,
+including the one-time price, 90-day period from redemption, four read-only
+tools, and delayed free search. The page omits the GitHub README link, the four
+individual tool names, and the exact free-tier limits.
+
+The owner needs to sign in to Glama, link the matching GitHub account
+`MaxxSomers1220`, and choose **Claim ownership** on the connector. In **Manage
+connector**, enable **Use Glama listing details as the source of truth** to keep
+edits through the hourly sync. Add the GitHub README link and the access and
+tool details above, then verify them on the public page. [Glama submission and claim FAQ](https://glama.ai/mcp/faq#faq-claim-mcp-connector)
 
 ## Smithery and PulseMCP
 
