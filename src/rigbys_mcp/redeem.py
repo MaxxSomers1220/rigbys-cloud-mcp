@@ -87,6 +87,9 @@ async def redeem_page(request:Request):
 <p>Already redeemed? Replace a lost or compromised key below. Your old key stops
 working immediately. Rotation does not extend expiry or reset your daily quota.</p>
 <button type="submit" formaction="/redeem/rotate">Replace my API key</button></form>''')
+    # Browsers can send Origin: null on a POST from a no-referrer page.
+    # Keep origin checks working for this form without sending cross-origin referrers.
+    response.headers['Referrer-Policy']='same-origin'
     response.set_cookie(COOKIE,token,max_age=900,httponly=True,
                         secure=bool(request.app.state.public_origin) or request.url.scheme=='https',
                         samesite='strict',path='/redeem')

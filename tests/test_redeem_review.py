@@ -122,7 +122,7 @@ def test_redeem_get_headers_form_and_csrf_cookie(site):
     assert response.status_code==200
     assert response.headers['cache-control'].startswith('no-store')
     assert response.headers['pragma']=='no-cache'
-    assert response.headers['referrer-policy']=='no-referrer'
+    assert response.headers['referrer-policy']=='same-origin'
     assert response.headers['x-content-type-options']=='nosniff'
     assert response.headers['x-frame-options']=='DENY'
     csp=response.headers['content-security-policy']
@@ -166,6 +166,7 @@ def test_valid_redemption_is_one_time_hash_only_and_never_logged(site,caplog,mon
     assert 'codex mcp add rigbys-cloud --url https://mcp.rigbyscloud.com/mcp --bearer-token-env-var RIGBYS_API_KEY' in response.text
     assert 'claude mcp add --transport http rigbys-cloud https://mcp.rigbyscloud.com/mcp' in response.text
     assert response.headers['cache-control'].startswith('no-store')
+    assert response.headers['referrer-policy']=='no-referrer'
     assert raw not in str(response.headers) and site.license_key not in response.text
     again=site.client.get('/redeem')
     assert raw not in again.text
