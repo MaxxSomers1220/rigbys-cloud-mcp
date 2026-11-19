@@ -33,7 +33,7 @@ def provider(monkeypatch):
             'email': 'synthetic-buyer@example.invalid',
             'sale_id': 'synthetic-sale-not-a-real-sale',
             'license_key': os.environ['RIGBYS_TEST_LICENSE_KEY'],
-            'price': 9900,
+            'price': 100,
             'currency': 'usd',
             'quantity': 1,
             'refunded': False,
@@ -105,12 +105,20 @@ def test_email_and_license_canonicalization_prevents_duplicate_hashes(provider):
     assert result.license_hash == hashlib.sha256(key.encode()).hexdigest()
 
 
+@pytest.mark.parametrize('price', [100, 101, 9900])
+def test_paid_pass_accepts_the_minimum_and_higher_payments(provider, price):
+    key, payload = provider
+    purchase = payload['purchase']
+    purchase['price'] = price
+    assert verifier_for(payload).verify(key, purchase['email']).sale_id == purchase['sale_id']
+
+
 @pytest.mark.parametrize('field,value', [
     ('product_id', 'synthetic-wrong-product'),
     ('email', 'synthetic-other-buyer@example.invalid'),
     ('sale_id', ''), ('sale_id', None), ('sale_id', 12),
     ('license_key', 'synthetic-mismatched-license'),
-    ('price', 0), ('price', 9899), ('price', 9901), ('price', '9900'), ('price', True),
+    ('price', 0), ('price', 99), ('price', 100.0), ('price', '100'), ('price', True),
     ('currency', 'eur'), ('currency', None),
     ('quantity', 2), ('quantity', 0), ('quantity', True), ('quantity', '1'),
     ('refunded', True), ('refunded', None), ('refunded', 'false'),

@@ -8,7 +8,7 @@ import anyio
 from fastapi import APIRouter, Request
 from starlette.responses import HTMLResponse
 
-from .gumroad import GumroadVerifier
+from .gumroad import GumroadVerifier, MCP_PASS_MIN_PRICE_USD
 from .keys import KeyErrorResponse, redeem, rotate
 
 COOKIE='rigbys_redeem_csrf'
@@ -20,7 +20,7 @@ HEADERS={
     'X-Frame-Options':'DENY',
     'Content-Security-Policy':"default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
 }
-TERMS='''<p>$99 one-time MCP pass. Access lasts 90 days from redemption, not purchase.
+TERMS=f'''<p>One-time MCP pass from ${MCP_PASS_MIN_PRICE_USD}. Access lasts 90 days from redemption, not purchase.
 Paid: 1,000 tool calls/day. Free: 20 searches/day, search only, seven-day-delayed,
 with no scores or summaries. No auto-renew. No subscriptions.</p>'''
 

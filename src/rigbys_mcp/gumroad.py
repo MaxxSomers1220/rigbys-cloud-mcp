@@ -11,6 +11,8 @@ import os
 
 import httpx
 
+MCP_PASS_MIN_PRICE_USD = 1
+
 
 class VerificationError(ValueError):
     """A license or its purchase does not qualify for this pass."""
@@ -102,8 +104,9 @@ class GumroadVerifier:
             provider_license = _text(purchase['license_key'], 512).upper()
             if provider_license != canonical_license:
                 raise VerificationError()
-        # These are receipt prices in minor units, never floats or booleans.
-        if type(purchase.get('price')) is not int or purchase['price'] != 9900:
+        # Gumroad's pay-what-you-want receipt price excludes sales tax.
+        price = purchase.get('price')
+        if type(price) is not int or price < MCP_PASS_MIN_PRICE_USD * 100:
             raise VerificationError()
         if not isinstance(purchase.get('currency'), str) or purchase['currency'].casefold() != 'usd':
             raise VerificationError()

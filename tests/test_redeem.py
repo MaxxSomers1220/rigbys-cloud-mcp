@@ -40,13 +40,16 @@ def test_valid_once_invalid_and_replay(redeem_client,provider,database):
     license_key,purchase=provider;email=purchase['purchase']['email']
     result=submit(redeem_client,license_key,email)
     assert result.status_code==200
+    assert 'One-time MCP pass from $1.' in result.text
     raw=parse(result).key
     assert raw and raw.startswith('rgby_live_') and result.text.count(raw)==1
     assert license_key not in result.text
     assert 'codex mcp add rigbys-cloud' in result.text and 'claude mcp add --transport http rigbys-cloud' in result.text
     assert '90 days from redemption' in result.text and '1,000' in result.text and '20 searches/day' in result.text
     assert 'no-store' in result.headers['cache-control']
-    assert parse(redeem_client.get('/redeem')).key is None
+    access_page=redeem_client.get('/redeem')
+    assert 'One-time MCP pass from $1.' in access_page.text
+    assert parse(access_page).key is None
     second=submit(redeem_client,license_key,email)
     assert second.status_code==409 and 'already been redeemed' in second.text and raw not in second.text
     assert database.execute('SELECT count(*) FROM api_keys').fetchone()[0]==1
