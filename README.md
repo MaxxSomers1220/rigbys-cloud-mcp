@@ -1,5 +1,8 @@
 # Rigby's Cloud — Remote MCP Server (Spec Kit project)
 
+The live Gumroad MCP pass starts at $1 USD before tax, with 90 days of access
+from redemption. The November 18 deployment notes below record the earlier draft.
+
 Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phases 1–3 implemented and locally verified on 2026-11-17. Phase 4 production service and scheduled feed verified on 2026-11-18; all three deployment checks passed. Live Gumroad verification is untested.
 
 This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
@@ -173,7 +176,7 @@ Do not run `$speckit-implement` until the four Open Decisions in `plan.md` are r
 - **Server:** Streamable HTTP at `https://mcp.rigbyscloud.com/mcp`, server name `rigbys-cloud`.
 - **Auth:** one Bearer API key per buyer, from a Gumroad license redeemed at `https://mcp.rigbyscloud.com/redeem`. Maxx confirmed on 2026-11-12 that MCP and redemption share this hostname; root/apex routing is not a v1 prerequisite.
 - **Tools (4 only):** `opportunity_search`, `opportunity_get`, `opportunity_links`, `gap_for_topic`. Read-only.
-- **Pay:** timed MCP pass ($99 one-time / 90 days from redemption, confirmed 2026-11-12) + $99 one-time snapshot file (separate product). No subscriptions for now.
+- **Pay:** timed MCP pass (from $1 one-time / 90 days from redemption) + $99 one-time snapshot file (separate product). No subscriptions for now.
 - **Free tier:** `opportunity_search` only, 7-day-delayed, no scores/summaries; 20 searches/day (confirmed 2026-11-12).
 
 ## Source specs (the pre-Spec Kit versions)

@@ -11,11 +11,11 @@ completed successfully; the first scheduled timer firing has not yet occurred.
 Its next scheduled run is 2026-11-19 at 06:00 UTC. See [Phase 4 evidence](evidence/phase4/).
 Phase 5/6 client verification and discovery work have not started.
 
-The existing $99 Gumroad pass is an unpublished draft with licensing saved and
-its product ID configured in Railway. **Real-sale verification remains untested.**
-No production API keys, license submissions or buyer sales were used in Phase 4;
-no paid pass has been sold. Maxx states the project is definitely not part of what
-he does for work; no broader employer clearance is claimed.
+At the November 18 Phase 4 check, the Gumroad pass was an unpublished draft with
+licensing saved and its product ID configured in Railway. That check used no
+production API keys, license submissions or buyer sales. The live listing now
+accepts payments from $1 USD. Maxx states the project is definitely not part of
+what he does for work, with no broader employer clearance claimed.
 
 ## 1. Check feed health, schedule and recovery
 
@@ -79,18 +79,18 @@ Do not use the feed HTTP client: its raw archiver must never receive payment
 credentials. Never log/store a raw license, API key or provider response.
 
 Require explicit `success: true`, matching product and case-normalized email,
-a sale ID, quantity one, price 9,900 USD cents, and explicit false refund,
-dispute and chargeback flags. Reject imported customers without paid receipts,
+a sale ID, quantity one, a product price of at least 100 USD cents before tax,
+and explicit false refund, dispute and chargeback flags. Reject imported
+customers without paid receipts,
 subscriptions, recurring charges, preorder authorizations and creator/test
 purchases. Ordinary receipts may omit the optional `test` flag. If a license is
 included in the receipt, it must match the submitted canonical license. Provider
 failures, malformed receipts and missing configuration fail closed with plain
 errors; HTTP success alone grants no access.
 
-The existing unpublished $99 draft already has licensing saved and its supplied
-ID configured only in Railway. Do not create another product or substitute the
-snapshot product. **Live real-sale verification is untested**; synthetic fixture
-tests and deployment do not establish a sale. Phase 4 submits no licenses.
+Use the configured Gumroad MCP pass product ID in Railway. A checkout may charge
+tax on top of the qualifying product price. Verify a real sale independently of
+synthetic fixture tests and deployment checks.
 
 Local redemption enforces one-time use through the trimmed/uppercased license's
 SHA-256 hash and unique verified sale reference. Store API-key hashes only; show
