@@ -17,20 +17,22 @@ $1 self-purchase toward T6.3.
 
 | Directory | Submission status | Verified live listing |
 | --- | --- | --- |
-| Official MCP Registry | The supported publisher validated `server.json`. GitHub owner device authorization is pending. | Pending |
-| Glama | The hosted connector is eligible for hourly import after Official MCP Registry publication. The expected connector URL returned HTTP 404 before publication. | Pending |
+| Official MCP Registry | Published and verified as active using version 1.0.0. | [Public registry entry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.MaxxSomers1220%2Frigbys-cloud/versions/1.0.0) |
+| Glama | Eligible for hourly import from the official registry. The expected connector URL returned HTTP 404 on the immediate post-publication check. | Pending |
 | Smithery | Publisher accounts, API keys, API, and CLI ended October 31, 2026. The legacy submission page returned HTTP 404. The remaining site is a curated directory, and its public documentation exposed no submission path. | None verified |
 | PulseMCP | New servers and changes are paused. The directory directs publishers to the Official MCP Registry and says it will resume automatic intake when the pause ends. | None verified |
 
 ## Official MCP Registry
 
-Publisher `mcp-publisher` v1.8.9 passed `validate server.json` against the
-production registry. The committed manifest is `0cfed4f` and publishes under
-`io.github.MaxxSomers1220/rigbys-cloud` with version `1.0.0`. The live
-manifest should expose the remote URL, GitHub README, a required secret
-Bearer header, and the access terms and tool names in publisher metadata.
-Exact-name lookup returned HTTP 404 and search returned zero matches before
-submission. [Committed manifest](https://github.com/MaxxSomers1220/rigbys-cloud-mcp/blob/0cfed4f665bb507b0c877a7eec9c04b1ee772f2b/server.json) · [Official remote-server guide](https://github.com/modelcontextprotocol/registry/blob/main/docs/modelcontextprotocol-io/remote-servers.mdx)
+Publisher `mcp-publisher` v1.8.9 validated `server.json` against the production
+registry. After the owner approved GitHub device authorization, the publisher
+published `io.github.MaxxSomers1220/rigbys-cloud` version `1.0.0` on November
+19, 2026 at 12:55:26 p.m. EST. Both the exact-version and latest URLs returned
+the expected active entry. The response contained the remote URL, GitHub
+README, required secret Bearer header, the four tool names, and the exact paid
+and free access terms. The README returned HTTP 200 and the MCP endpoint
+returned HTTP 401 with a Bearer challenge when opened without credentials.
+[Committed manifest](https://github.com/MaxxSomers1220/rigbys-cloud-mcp/blob/0cfed4f665bb507b0c877a7eec9c04b1ee772f2b/server.json) · [Latest version](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.MaxxSomers1220%2Frigbys-cloud/versions/latest)
 
 ## Glama
 
