@@ -1,0 +1,49 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.MaxxSomers1220/rigbys-cloud",
+  "description": "US grants research, 4 read-only tools. From $1 once / 90 days from redemption. Free delayed search.",
+  "title": "Rigby's Cloud Grants Feed",
+  "repository": {
+    "url": "https://github.com/MaxxSomers1220/rigbys-cloud-mcp",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "websiteUrl": "https://github.com/MaxxSomers1220/rigbys-cloud-mcp/blob/main/README.md",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.rigbyscloud.com/mcp",
+      "headers": [
+        {
+          "description": "Enter Bearer followed by your Rigby's Cloud API key.",
+          "isRequired": true,
+          "isSecret": true,
+          "placeholder": "Bearer <Rigby's Cloud API key>",
+          "name": "Authorization"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "freeTier": "opportunity_search only, 7 days delayed, with no scores or summaries and a limit of 20 searches per day.",
+      "paidPass": "From $1 USD one-time, with 90 days of access from redemption.",
+      "readOnlyTools": [
+        "opportunity_search",
+        "opportunity_get",
+        "opportunity_links",
+        "gap_for_topic"
+      ],
+      "readmeUrl": "https://github.com/MaxxSomers1220/rigbys-cloud-mcp/blob/main/README.md"
+    }
+  },
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/MaxxSomers1220/rigbys-cloud-mcp/registry-metadata/registry/rigby.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "460x765"
+      ]
+    }
+  ]
+}
