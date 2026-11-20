@@ -122,3 +122,38 @@ schema, published feed contents or raw archives. Do not drop tables or volumes t
 undo a deploy. Preserve database/raw backups and assess migration compatibility
 before any separate data restoration. Commit the corrective source change so the
 next GitHub deployment does not restore the failing release.
+
+## 5. Download the full feed snapshot
+
+Deploy the Phase 7 release to the web service and the scheduled feed builder.
+The existing migration step provisions the export tables. The first successful
+build with the new builder publishes the download. Check `/health` for that
+build's timestamp.
+
+With a paid key set privately in `RIGBYS_API_KEY`, download from a directory
+where you keep local exports:
+
+```bash
+(
+  set +x
+  : "${RIGBYS_API_KEY:?Set RIGBYS_API_KEY in the environment first}"
+  umask 077
+  printf 'Authorization: Bearer %s\n' "$RIGBYS_API_KEY" |
+    curl --disable --fail --silent --show-error --header @- \
+      --output rigbys-cloud-feed.json.gz https://mcp.rigbyscloud.com/snapshot-export &&
+    gzip -t rigbys-cloud-feed.json.gz
+)
+```
+
+The attachment contains `feed_generated_at`, `record_count`, and
+`opportunities`. The first two values also appear in the
+`X-Feed-Generated-At` and `X-Feed-Record-Count` response headers. The count
+comes from the completed build. Each authenticated paid request uses one call
+from the existing paid quota.
+
+Postgres retains the current file and the immediately previous successful
+export in `snapshot_exports` and `snapshot_export_chunks`. The HTTPS route
+serves the current file only. A 503 can mean the first upgraded build is pending,
+the old builder published without an export, or the database is unavailable.
+Check the feed-builder's release and its latest successful execution before
+retrying.
