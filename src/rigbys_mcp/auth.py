@@ -73,6 +73,30 @@ def authorize(token, tool_name=None, arguments=None, charge=False, now=None):
     return Principal(digest,tier,now)
 
 
+def bearer_token(scope):
+    headers = [value for name, value in scope.get('headers', [])
+               if name.lower() == b'authorization']
+    required = 'Authorization: Bearer <API key> is required'
+    if len(headers) != 1:
+        raise AccessError(401, required)
+    try:
+        scheme, token = headers[0].decode('ascii').split(' ', 1)
+    except (ValueError, UnicodeError):
+        raise AccessError(401, required) from None
+    if scheme.lower() != 'bearer' or not token or token != token.strip():
+        raise AccessError(401, required)
+    return token
+
+
+def access_error_response(error):
+    headers = {}
+    if error.status == 401:
+        headers['WWW-Authenticate'] = 'Bearer'
+    if error.retry_after is not None:
+        headers['Retry-After'] = str(error.retry_after)
+    return JSONResponse({'error': error.message}, status_code=error.status, headers=headers)
+
+
 class BearerMiddleware:
     """Pure ASGI: authenticates every MCP request and checks each tool attempt.
 
@@ -89,15 +113,7 @@ class BearerMiddleware:
             # Canonicalize before charging so a 307 retry cannot count one call twice.
             scope={**scope, 'path':'/mcp', 'raw_path':b'/mcp'}
         try:
-            auth=[v for k,v in scope.get('headers',[]) if k.lower()==b'authorization']
-            if len(auth)!=1:
-                raise AccessError(401,'Authorization: Bearer <API key> is required')
-            try:
-                scheme,token=auth[0].decode('ascii').split(' ',1)
-            except (ValueError,UnicodeError):
-                raise AccessError(401,'Authorization: Bearer <API key> is required') from None
-            if scheme.lower()!='bearer' or not token or token!=token.strip():
-                raise AccessError(401,'Authorization: Bearer <API key> is required')
+            token=bearer_token(scope)
             principal=await anyio.to_thread.run_sync(authorize,token)
             body=b''
             if scope['method']=='POST':
@@ -133,7 +149,4 @@ class BearerMiddleware:
             scope['rigbys_principal']=principal
             return await self.app(scope,receive,send)
         except AccessError as exc:
-            headers={}
-            if exc.status==401:headers['WWW-Authenticate']='Bearer'
-            if exc.retry_after is not None:headers['Retry-After']=str(exc.retry_after)
-            return await JSONResponse({'error':exc.message},status_code=exc.status,headers=headers)(scope,receive,send)
+            return await access_error_response(exc)(scope,receive,send)

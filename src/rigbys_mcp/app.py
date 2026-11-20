@@ -13,6 +13,7 @@ from .auth import BearerMiddleware
 from .redeem import router as redeem_router
 from .gumroad import GumroadVerifier
 from .health import router as health_router
+from .snapshot_export import router as snapshot_export_router
 from .origin import configured_public_origin
 from . import SERVER_VERSION
 from fastmcp.server.dependencies import get_http_request
@@ -93,6 +94,7 @@ def create_app():
     app.state.license_verifier=GumroadVerifier()
     app.include_router(redeem_router)
     app.include_router(health_router)
+    app.include_router(snapshot_export_router)
     app.mount('/', http)
     app.add_middleware(BearerMiddleware)
     return app

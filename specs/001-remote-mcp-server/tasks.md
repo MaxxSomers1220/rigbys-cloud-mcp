@@ -154,3 +154,15 @@ is not sale evidence. No deployment or Railway schedule was activated.
   - Check: Gumroad sale recorded; do not list in registries until this passes.
 - [ ] **T6.4** (After T6.3 only) List in MCP registries / directories.
   - Check: listings point at the live URL and the README, and were verified live after listing.
+
+## Phase 7 — Paid current-feed export
+
+- [x] **T7.1** Store the current and previous gzip exports in bounded PostgreSQL chunks. Publish each export in the transaction that publishes the final opportunity records and marks the build successful.
+  - Check that a failed build or an export write failure preserves the last committed feed and artifact. After three successful publishes, confirm only the most recent two export artifacts remain. Verify a read that overlaps publication receives a single complete generation.
+- [x] **T7.2** Serve `GET /snapshot-export` over the existing HTTPS service with Bearer auth, paid-tier enforcement, and shared UTC daily quota. Keep the MCP tool inventory at four.
+  - Check gzip attachment filename, media type, gzip integrity, and private no-store caching. Confirm missing, malformed, invalid, revoked, and expired keys return 401, a free key returns the existing paid-required 403, and shared quota exhaustion returns 429 with `Retry-After`. Confirm an authorized paid caller receives 503 when no artifact exists and a token in the URL cannot grant access.
+- [x] **T7.3** Verify User Story 5 and SC-006 locally with a controlled 786-record fixture, including an export that spans multiple chunks. Store test evidence under `docs/evidence/phase7/`.
+  - Check unique IDs, total count, `feed_generated_at`, and full object equality for each fixture ID with the canonical record used by `opportunity_get`. Spot-check equality through MCP calls. Verify the four named tools remain discoverable and prove an export and an MCP request share the same paid counter. Label fixture evidence as controlled local data. Record measurements and redacted responses, excluding keys and full export files.
+  - **Passed locally 2026-11-20:** T7.1–T7.3 results are in `docs/evidence/phase7/t7-3-local.md`.
+- [ ] **T7.4** Verify the live behavior after an authorized Railway deployment and successful artifact publication. Test the HTTPS attachment with a real paid key supplied via the environment.
+  - Check gzip integrity, unique IDs, matching JSON count, and `feed_generated_at` against the actual production run. Spot-check 10 records with `opportunity_get`, confirm the four-tool inventory, verify the free and expired responses with available credentials, and confirm retention after the next successful build. Record the production timestamp, observed count, and redacted evidence separately from the fixture report under `docs/evidence/phase7/`.

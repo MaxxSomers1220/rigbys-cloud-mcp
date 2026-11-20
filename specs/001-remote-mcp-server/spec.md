@@ -67,6 +67,21 @@ Acceptance Scenarios:
 1. Given a paid key and a topic, When the agent calls `gap_for_topic`, Then the result includes open-opportunity count, awarded-grant count, paper count, median growth/momentum/novelty/gap, top 5 neglected sub-topics, and top 5 crowded sub-topics, each with `methodology_version` and source counts.
 2. Given a topic with very little data, When the gap read runs, Then it says the sample is thin and shows the counts — it does not present a confident gap score from a handful of records.
 
+### User Story 5 — Maxx exports the current full feed for Arden's Grants Garden (Priority P1, Phase 7)
+
+Maxx Somers wants the complete current feed in one download so he can build the garden from a single source-backed generation and preserve every record. A valid paid pass allows this download during its existing access period.
+
+#### Independent test
+
+Publish 786 controlled fixture records to disposable PostgreSQL. Download the export with a local paid test key. Verify the gzip file opens, includes every fixture ID exactly once, and contains the full records available through `opportunity_get` for that generation. Verify the production route separately after an authorized deployment and an export artifact becomes available.
+
+#### Acceptance scenarios
+
+1. A valid paid key with quota can download the last successfully published feed through `GET /snapshot-export`. The attachment contains `feed_generated_at`, `record_count`, and `opportunities` with the complete five-layer records, including their source references, links, scoring evidence, and change history.
+2. A failed build or concurrent publication leaves a reader with one complete successful generation. The file identifies that generation by its original `feed_generated_at`.
+3. A free key receives the existing paid-required 403 response. An expired key receives the existing 401 renewal response. An exhausted paid key receives 429 with `Retry-After`. A valid paid caller receives 503 if the artifact is unavailable.
+4. The client supplies the key through the existing `Authorization: Bearer` header. MCP clients continue to list the existing four read-only tools.
+
 ### Edge Cases
 
 - Expired key: server returns 401 with "Key expired — renew at mcp.rigbyscloud.com/redeem". No stack trace.
@@ -94,6 +109,10 @@ Acceptance Scenarios:
 - **FR-013:** Every record MUST carry `feed_generated_at`, per-field `source_refs`, and `methodology_version` on every scored record.
 - **FR-014:** System MUST be read-only in v1. No write tools.
 - **FR-015:** System MUST ship a one-page `SKILL.md`, `llms.txt`, `agents.md`, and a GitHub README that leads with the two copy-paste client commands (see §Client Setup below).
+- **FR-016** — The system MUST serve the current complete feed through `GET https://mcp.rigbyscloud.com/snapshot-export`. The response MUST be a gzip-compressed JSON attachment named `rigbys-cloud-feed.json.gz` with media type `application/gzip`. The response body carries the gzip file directly and omits HTTP `Content-Encoding`.
+- **FR-017** — The JSON document MUST carry `feed_generated_at`, `record_count`, and `opportunities`. The count MUST equal the array length. Each current opportunity MUST appear exactly once and MUST match the full `opportunity_get` record from the same successful feed generation.
+- **FR-018** — The route MUST use the existing Bearer authentication and shared paid daily quota. An authorized paid request counts as one call. No URL credential is accepted. The route MUST return the existing paid-required 403 for a free key, 401 for a missing, invalid, revoked, or expired key, 429 with `Retry-After` once the paid quota is exhausted, and a plain 503 when an authorized request has no available artifact.
+- **FR-019** — Publication MUST atomically store the export with the successful feed in PostgreSQL. Phase 7 MUST retain at most the current and previous successful export artifacts. The public hostname exposes the authenticated current-download route, with no dated history endpoint.
 
 ### Client Setup (normative — print exactly these)
 
@@ -129,6 +148,7 @@ Verify: `/mcp` inside Claude Code — server should say Connected.
 - **NFR-002:** Secrets (API keys, database URL, Gumroad verification) MUST live in environment variables only, never in code, config, or git.
 - **NFR-003:** Errors MUST be plain messages, no stack traces, for 401 / 403 / 429 / paid-required cases.
 - **NFR-004:** Paid rate limit 1,000 tool calls/day, free 20 searches/day (confirmed 2026-11-12). Limits are abuse protection, stated on the redeem page, not per-call billing.
+- **NFR-005** — The export MUST use bounded chunks for PostgreSQL storage and delivery. The response MUST instruct clients and intermediaries to avoid caching it. The server MUST keep credentials out of download URLs, artifact contents, and error messages.
 
 ## Success Criteria (mandatory)
 
@@ -137,12 +157,15 @@ Verify: `/mcp` inside Claude Code — server should say Connected.
 - **SC-003:** Free-tier search returns no scores and no summaries, and paid tools refuse free keys cleanly, in 100% of tested cases.
 - **SC-004:** An expired key returns 401 with the renewal message, and a rotated key's old value stops working immediately, in 100% of tested cases.
 - **SC-005:** One paid pass is sold (the pre-sell validation signal) before subscription/API machinery or a second feed is built.
+- **SC-006** — Phase 7 independently verifies the complete 786-record controlled fixture export, record parity with `opportunity_get`, current/previous retention, rollback, the paid access and quota cases, and continued discovery of the four MCP tools. Record a separate production pass only after verifying the authorized HTTPS download against the production generation and count then available.
 
 ## Scope
 
 In scope (v1): feed build (Grants.gov + NIH RePORTER + OpenAlex), Postgres store, remote MCP server with 4 tools, Bearer auth, Gumroad redeem page, free tier, SKILL.md / llms.txt / agents.md / README, deployment to Railway (confirmed 2026-11-12), testing from Codex + Claude Code.
 
-Out of scope (v1): local/stdio MCP server, OAuth, subscriptions / auto-renew, dashboard, write tools, bulk-dump tool, trials linkage (ClinicalTrials.gov), patents/global coverage, second feed, MCP registry listings before the server is live and tested, snapshot file build (separate product — its listing draft already exists).
+Out of scope (v1): local/stdio MCP server, OAuth, subscriptions / auto-renew, dashboard, write tools, an MCP bulk-dump tool, trials linkage (ClinicalTrials.gov), patents/global coverage, second feed, MCP registry listings before the server is live and tested, and changes to the separate standalone snapshot product.
+
+Phase 7 scope adds the authenticated current-feed download described in User Story 5 to the existing MCP service. The separate snapshot product and dated export history are outside Phase 7.
 
 ## Open Decisions (for Maxx — do not guess)
 

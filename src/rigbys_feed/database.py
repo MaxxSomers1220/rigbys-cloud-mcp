@@ -117,7 +117,9 @@ def publish_feed(conn, records, generated_at, source_counts, source_status, cach
             (feed_generated_at,status,source_counts,source_status) VALUES (%s,'success',%s,%s)
             RETURNING run_id''', (generated_at,Jsonb(source_counts),Jsonb(source_status))).fetchone()[0]
         from rigbys_mcp.snapshots import capture_snapshot
+        from .snapshot_export import publish_current_export
         capture_snapshot(conn, run_id)
+        publish_current_export(conn, run_id)
     return run_id
 
 
