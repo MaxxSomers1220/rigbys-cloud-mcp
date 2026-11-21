@@ -1,7 +1,9 @@
-# Feed data contract (Phase 1)
+# Feed data contract
 
-Only public Grants.gov opportunities, NIH RePORTER awards/publications, and
-OpenAlex works are used. No institutional data or trial registry is accessed.
+The feed uses public Grants.gov opportunities, NIH RePORTER awards and
+publications, OpenAlex works, and ClinicalTrials.gov study records. NSF Award
+Search supplements award coverage where NSF publishes an explicit program
+crosswalk.
 
 ## Cleaning and openness
 
@@ -46,12 +48,36 @@ live-checked. Core projects span renewal cycles; neither path proves a paper was
 funded by the current opportunity or is specifically about its topic. Unmatched
 records and missing source coverage are reported explicitly.
 
+### Study registry and NSF program evidence
+
+- `linked_trials` identifies ClinicalTrials.gov studies by NCT number. The
+  opportunity can cite that exact NCT identifier in its title or synopsis. It
+  can also be linked through an existing RePORTER award when the registry
+  lists the same NIH core project in an NIH-typed secondary identifier. The
+  entry gives the original registry identifier, study page, registry source
+  reference, and matching award where applicable.
+- `linked_nsf_program_awards` lists active awards that report an element code
+  published in “Awards made through this program” on the official NSF program
+  page. The opportunity number must be in the verified NSF crosswalk. The
+  entry gives the official solicitation, program, award page, reported code,
+  and source reference. This evidence establishes a shared program.
+  Historical awards may have been issued through an earlier solicitation.
+- Each entry carries its relationship and join confidence. Trial and NSF
+  program links provide context. They are separate from the exact award and
+  paper lists used for the published scores and graph.
+
+In record detail, `score_evidence_detail` explains each score's input fields
+and which link arrays contain the evidence. Each linked award and paper tags
+its contributing inputs in `score_inputs`, alongside its source URL and
+join confidence. The published counts and years remain in `score_evidence`.
+
 ## Storage
 
 Full public source envelopes remain in the raw archive. The durable research cache
 projects only fields consumed by this feed and retains raw references for the
 complete responses. Large caches are stored in bounded chunks with a manifest
 and checksums. `opportunities.record` retains the unified record and its
-`linked_awards`/`linked_papers` evidence. The temporary builder `links` projection
-is stored once in `opportunity_links`, rather than duplicated in the JSON record.
+`linked_awards`, `linked_papers`, `linked_trials`, and
+`linked_nsf_program_awards` evidence. The temporary exact award and paper graph
+projection is stored once in `opportunity_links`.
 Field-level join references point to each linked entry's evidence references.

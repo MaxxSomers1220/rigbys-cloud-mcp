@@ -29,6 +29,10 @@ Every run refreshes Grants.gov. Research refreshes on the first run and once its
 oldest response is at least seven days old (also when the fiscal-year window
 changes). Complete awards, papers, coverage, and source retrieval times are
 cached durably in Postgres. A manual `--force-research` overrides weekly reuse.
+ClinicalTrials.gov NIH-identified studies and NSF same-program awards each use
+an independent weekly cache. Explicitly cited NCT identifiers absent from the
+clinical cache are looked up on the day of the build. NSF refreshes when the
+set of supported open opportunities or their program codes changes.
 Full builds refuse an empty research source, an incomplete source page set, or
 fewer than 100 posted Grants.gov records rather than erasing the last good feed.
 
@@ -56,6 +60,11 @@ coverage, and join meaning; see `scoring-methodology.md` before interpreting any
 scores. Records without enough research evidence have explicitly flagged neutral
 placeholders and must not be described as observed funding gaps. Publication
 linkage does not prove current-opportunity funding or topic relevance.
+
+The existing `linked_opportunities` count measures records with exact award or
+paper links. `any_research_linked_opportunities` also includes confirmed trial
+and same-program NSF award links. The build reports each relationship's edge
+count and opportunity count separately.
 
 Phase 1 checks use an isolated workspace PostgreSQL instance. Railway's private
 production database is not accessed by these checks. The generated local feed is

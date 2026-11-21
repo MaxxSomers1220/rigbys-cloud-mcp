@@ -39,6 +39,12 @@ def research(http, raw_grants):
 def setup_sources(monkeypatch):
     monkeypatch.setattr(builder.GrantsGov, 'fetch', lambda self: grants())
     monkeypatch.setattr(builder, 'fetch_research', research)
+    def clinical_trials(self):
+        stamp = datetime.now(timezone.utc).isoformat()
+        return {'NCT01234567': {'nct_id': 'NCT01234567', 'title': 'Study fixture',
+                                 'status': 'COMPLETED', 'nih_ids': {'1R01AI123456-01': 'R01AI123456'},
+                                 'ref': {'source': 'clinical_trials_gov', 'fetched_at': stamp}}}, stamp
+    monkeypatch.setattr(builder.ClinicalTrials, 'nih_studies', clinical_trials)
 
 
 def run(database, tmp_path):
@@ -57,12 +63,15 @@ def test_daily_grants_weekly_research_and_timestamp(database, tmp_path, monkeypa
     assert first['source_counts']['published_opportunities'] == 100
     assert first['source_counts']['award_links'] == 1
     assert first['source_counts']['paper_links'] == 1
+    assert first['source_counts']['trial_links'] == 1
+    assert first['source_counts']['linked_opportunities'] == 1
     for status in first['sources'].values():
         assert datetime.fromisoformat(first['feed_generated_at']) >= datetime.fromisoformat(status['last_success_at'])
     first_cache = load_cache(database, 'research')
     second = run(database, tmp_path)
     assert len(calls) == 1
     assert second['sources']['nih_reporter']['reused_weekly_cache']
+    assert second['sources']['clinical_trials_gov']['reused_weekly_cache']
     assert second['sources']['openalex']['last_success_at'] == first['sources']['openalex']['last_success_at']
     assert load_cache(database, 'research') == first_cache
     # Expiring the durable cache triggers the next scheduled refresh.
@@ -71,6 +80,59 @@ def test_daily_grants_weekly_research_and_timestamp(database, tmp_path, monkeypa
     third = run(database, tmp_path)
     assert len(calls) == 2
     assert not third['sources']['nih_reporter']['reused_weekly_cache']
+
+
+def test_trial_failure_retains_previous_export_and_cache(database, tmp_path, monkeypatch):
+    setup_sources(monkeypatch)
+    good = run(database, tmp_path)
+    before = database.execute('SELECT record FROM opportunities WHERE opportunity_id=%s',
+                              ('gg-1000',)).fetchone()[0]
+    assert before['linked_trials'][0]['target_id'] == 'NCT01234567'
+    assert database.execute("SELECT count(*) FROM opportunity_links WHERE link_type='trial'").fetchone()[0] == 0
+    database.execute("UPDATE source_cache SET fetched_at=now()-interval '8 days' WHERE cache_name='clinical_trials_gov'")
+    saved = load_cache(database, 'clinical_trials_gov')
+
+    def fail(self):
+        raise SourceError('public registry unavailable')
+
+    monkeypatch.setattr(builder.ClinicalTrials, 'nih_studies', fail)
+    with pytest.raises(SourceError, match='clinical_trials_gov; last good feed retained'):
+        run(database, tmp_path)
+    assert health(database)['feed_generated_at'] == good['feed_generated_at']
+    assert health(database)['sources']['clinical_trials_gov']['status'] == 'refresh_failed'
+    assert load_cache(database, 'clinical_trials_gov') == saved
+
+
+def test_nsf_context_in_persisted_detail_and_counts(database, tmp_path, monkeypatch):
+    setup_sources(monkeypatch)
+    rows = grants()
+    raw = rows[-1]['record']
+    raw['agencyDetails'] = {'agencyName': 'U.S. National Science Foundation', 'topAgencyCode': 'NSF'}
+    raw['opportunityNumber'] = '25-531'
+    monkeypatch.setattr(builder.GrantsGov, 'fetch', lambda self: rows)
+    calls = []
+
+    def award_search(self, scope):
+        calls.append(dict(scope))
+        stamp = datetime.now(timezone.utc).isoformat()
+        return {'25-531': {'fetched_at': stamp, 'source_results': 1, 'awards': [
+            {'id': '1234567', 'title': 'NSF award fixture', 'source_award_date': '01/01/2026',
+             'matched_program_codes': ['802700'],
+             'ref': {'source': 'nsf_award_search', 'fetched_at': stamp}},
+        ]}}
+
+    monkeypatch.setattr(builder.NsfAwardSearch, 'awards', award_search)
+    first = run(database, tmp_path)
+    assert calls == [{'25-531': '802700'}]
+    assert first['source_counts']['linked_opportunities'] == 1
+    assert first['source_counts']['nsf_program_linked_opportunities'] == 1
+    assert first['source_counts']['any_research_linked_opportunities'] == 2
+    record = database.execute('SELECT record FROM opportunities WHERE opportunity_id=%s',
+                              ('gg-1099',)).fetchone()[0]
+    assert record['linked_nsf_program_awards'][0]['target_id'] == '1234567'
+    assert record['score_evidence_detail']['basis'] == 'neutral_placeholder'
+    assert run(database, tmp_path)['sources']['nsf_award_search']['reused_weekly_cache']
+    assert len(calls) == 1
 
 
 def test_upstream_failure_preserves_complete_feed_and_releases_lock(database, tmp_path, monkeypatch):

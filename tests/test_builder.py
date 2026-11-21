@@ -21,4 +21,6 @@ def test_all_five_layers_in_transform():
     assert r['score_evidence']['status']=='insufficient_data_neutral_placeholder'
     assert r['summary_short'] and r['extracted_requirements']
     assert r['feed_generated_at'] and r['source_refs']
-    assert 'linked_trials' not in r
+    assert r['linked_trials'] == []
+    assert r['linked_nsf_program_awards'] == []
+    assert r['score_evidence_detail']['basis'] == 'neutral_placeholder'

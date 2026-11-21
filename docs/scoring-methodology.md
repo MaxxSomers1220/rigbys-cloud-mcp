@@ -35,6 +35,13 @@ shown alongside it. This preserves a numeric field without inventing evidence.
 
 Every record has `methodology_version=research-signals-1.0.0`, input counts,
 comparison periods, per-field methodology references, and source-backed edges.
+In the opportunity detail, each link supplies its `target_url`, `join_confidence`,
+and `score_inputs`. A reader can select the links tagged with the inputs in
+`score_evidence_detail.scores` to reproduce that score's evidence. For example,
+the growth calculation uses the papers tagged `paper_recent` and
+`paper_previous`. A neutral placeholder has a reason and the observed links
+are available for inspection. Registry trials and same-program NSF awards
+provide research context and do not enter these formulas.
 Identical records and as-of dates produce identical scores. These are early,
 unvalidated portfolio signals; calibration and domain comparisons need separate
 validation. Formula or threshold changes require a new methodology version.

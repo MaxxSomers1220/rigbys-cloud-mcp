@@ -29,6 +29,9 @@ Do not put real credentials in commands saved to a file, config, or Git.
   `descriptive_proxy` records only; it never qualifies a neutral placeholder.
 - `opportunity_get`: returns the persisted unified JSON record exactly, including
   all source refs, coverage, neutral flags, confidence, summaries and change log.
+  Score reasons and contributing link fields are in `score_evidence_detail`.
+  Study registry links and same-program NSF awards appear alongside score evidence
+  in `linked_trials` and `linked_nsf_program_awards`.
 - `opportunity_links`: returns stored award/paper edge fields, confidence and URLs.
   `source_id` is the opportunity for award edges and the stored `via_award` for
   paper edges. No scores or summaries are copied into this response.

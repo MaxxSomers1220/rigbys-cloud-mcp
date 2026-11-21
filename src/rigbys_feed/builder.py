@@ -6,8 +6,10 @@ import logging
 from pathlib import Path
 
 from .cleaning import clean_all
+from .clinical_trials import ClinicalTrials, attach_trials, mentioned_ids
 from .database import health, load_cache, publish_feed, record_failure
 from .joining import join
+from .nsf import PROGRAMS, NsfAwardSearch, attach_nsf_awards, opportunity_numbers
 from .research import fetch_research, default_fiscal_years
 from .scoring import score
 from .sources import GrantsGov, PublicClient, SourceError, utcnow
@@ -55,6 +57,10 @@ def research_due(cache, now):
             cache['payload']['coverage'].get('fiscal_years') != default_fiscal_years())
 
 
+def weekly_due(cache, now):
+    return not cache or now - datetime.fromisoformat(cache['fetched_at']) >= timedelta(days=7)
+
+
 def compact_research(awards, papers):
     """Cache only fields consumed by this feed; complete source responses stay archived."""
     keys = ('opportunity_number','project_num','core_project_num','appl_id','subproject_id',
@@ -69,9 +75,11 @@ def compact_research(awards, papers):
     return awards, papers
 
 
-def transform(grants, awards, publications, papers, coverage, now):
+def transform(grants, awards, publications, papers, coverage, now, *, trials=None, nsf_programs=None):
     records = clean_all(grants, now.date())
     join(records, awards, publications, papers, coverage)
+    attach_trials(records, trials or {})
+    attach_nsf_awards(records, nsf_programs or {})
     for record in records:
         score(record, now.date())
         summarize(record)
@@ -114,20 +122,66 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
             awards, publications, papers, coverage = (payload[k] for k in ('awards','publications','papers','coverage'))
         counts.update(nih_reporter_awards=len(awards), nih_reporter_publications=len(publications),
                       openalex_papers=len(papers))
+        stage = 'clinical_trials_gov'
+        registry = ClinicalTrials(http)
+        trial_cache = load_cache(conn, stage)
+        trial_refresh = force_research or weekly_due(trial_cache, now)
+        if trial_refresh:
+            studies, trial_time = registry.nih_studies()
+            caches[stage] = {'payload': studies, 'fetched_at': trial_time}
+        else:
+            studies, trial_time = trial_cache['payload'], trial_cache['fetched_at']
+        explicit_ncts = {nct for grant in grants for nct in mentioned_ids(grant['record'])}
+        direct_studies = registry.studies_by_id(explicit_ncts - studies.keys())
+        trials = {**studies, **direct_studies}
+        counts['clinical_trials_studies'] = len(trials)
+        stage = 'nsf_award_search'
+        nsf_programs = {}
+        nsf_status = {}
+        nsf_scope = {number: PROGRAMS[number][1] for number in sorted(opportunity_numbers(grants))}
+        if nsf_scope:
+            nsf_cache = load_cache(conn, stage)
+            nsf_refresh = (force_research or weekly_due(nsf_cache, now)
+                           or nsf_cache['payload']['scope'] != nsf_scope)
+            if nsf_refresh:
+                nsf_programs = NsfAwardSearch(http).awards(nsf_scope)
+                stamp = min(program['fetched_at'] for program in nsf_programs.values())
+                caches[stage] = {'payload': {'scope': nsf_scope, 'programs': nsf_programs},
+                                 'fetched_at': stamp}
+            else:
+                nsf_programs = nsf_cache['payload']['programs']
+                stamp = nsf_cache['fetched_at']
+            nsf_status[stage] = {'status': 'ok', 'oldest_response_at': stamp,
+                                 'last_success_at': max(p['fetched_at'] for p in nsf_programs.values()),
+                                 'reused_weekly_cache': not nsf_refresh}
+        counts['nsf_programs_queried'] = len(nsf_programs)
+        counts['nsf_awards_observed'] = len({a['id'] for p in nsf_programs.values() for a in p['awards']})
         if isinstance(http, ResumeClient):
             http.saved.clear()
         stage = 'transform'
         now = datetime.now(timezone.utc)
-        records = transform(grants, awards, publications, papers, coverage, now)
+        records = transform(grants, awards, publications, papers, coverage, now,
+                            trials=trials, nsf_programs=nsf_programs)
         counts.update(published_opportunities=len(records), excluded_or_deduped=len(grants)-len(records),
                       award_links=sum(len(r['linked_awards']) for r in records),
                       paper_links=sum(len(r['linked_papers']) for r in records),
-                      linked_opportunities=sum(bool(r['links']) for r in records))
+                      trial_links=sum(len(r['linked_trials']) for r in records),
+                      trial_linked_opportunities=sum(bool(r['linked_trials']) for r in records),
+                      nsf_program_award_links=sum(len(r['linked_nsf_program_awards']) for r in records),
+                      nsf_program_linked_opportunities=sum(bool(r['linked_nsf_program_awards']) for r in records),
+                      linked_opportunities=sum(bool(r['links']) for r in records),
+                      any_research_linked_opportunities=sum(bool(r['links'] or r['linked_trials']
+                                                                 or r['linked_nsf_program_awards']) for r in records))
         def status(items, reused=False):
             return {'status':'ok', 'last_success_at':max(x['ref']['fetched_at'] for x in items),
                     'oldest_response_at':min(x['ref']['fetched_at'] for x in items), 'reused_weekly_cache':reused}
         statuses = {'grants_gov':status(grants), 'nih_reporter':status(awards,not refresh),
-                    'openalex':status(papers,not refresh)}
+                    'openalex':status(papers,not refresh),
+                    'clinical_trials_gov': {
+                        'status': 'ok', 'oldest_response_at': trial_time,
+                        'last_success_at': max(s['ref']['fetched_at'] for s in trials.values()),
+                        'reused_weekly_cache': not trial_refresh,
+                    }, **nsf_status}
         stage = 'postgres_publication'
         publish_feed(conn, records, now.isoformat(), counts, statuses, caches)
         result = health(conn)
@@ -137,7 +191,9 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
     except Exception as exc:
         # Exception class/stage only: source/DSN errors can contain credential values.
         failed_sources = {'grants_gov':['grants_gov'],
-                          'nih_reporter_openalex':['nih_reporter','openalex']}.get(stage, [])
+                          'nih_reporter_openalex':['nih_reporter','openalex'],
+                          'clinical_trials_gov':['clinical_trials_gov'],
+                          'nsf_award_search':['nsf_award_search']}.get(stage, [])
         for name in failed_sources:
             statuses[name] = {**statuses.get(name,{}), 'status':'refresh_failed'}
         record_failure(conn, counts, f'{stage}: {type(exc).__name__}', statuses)
