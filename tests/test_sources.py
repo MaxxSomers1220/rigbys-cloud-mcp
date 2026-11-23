@@ -1,12 +1,14 @@
+import json
+import logging
+
 import httpx
 from rigbys_feed.sources import PublicClient, GrantsGov, SourceError
 import pytest
 
 
-def test_grants_pagination_raw_and_detail(tmp_path):
+def test_grants_pagination_raw_and_detail(tmp_path, caplog):
     calls = []
     def handle(request):
-        import json
         body = json.loads(request.content)
         calls.append(body)
         if request.url.path.endswith('search2'):
@@ -16,10 +18,15 @@ def test_grants_pagination_raw_and_detail(tmp_path):
             data = {'id': body['opportunityId'], 'synopsis': {'responseDateStr': '2027-01-01-00-00-00'}}
         return httpx.Response(200, json={'errorcode': 0, 'data': data})
     client = PublicClient(tmp_path, httpx.Client(transport=httpx.MockTransport(handle)))
-    result = GrantsGov(client).fetch(workers=1)
+    with caplog.at_level(logging.INFO, logger='rigbys_feed.sources'):
+        result = GrantsGov(client).fetch(workers=1)
     assert len(result) == 101
     assert calls[1]['startRecordNum'] == 100
     assert len(list(tmp_path.rglob('*.json'))) == 103
+    event = json.loads(caplog.records[-1].getMessage())
+    assert event['source'] == 'grants_gov' and event['count'] == 101
+    assert event['level'] == 'info'
+    assert event['message'] == 'Fetched 101 posted Grants.gov opportunities'
 
 
 def test_grants_error_is_not_empty_success(tmp_path):

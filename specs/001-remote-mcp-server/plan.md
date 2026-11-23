@@ -281,6 +281,7 @@ OpenAlex ───┘
                                       ├─ /mcp  (FastMCP, Streamable HTTP, 4 tools, Bearer auth)
                                       ├─ /redeem (Gumroad license → API key, show once)
                                       ├─ /health (feed_generated_at, last build status)
+                                      ├─ /snapshot-export (Phase 7 paid current-feed attachment)
                                       └─ /llms.txt, /agents.md (static)
 ```
 
@@ -291,6 +292,31 @@ MCP tools map 1:1 to queries: `opportunity_search` → filtered list query, `opp
 Auth middleware runs before every MCP call: look up key, check tier + expiry, enforce free-tier tool restrictions, enforce rate limits, then run the tool.
 
 Redeem page is a minimal server-rendered page (no JS framework): form → verify license → generate key → show once + copy-paste commands.
+
+### Phase 7 — Authenticated current-feed export
+
+The scheduled feed builder and HTTPS application run as separate Railway services with separate volumes. Storing the gzip artifact as bounded byte chunks in the shared private PostgreSQL service gives both services access and ties the export to the committed feed. PostgreSQL carries the cost of retaining two compressed artifacts and reading a file for each download. The HTTPS application delivers the file to the caller, who can keep their downloaded copy locally.
+
+After the feed builder writes the canonical opportunity records and success metadata, it encodes those final records as UTF-8 JSON in gzip format and writes the artifact in the same publish transaction. This preserves publication-time fields such as `feed_generated_at` and `change_log`. The transaction promotes the new generation to current, keeps the prior successful generation, and removes older artifacts. A failed transaction leaves the previous committed feed and export available.
+
+The HTTPS app uses the existing Bearer verification, paid-tier requirement, and UTC daily quota for `GET /snapshot-export`. Read the current artifact manifest and ordered chunks against one consistent PostgreSQL snapshot so a concurrent publish cannot mix generations. Use chunks of up to 1 MiB for storage and stream them to the caller through a database cursor. Serve the download as `application/gzip` with an attachment disposition for `rigbys-cloud-feed.json.gz` and `Cache-Control: private, no-store`. The response also reports `Content-Length`, `X-Feed-Generated-At`, and `X-Feed-Record-Count`. Return a plain 503 while the latest successful feed lacks a completed artifact. Verify the route using the current production generation only after authorized deployment and a successful artifact publication.
+
+#### Private download
+
+Use a trusted terminal with `RIGBYS_API_KEY` already in the environment. This command passes the authorization header over stdin and writes the attachment with private file defaults.
+
+```bash
+(
+  set +x
+  : "${RIGBYS_API_KEY:?Set RIGBYS_API_KEY in the environment first}"
+  umask 077
+  printf 'Authorization: Bearer %s\n' "$RIGBYS_API_KEY" |
+    curl --disable --fail --silent --show-error --header @- \
+      --output rigbys-cloud-feed.json.gz \
+      https://mcp.rigbyscloud.com/snapshot-export &&
+    gzip -t rigbys-cloud-feed.json.gz
+)
+```
 
 ## Data Model
 
@@ -321,6 +347,10 @@ No trial `link_type` in v1.
 
 `key_hash`, `day` (date), `calls` (int). Reset daily. Enforce in middleware.
 
+### Phase 7 export artifacts
+
+Each retained artifact has a successful feed run identity, its `feed_generated_at`, its `record_count`, and ordered gzip-byte chunks bounded in size. The current and previous artifacts are the only retained generations. The export query reads the current artifact directly. It never queries upstream sources or builds the gzip during a download.
+
 ## Tool Contracts (summary — full schemas in spec.md FR-003–FR-006)
 
 | Tool | Input | Output | Free tier |
@@ -343,6 +373,7 @@ No trial `link_type` in v1.
 - **Integration:** feed builder against live source APIs (recorded fixtures for CI, live check before deploy); MCP tools against a seeded Postgres with known records.
 - **Client verification (mandatory, not optional):** MCP Inspector locally, then a real paid key in Codex (`codex mcp list`, `/mcp`, User Story 1 prompt) and in Claude Code (`/mcp`, same prompt). Verify deadlines + source links against Grants.gov on a 10-record spot-check (SC-002).
 - **Failure cases:** expired key → 401, rotated key old value → 401, free key on paid tool → paid-required error, rate limit → 429 with `Retry-After`, feed build failure → last good feed with visible `feed_generated_at`.
+- **Phase 7** — Use disposable PostgreSQL and 786 controlled fixture records to verify exact ID and full-record parity, gzip headers and integrity, shared paid quota, failure responses, atomic publication, and two-artifact retention. Exercise an artifact spanning multiple chunks and a read overlapping a replacement publish. Verify separately on production after authorized deployment and store redacted evidence in `docs/evidence/phase7/`.
 
 ## Risks & Mitigations
 

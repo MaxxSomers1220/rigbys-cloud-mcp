@@ -1,0 +1,301 @@
+{
+  "source_feed_generated_at": "2026-11-21T06:00:54.859651+00:00",
+  "record_count": 769,
+  "historical_nov19_approximate": {
+    "award_or_paper_linked": 165,
+    "records": 786
+  },
+  "before_award_or_paper_linked": 156,
+  "after_award_or_paper_linked": 156,
+  "after_any_confirmed_research_link": 167,
+  "newly_linked_opportunities": 11,
+  "nsf_opportunities_in_feed": 116,
+  "nsf_programs": {
+    "22-621": {
+      "source_rows": 24,
+      "confirmed_awards": 24
+    },
+    "23-525": {
+      "source_rows": 82,
+      "confirmed_awards": 82
+    },
+    "23-580": {
+      "source_rows": 177,
+      "confirmed_awards": 177
+    },
+    "23-598": {
+      "source_rows": 199,
+      "confirmed_awards": 199
+    },
+    "24-503": {
+      "source_rows": 70,
+      "confirmed_awards": 70
+    },
+    "24-564": {
+      "source_rows": 29,
+      "confirmed_awards": 29
+    },
+    "24-584": {
+      "source_rows": 321,
+      "confirmed_awards": 321
+    },
+    "25-522": {
+      "source_rows": 50,
+      "confirmed_awards": 50
+    },
+    "25-523": {
+      "source_rows": 42,
+      "confirmed_awards": 42
+    },
+    "25-531": {
+      "source_rows": 72,
+      "confirmed_awards": 72
+    },
+    "PD-20-1260": {
+      "source_rows": 43,
+      "confirmed_awards": 43
+    }
+  },
+  "nsf_distinct_program_awards": 1108,
+  "nsf_program_award_links": 1109,
+  "clinical_trials_first_source_fetch_at": "2026-11-21T21:11:07.632775+00:00",
+  "registry_studies_reviewed_by_adapter": 31069,
+  "trial_linked_opportunities": 39,
+  "trial_links": 1131,
+  "unique_linked_trials": 1118,
+  "same_numeric_score_records": 769,
+  "score_basis_counts": {
+    "neutral_placeholder": 736,
+    "linked_research": 33
+  },
+  "new_link_spot_checks": [
+    {
+      "opportunity_id": "gg-328573",
+      "opportunity_number": "PD-20-1260",
+      "grants_gov": "https://www.grants.gov/search-results-detail/328573",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/mathinf-mathematical-sciences-infrastructure-program",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/mathinf-mathematical-sciences-infrastructure-program",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=126000&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2133244",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2133244",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2133244",
+      "verified_codes": [
+        "126000"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-342747",
+      "opportunity_number": "22-621",
+      "grants_gov": "https://www.grants.gov/search-results-detail/342747",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/aapf-nsf-astronomy-astrophysics-postdoctoral-fellowships/nsf22-621/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/aapf-nsf-astronomy-astrophysics-postdoctoral-fellowships",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=160900&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2401638",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2401638",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2401638",
+      "verified_codes": [
+        "160900"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-344715",
+      "opportunity_number": "23-525",
+      "grants_gov": "https://www.grants.gov/search-results-detail/344715",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support/nsf23-525/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/oceanographic-facilities-equipment-support",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=541100%2C541200%2C541300%2C541500%2C541600%2C541700&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "1326927",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1326927",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=1326927",
+      "verified_codes": [
+        "541100"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-347679",
+      "opportunity_number": "23-580",
+      "grants_gov": "https://www.grants.gov/search-results-detail/347679",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/capacity-infrastructure-capacity-biological-research/nsf23-580/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/capacity-infrastructure-capacity-biological-research",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=167Y00%2C168Y00%2C169Y00&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2025982",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2025982",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2025982",
+      "verified_codes": [
+        "169Y00"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-348599",
+      "opportunity_number": "23-598",
+      "grants_gov": "https://www.grants.gov/search-results-detail/348599",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/hbcu-eir-historically-black-colleges-universities-excellence-research/nsf23-598/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/hbcu-eir-historically-black-colleges-universities-excellence-research",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=070Y00&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "1900187",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1900187",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=1900187",
+      "verified_codes": [
+        "070Y00"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-350802",
+      "opportunity_number": "24-503",
+      "grants_gov": "https://www.grants.gov/search-results-detail/350802",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/research-experiences-teachers-engineering-computer-science/nsf24-503/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/research-experiences-teachers-engineering-computer-science",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=135900&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "1332329",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1332329",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=1332329",
+      "verified_codes": [
+        "135900"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-353413",
+      "opportunity_number": "24-564",
+      "grants_gov": "https://www.grants.gov/search-results-detail/353413",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/iusepfe-red-iuseprofessional-formation-engineers-revolutionizing/nsf24-564/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/iusepfe-red-iuseprofessional-formation-engineers-revolutionizing",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=012Y00&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2022271",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2022271",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2022271",
+      "verified_codes": [
+        "012Y00"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-355100",
+      "opportunity_number": "24-584",
+      "grants_gov": "https://www.grants.gov/search-results-detail/355100",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/ate-advanced-technological-education/nsf24-584/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/ate-advanced-technological-education",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=741200&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "1841520",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1841520",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=1841520",
+      "verified_codes": [
+        "741200"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-357724",
+      "opportunity_number": "25-522",
+      "grants_gov": "https://www.grants.gov/search-results-detail/357724",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/e-rise-epscor-research-infrastructure-improvement-program-epscor/nsf25-522/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/e-rise-epscor-research-infrastructure-improvement-program-epscor",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=269Y00&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2414442",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2414442",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2414442",
+      "verified_codes": [
+        "269Y00"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-357725",
+      "opportunity_number": "25-523",
+      "grants_gov": "https://www.grants.gov/search-results-detail/357725",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/e-core-epscor-research-infrastructure-improvement-program-epscor/nsf25-523/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/e-core-epscor-research-infrastructure-improvement-program-epscor",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=270Y00&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2412054",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2412054",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2412054",
+      "verified_codes": [
+        "270Y00"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-358004",
+      "opportunity_number": "25-531",
+      "grants_gov": "https://www.grants.gov/search-results-detail/358004",
+      "nsf_solicitation": "https://www.nsf.gov/funding/opportunities/cici-cybersecurity-innovation-cyberinfrastructure/nsf25-531/solicitation",
+      "nsf_program": "https://www.nsf.gov/funding/opportunities/cici-cybersecurity-innovation-cyberinfrastructure",
+      "nsf_program_awards": "https://www.nsf.gov/awardsearch/search-results?ProgEleCode=802700&BooleanElement=Any&BooleanRef=Any&ActiveAwards=true#results",
+      "award_id": "2139358",
+      "nsf_award": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2139358",
+      "nsf_award_record": "https://api.nsf.gov/services/v1/awards.json?id=2139358",
+      "verified_codes": [
+        "802700"
+      ],
+      "relationship": "nsf_award_in_same_verified_program",
+      "join_confidence": 0.95
+    }
+  ],
+  "trial_spot_checks": [
+    {
+      "opportunity_id": "gg-351124",
+      "opportunity_number": "PA-23-317",
+      "grants_gov": "https://www.grants.gov/search-results-detail/351124",
+      "trial": "https://clinicaltrials.gov/study/NCT06915428",
+      "reporter_award": "https://reporter.nih.gov/project-details/11121124",
+      "registry_reported_award_id": "R01MD017947",
+      "reporter_award_core": "R01MD017947",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-353458",
+      "opportunity_number": "PA-24-184",
+      "grants_gov": "https://www.grants.gov/search-results-detail/353458",
+      "trial": "https://clinicaltrials.gov/study/NCT06052605",
+      "reporter_award": "https://reporter.nih.gov/project-details/11230689",
+      "registry_reported_award_id": "1K23NS138682-01A1",
+      "reporter_award_core": "K23NS138682",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-353461",
+      "opportunity_number": "PA-24-185",
+      "grants_gov": "https://www.grants.gov/search-results-detail/353461",
+      "trial": "https://clinicaltrials.gov/study/NCT06241430",
+      "reporter_award": "https://reporter.nih.gov/project-details/11230969",
+      "registry_reported_award_id": "1K23HL177311-01A1",
+      "reporter_award_core": "K23HL177311",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-353745",
+      "opportunity_number": "PA-24-181",
+      "grants_gov": "https://www.grants.gov/search-results-detail/353745",
+      "trial": "https://clinicaltrials.gov/study/NCT07216456",
+      "reporter_award": "https://reporter.nih.gov/project-details/11212028",
+      "registry_reported_award_id": "1K08CA304375",
+      "reporter_award_core": "K08CA304375",
+      "join_confidence": 0.95
+    },
+    {
+      "opportunity_id": "gg-353746",
+      "opportunity_number": "PA-24-182",
+      "grants_gov": "https://www.grants.gov/search-results-detail/353746",
+      "trial": "https://clinicaltrials.gov/study/NCT00005129",
+      "reporter_award": "https://reporter.nih.gov/project-details/11138101",
+      "registry_reported_award_id": "1K08AG086588",
+      "reporter_award_core": "K08AG086588",
+      "join_confidence": 0.95
+    }
+  ]
+}
