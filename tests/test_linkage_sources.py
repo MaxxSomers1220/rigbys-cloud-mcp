@@ -65,6 +65,7 @@ def test_nsf_context_requires_verified_code_and_sponsor():
     programs = NsfAwardSearch(http).awards({'25-531'})
     assert http.params[0]['ProgEleCode'] == '802700'
     assert http.params[1]['offset'] == 1
+    assert all(page['rpp'] == 25 and page['sortKey'] == 'awardNumber' for page in http.params)
     fake_sponsor, actual = [
         {'opportunity_id': uid, 'opportunity_number': '25-531', 'sponsor_normalized': sponsor,
          'source_refs': {}, 'source_ids': [], 'linked_awards': [], 'linked_papers': []}
@@ -78,6 +79,16 @@ def test_nsf_context_requires_verified_code_and_sponsor():
     score(actual, date(2026, 11, 21))
     assert actual['score_evidence']['inputs']['award_count'] == 0
     assert actual['score_evidence_detail']['basis'] == 'neutral_placeholder'
+
+
+def test_nsf_repeated_award_across_pages_is_rejected():
+    repeated = {'id': '1234567'}
+    pages = [
+        {'response': {'award': [repeated], 'metadata': {'offset': offset, 'totalCount': 2}}}
+        for offset in (0, 1)
+    ]
+    with pytest.raises(SourceError, match='repeated award ID'):
+        NsfAwardSearch(Responses(pages)).awards({'25-531'})
 
 
 def test_score_inputs_point_to_the_contributing_links():

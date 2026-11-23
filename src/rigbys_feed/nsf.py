@@ -67,7 +67,8 @@ class NsfAwardSearch:
         while True:
             data, ref = self.http.request(SOURCE, 'GET', self.url, params={
                 'ProgEleCode': codes, 'BooleanElement': 'Any', 'ActiveAwards': 'true',
-                'rpp': 100, 'offset': offset,
+                # Dates can tie at page boundaries. Award numbers give a unique order.
+                'sortKey': 'awardNumber', 'rpp': 25, 'offset': offset,
             })
             response = data.get('response', {})
             rows, meta = response.get('award'), response.get('metadata', {})
