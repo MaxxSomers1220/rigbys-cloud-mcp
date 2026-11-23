@@ -3,12 +3,14 @@
 DATABASE_URL belongs to the calling process environment; this module never
 constructs, stores, logs, or prints database credentials.
 """
+import builtins
 from copy import deepcopy
 from datetime import datetime
 import hashlib
 import json
 from pathlib import Path
 
+from psycopg import errors as postgres_errors
 from psycopg.types.json import Jsonb
 
 _PACKAGE_MIGRATIONS = Path(__file__).resolve().parent / 'migrations'
@@ -27,6 +29,10 @@ _VOLATILE = {'feed_generated_at', 'fetched_at', 'updated_at', 'change_log', 'raw
 _CACHE_CHUNK_BYTES = 8 * 1024 * 1024
 _CACHE_MANIFEST_KEY = '__rigbys_cache_v1__'
 _CACHE_PART_PREFIX = '__rigbys_cache_chunk_v1__:'
+_FAILURE_STAGES = {
+    'grants_gov', 'nih_reporter_openalex', 'clinical_trials_gov',
+    'nsf_award_search', 'transform', 'postgres_publication',
+}
 
 
 
@@ -137,12 +143,30 @@ def record_failure(conn, source_counts, error, source_status=None):
             VALUES ('failed',%s,%s,%s)''', (Jsonb(source_counts),Jsonb(source_status if source_status is not None else (previous[0] if previous else {})),safe_error))
 
 
+def _failure_details(failed):
+    """Return only controlled labels from the failure stored by the builder."""
+    if failed is None:
+        return None
+    attempted_at, error = failed
+    stage, separator, error_type = (error or '').partition(': ')
+    if not separator or stage not in _FAILURE_STAGES:
+        return None
+    classes = (getattr(builtins, error_type, None), getattr(postgres_errors, error_type, None))
+    recognized = error_type in {'SourceError', 'JSONDecodeError'} or any(
+        isinstance(cls, type) and issubclass(cls, Exception) for cls in classes
+    )
+    return {'attempted_at': _iso(attempted_at), 'failed_stage': stage,
+            'error_type': error_type if recognized else 'unknown'}
+
+
 def health(conn):
     latest = conn.execute('SELECT status, attempted_at, source_status FROM feed_runs ORDER BY run_id DESC LIMIT 1').fetchone()
     good = conn.execute("SELECT feed_generated_at,source_status,source_counts FROM feed_runs WHERE status='success' ORDER BY run_id DESC LIMIT 1").fetchone()
+    failed = conn.execute("SELECT attempted_at,error FROM feed_runs WHERE status='failed' ORDER BY run_id DESC LIMIT 1").fetchone()
     return {'feed_generated_at':_iso(good[0]) if good else None,
             'last_build_status':latest[0] if latest else 'never_run',
             'last_attempt_at':_iso(latest[1]) if latest else None,
+            'last_failure':_failure_details(failed),
             'sources':latest[2] if latest else {}, 'source_counts':good[2] if good else {},
             'server_version':'feed-only-0.1.0'}
 

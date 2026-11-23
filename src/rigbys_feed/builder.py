@@ -185,7 +185,8 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
         stage = 'postgres_publication'
         publish_feed(conn, records, now.isoformat(), counts, statuses, caches)
         result = health(conn)
-        log.info(json.dumps({'event':'feed_build_success','feed_generated_at':now.isoformat(),
+        log.info(json.dumps({'message':'Published the updated feed','level':'info',
+                             'event':'feed_build_success','feed_generated_at':now.isoformat(),
                              'per_source_counts':counts, 'research_refreshed':refresh}))
         return result
     except Exception as exc:
@@ -196,10 +197,12 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
                           'nsf_award_search':['nsf_award_search']}.get(stage, [])
         for name in failed_sources:
             statuses[name] = {**statuses.get(name,{}), 'status':'refresh_failed'}
-        record_failure(conn, counts, f'{stage}: {type(exc).__name__}', statuses)
-        log.error(json.dumps({'event':'feed_build_failed','feed_generated_at':None,
-                              'failed_stage':stage,'error_type':type(exc).__name__,
+        error_type = type(exc).__name__
+        record_failure(conn, counts, f'{stage}: {error_type}', statuses)
+        log.error(json.dumps({'message':f'Feed build failed at {stage} ({error_type})','level':'error',
+                              'event':'feed_build_failed','feed_generated_at':None,
+                              'failed_stage':stage,'error_type':error_type,
                               'per_source_counts':counts}))
-        raise SourceError(f'Feed build failed at {stage}; last good feed retained ({type(exc).__name__})') from None
+        raise SourceError(f'Feed build failed at {stage}; last good feed retained ({error_type})') from None
     finally:
         conn.execute('SELECT pg_advisory_unlock(724421702)')

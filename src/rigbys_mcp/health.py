@@ -39,6 +39,7 @@ def status_document():
         sources[name]=item
     return {'feed_generated_at':state['feed_generated_at'],
             'last_build_status':state['last_build_status'], 'last_attempt_at':state['last_attempt_at'],
+            'last_failure':state['last_failure'],
             'sources':sources,'last_build_status_per_source':{name:item['status'] for name,item in sources.items()},
             'server_version':SERVER_VERSION}
 
@@ -50,6 +51,7 @@ async def health_endpoint():
         return JSONResponse(result,headers={'Cache-Control':'no-store'})
     except Exception:
         return JSONResponse({'feed_generated_at':None,'last_build_status':'unavailable',
+            'last_failure':None,
             'sources':{name:{'status':'unavailable'} for name in SOURCES},
             'last_build_status_per_source':{name:'unavailable' for name in SOURCES},
             'server_version':SERVER_VERSION,'error':'Health status is temporarily unavailable.'},

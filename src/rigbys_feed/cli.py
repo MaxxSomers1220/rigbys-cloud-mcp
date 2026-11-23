@@ -34,7 +34,9 @@ def main():
             print(json.dumps(result,sort_keys=True))
     except Exception as exc:
         # Never print a connection exception or raw DSN.
-        print(json.dumps({'status':'failed','error_type':type(exc).__name__}),file=sys.stderr)
+        error_type=type(exc).__name__
+        print(json.dumps({'message':f'Feed command failed ({error_type})','level':'error',
+                          'status':'failed','error_type':error_type}),file=sys.stderr)
         return 1
     return 0
 
