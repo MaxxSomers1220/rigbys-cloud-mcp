@@ -106,6 +106,7 @@ class GrantsGov:
         selected = hits[:limit] if limit else hits
         with ThreadPoolExecutor(max_workers=workers) as pool:
             records = list(pool.map(lambda h: self.detail(h['id']), selected))
-        log.info(json.dumps({'source': 'grants_gov', 'count': len(records),
+        log.info(json.dumps({'message': f'Fetched {len(records)} posted Grants.gov opportunities',
+                             'level': 'info', 'source': 'grants_gov', 'count': len(records),
                              'search_total': data['hitCount'], 'fetched_at': utcnow()}))
         return records
