@@ -70,7 +70,7 @@ def test_upgrade_preserves_legacy_rows_and_migrations_are_immutable(tmp_path,mon
         persistence.migrate(conn)
         persistence.migrate(conn)
         assert conn.execute('SELECT * FROM redemptions ORDER BY license_key_hash').fetchall()==before
-        assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==4
+        assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==5
         altered=tmp_path/'altered';altered.mkdir()
         for path in real.glob('*.sql'):
             altered.joinpath(path.name).write_text(path.read_text())
@@ -79,7 +79,7 @@ def test_upgrade_preserves_legacy_rows_and_migrations_are_immutable(tmp_path,mon
         monkeypatch.setattr(persistence,'MIGRATIONS',altered)
         with pytest.raises(RuntimeError,match='checksum changed'):
             persistence.migrate(conn)
-        assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==4
+        assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==5
         assert conn.execute('SELECT * FROM redemptions ORDER BY license_key_hash').fetchall()==before
 
 
@@ -87,5 +87,5 @@ def test_fresh_migrations_are_idempotent(database):
     persistence.migrate(database)
     assert database.execute('SELECT version FROM schema_migrations ORDER BY version').fetchall()==[
         ('001_feed.sql',),('002_free_search_snapshots.sql',),('003_verified_gumroad_sales.sql',),
-        ('004_snapshot_exports.sql',)]
+        ('004_snapshot_exports.sql',),('005_nonfederal_source_refs.sql',)]
     assert database.execute('SELECT count(*) FROM redemptions').fetchone()[0]==0

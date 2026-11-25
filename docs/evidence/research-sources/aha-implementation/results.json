@@ -1,0 +1,130 @@
+{
+  "baseline_commit": "bb30f93f1c5b92cc139f8a1ee640ca7451455be2",
+  "input_bundle_sha256": "ff38f122787f165519b1cfa4dc76220311756d1e3a4777fd36c2ce20fa01a306",
+  "bundle_integrity": {
+    "files_checked": 18,
+    "all_match": true
+  },
+  "pinned_baseline_integrity": {
+    "files_checked": 13,
+    "all_match": true
+  },
+  "baseline_tests": {
+    "passed": 280,
+    "warnings": 5,
+    "seconds": 63.32,
+    "skipped": 0
+  },
+  "final_suite": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "475",
+    "time": "130.753",
+    "timestamp": "2026-11-25T13:07:28.955924+00:00"
+  },
+  "test_cases_by_module": {
+    "test_aha": 106,
+    "test_aha_consumers": 48,
+    "test_aha_pipeline": 35,
+    "test_aha_reads": 1,
+    "test_aha_summary_cli": 5,
+    "test_builder": 4,
+    "test_cleaning": 5,
+    "test_database": 9,
+    "test_deploy_runtime": 4,
+    "test_gumroad": 75,
+    "test_health": 3,
+    "test_health_review": 1,
+    "test_joining": 4,
+    "test_key_rotation": 16,
+    "test_key_storage": 1,
+    "test_linkage_sources": 5,
+    "test_mcp_auth": 11,
+    "test_mcp_gap": 17,
+    "test_mcp_get": 2,
+    "test_mcp_http": 9,
+    "test_mcp_links": 1,
+    "test_mcp_review": 4,
+    "test_mcp_search": 6,
+    "test_mcp_snapshots": 8,
+    "test_pipeline": 5,
+    "test_public_origin": 30,
+    "test_redeem": 2,
+    "test_redeem_review": 11,
+    "test_redemption_schema": 4,
+    "test_research": 20,
+    "test_rotate_http": 6,
+    "test_rotation_route": 1,
+    "test_scoring": 3,
+    "test_snapshot_export": 7,
+    "test_sources": 4,
+    "test_summarizing": 2
+  },
+  "engine": {
+    "python": "3.12.14",
+    "postgresql": "16.2",
+    "psycopg": "3.3.9",
+    "pgserver": "0.1.4",
+    "disposable_native": true
+  },
+  "source_access_replay": {
+    "method": "ordinary unauthenticated HTTPS GET; no bypass",
+    "environment": "managed implementation environment, not the production job host",
+    "outcomes": [
+      {
+        "name": "aha_career",
+        "error_type": "ProxyError"
+      },
+      {
+        "name": "aha_innovative",
+        "error_type": "ProxyError"
+      },
+      {
+        "name": "aha_resources",
+        "error_type": "ProxyError"
+      },
+      {
+        "name": "aha_career_rfp",
+        "error_type": "ProxyError"
+      },
+      {
+        "name": "aha_innovative_rfp",
+        "error_type": "ProxyError"
+      },
+      {
+        "name": "aha_directory",
+        "error_type": "ProxyError"
+      }
+    ],
+    "result": "blocked_environment_proxy; no endpoint status or fresh original-byte verification established"
+  },
+  "packaging": {
+    "wheel_sha256": "79b7f6a3f2751e618069caf1e330005f943dd0c75af27bf33590a172cf07d04b",
+    "aha_module_sha256": "6bd16c6fe4a705b51ecc0635550f32a653313610cdee6ee906483fa53fbe27df",
+    "reviewed_manifest_sha256": "91a40f182306880a90e3119946ed960e757c254fc1339b80668cfe0002ca84ed",
+    "source_tree_imported": false,
+    "packaged_migrations_applied_twice": true,
+    "original_migrations_unchanged": true,
+    "locked_federal_dependencies_unchanged": true,
+    "only_added_locked_package": "pypdf==6.21.4",
+    "local_container_built": true,
+    "container_network_mode": "none",
+    "container_resource_check": true,
+    "default_source_disabled": true,
+    "container_build_caveat": "Normal build blocked by managed proxy CA trust; successful local build used a temporary validation Dockerfile with host CA mounted as a BuildKit secret for package installation. TLS verification remained enabled. No CA or validation-only change added to repository/runtime image."
+  },
+  "blocked_gates": [
+    "Fresh program/general requirements verification from intended job host",
+    "Actual current federal or retained checksummed historical federal comparison (769 snapshot unavailable)",
+    "Complete real-source enabled union build twice in staging"
+  ],
+  "not_performed": [
+    "Production database access",
+    "Production configuration or source enablement",
+    "Deployment or image push",
+    "Codex/Claude buyer verification with real paid keys"
+  ],
+  "evidence_limits": "New source tests use self-authored synthetic PDFs/HTML and reviewed manifest facts; 100+2 union and fault tests use synthetic federal/AHA inputs. No real zero-duplicate, 771-record or production activation claim."
+}

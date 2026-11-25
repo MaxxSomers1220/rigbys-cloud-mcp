@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir uv==0.13.6
 COPY pyproject.toml uv.lock README.md .python-version ./
 COPY src ./src
 COPY migrations ./migrations
+COPY config/sources/aha-reviewed.json ./config/sources/aha-reviewed.json
 RUN uv sync --frozen --no-dev --no-editable
 
 FROM python:3.12-slim AS runtime

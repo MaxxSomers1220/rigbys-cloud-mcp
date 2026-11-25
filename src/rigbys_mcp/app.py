@@ -18,10 +18,16 @@ from .origin import configured_public_origin
 from . import SERVER_VERSION
 from fastmcp.server.dependencies import get_http_request
 
-INSTRUCTIONS = """Rigby's Cloud Grants Feed #1: public US-federal opportunities from Grants.gov,
-NIH RePORTER awards and OpenAlex papers only. Read-only, four tools. Always show
-Grants.gov source URL and deadline; dates may be date-only or rolling, so check
-source requirements. Show feed_generated_at and source timestamps; never present
+INSTRUCTIONS = """Rigby's Cloud Grants Feed #1: public US-federal opportunities from Grants.gov.
+When explicitly configured and verified, the feed may additionally include reviewed
+nationwide US-nonfederal opportunities from the American Heart Association. Inspect
+available records; this is a reviewed subset, not complete AHA or nonfederal coverage.
+NIH RePORTER awards and OpenAlex papers provide research context, not additional
+opportunities. Read-only, four tools. Always cite the opportunity issuer's source
+URL and deadline; dates may be date-only or rolling index bounds, so verify exact
+submission stages, eligibility and source requirements. Do not label AHA as federal
+or imply nationwide geography makes every individual eligible.
+Show feed_generated_at and source timestamps; never present
 stale data as fresh. Preserve score_evidence and coverage: neutral insufficient-data
 scores are placeholders, not funding-gap findings. Scores are versioned descriptive
 proxies, never predictions of success or proof of neglect. Missing research links
@@ -50,7 +56,7 @@ def create_app():
     async def opportunity_search(topic: str, sponsor: str | None = None,
                                  deadline_before: date | None = None, deadline_after: date | None = None,
                                  min_gap_score: int | None = None, limit: int = 10) -> dict:
-        """Search public US-federal opportunities; preserve evidence flags and cite source URLs and dates."""
+        """Search federal and reviewed nationwide nonfederal opportunities; cite issuer URLs, dates and evidence."""
         try:
             caller=principal()
             if caller.tier=='free':

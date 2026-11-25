@@ -109,3 +109,13 @@ MCP Inspector also checks the authenticated server against the real Phase 1 feed
 These are local checks with synthetic credentials, not buyer verification or sale
 evidence. Codex/Claude Code production checks remain Phase 5, and hosting remains
 Phase 4. There is no claim that the production domain serves this app yet.
+
+## Reviewed nationwide AHA extension
+
+The four-tool/read-only/access contract is unchanged. When a separately enabled feed includes the two reviewed AHA programs, detail/export preserve issuer-specific eligibility, first-gate stages/timezones and provenance. AHA is cardiovascular/cerebrovascular research with reviewed nationwide institutional geography, not a general grant registry or universal applicant eligibility. Counts are opportunities by provider; research IDs are not opportunity counts.
+
+AHA starts with explicit outside-current-research coverage and the existing neutral 50/insufficient-data flags. Such records remain excluded from observed `min_gap_score`, medians and rankings; missing AHA research evidence does not establish underfunding. Search date indexes are not submission-hour promises, and all openness is as of the last successful feed generation rather than a live MCP source fetch.
+
+Migration 005 extends only the basic free-reference projection to exact reviewed official AHA program/PDF URLs. The same whitelisted fields and citation scalars (`source`, `source_id`, `url`, `fetched_at`) remain. Eligibility/stages, scores, summaries, hashes/raw paths and review terms do not become free data. Keep genuine seven-day aging of both generation and capture and all immutable old history.
+
+Health must retain safe source/status/timestamp projection, including AHA where applicable, rather than assuming only three sources. An unconfigured/unverified AHA source is not an `ok` refresh. [Current implementation and blocked activation gates](nonfederal-aha.md) distinguish supplied pilot 63 from final native integration tests. No new production AHA configuration, auth/access change, client verification or deployment is claimed by this extension.

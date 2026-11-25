@@ -3,9 +3,21 @@
 The live Gumroad MCP pass starts at $1 USD before tax, with 90 days of access
 from redemption. The November 18 deployment notes below record the earlier draft.
 
+## Nationwide AHA extension — prepared, not activated
+
+The current branch prepares an opt-in adapter for **two reviewed 2027 AHA cardiovascular/cerebrovascular programs**, not a general nonfederal registry. They permit eligible U.S. nonprofit institutions without a stated state restriction; investigator, mission, membership and other material eligibility still apply. State-restricted supplements/CPRIT stay outside this nationwide default.
+
+Career Development: **$231,000 total including stated indirect costs, 36 months; December 1, 2026 at 15:00 America/Chicago**. Innovative Project: **$200,000 total including stated indirect costs, 24 months; mandatory pre-proposal December 9, 2026 at 15:00 Central**. Its invited March 4, 2027 full proposal never extends new entry.
+
+AHA is default-off: only `--aha-manifest PATH` or `RIGBYS_AHA_MANIFEST` requests it. Enabled builds must freshly verify required program/general prerequisites and publish the complete federal+AHA union atomically. An omitted previously published AHA source is a guarded failure, not a federal-only replacement. The reviewed manifest remains activation-blocked while the general-application prerequisite cannot be freshly verified.
+
+The supplied pilot passed 63 native tests at baseline `bb30f93`; that is reviewed-data evidence, not an installed adapter/full regression result. The unchanged baseline passed 280 tests; **the final branch passed all 475 tests (280 existing + 195 new), with no failures or skips, on disposable native PostgreSQL 16.2**. See the [implementation evidence](docs/evidence/research-sources/aha-implementation/report.md). Current ordinary source replay encountered environment ProxyError; the pilot's earlier HTML 403/PDF 200 findings are separate. The real retained 769-record federal snapshot is unavailable: no AHA zero-duplicate or verified 771-result claim is made. Historical [CPRIT/PR8 evidence](docs/evidence/research-sources/cprit-dry-run.md) stays unchanged.
+
+No AHA production configuration, activation or deployment is performed here. [Source contract and limitations](docs/nonfederal-aha.md) · [feature002 spec/plan/tasks](specs/002-nonfederal-opportunities/spec.md). The dated production/phase handoffs below are historical evidence, not certification of this new extension.
+
 Converted Nov 12, 2026 from `Rigbys_Cloud_Remote_MCP_Spec_v1.md`. Phases 1–3 implemented and locally verified on 2026-11-17. Phase 4 production service and scheduled feed verified on 2026-11-18; all three deployment checks passed. Live Gumroad verification is untested.
 
-This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, one feature spec, a plan, and a task list.
+This folder is a Spec Kit project, ready for Codex. It follows GitHub Spec Kit layout: a constitution, feature specs, implementation plans, and task lists.
 
 Setup draft restored from the supplied README PDF on 2026-11-12. The final buyer-facing README is a Phase 6 deliverable. The HTTPS service and real production feed are live; buyer client verification has not started. All four Open Decisions were confirmed in chat on 2026-11-12 and recorded in the spec and plan. Correction recorded 2026-11-17: as of 2026-11-16, no paid pass has been sold; presale is still no. Maxx states this project is definitely not part of what he does for work. No broader employer IP clearance is claimed. All four Phase 0 setup checks passed on 2026-11-12. Phases 1–3 were explicitly authorized and their local checks are complete. Phase 4 is authorized; deployment and feed/schedule checks have passed, and the runbook check has passed. See the evidence in the plan and tasks.
 
@@ -136,10 +148,14 @@ rigbys-cloud-mcp/
 │   └── memory/
 │       └── constitution.md            ← governing rules (v1.0.0) — outranks the spec on conflict
 ├── specs/
-│   └── 001-remote-mcp-server/
-│       ├── spec.md                    ← what to build (user stories, FR-001–FR-015, success criteria)
-│       ├── plan.md                    ← how to build it (stack, data model, deployment, testing)
-│       └── tasks.md                   ← phased checklist for $speckit-implement
+│   ├── 001-remote-mcp-server/          ← original server phases and historical checks
+│   │   ├── spec.md
+│   │   ├── plan.md
+│   │   └── tasks.md
+│   └── 002-nonfederal-opportunities/  ← reviewed AHA extension; activation blocked
+│       ├── spec.md
+│       ├── plan.md
+│       └── tasks.md
 └── .agents/
     └── skills/
         └── rigbys-cloud-grants/

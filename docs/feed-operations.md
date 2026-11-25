@@ -71,3 +71,13 @@ production database is not accessed by these checks. The generated local feed is
 live public-source data, not test fixtures. `docs/evidence/` records inspection
 samples and task checks. SC-002 here verifies stored source deadlines/links; client
 prompt checks remain in their later phases.
+
+## Reviewed AHA extension: disabled until separate activation
+
+The source-specific adapter uses `config/sources/aha-reviewed.json`. The optional `--aha-manifest PATH` flag overrides its environment default `RIGBYS_AHA_MANIFEST`; with neither, a fresh federal-only installation makes no AHA request. Only use an explicit AHA rehearsal against a disposable non-production database. See [source/release gates](nonfederal-aha.md).
+
+Every enabled run freshly verifies the reviewed PDF and required general/application prerequisites, even if federal weekly caches or `--resume-raw` are reused. No old document/manual-review timestamp becomes a new verification. The pilot's HTML 403 and the current environment's ProxyError are unresolved source-access observations, not empty successful collections; the committed manifest fails closed until required prerequisites can actually be reviewed and retrieved.
+
+Federal minimum 100 and exclusions remain federal-only. Validate and publish the entire union once under the existing lock/transaction. Source/candidate/publication failure must leave old rows, graph, cache, free snapshots, both export slots/bytes and successful timestamp unchanged; only sanitized failure metadata changes. A persistent source guard refuses omission of previously published AHA even after expiry. Do not remove the manifest to force a federal-only publication.
+
+Before any later enablement, back up raw/database/export state, install compatible web/builder/migration 005, verify actual current sources/open cycle, perform a real federal comparison and full union rehearsal, and obtain the separate release decision. Pausing the job or retaining a compatible guarded builder is required for safe rollback; an old federal-only publisher can erase AHA. No Railway variables, schedules or activation are changed by this implementation task.

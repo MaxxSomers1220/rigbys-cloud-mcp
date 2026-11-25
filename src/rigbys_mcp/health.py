@@ -9,7 +9,7 @@ from .repository import read_connection
 from . import SERVER_VERSION
 
 router=APIRouter()
-SOURCES=('grants_gov','nih_reporter','openalex')
+SOURCES=('grants_gov','nih_reporter','openalex','aha')
 STATUSES={'ok','refresh_failed','success','failed','never_run','unavailable','unknown','fixture'}
 
 
@@ -26,11 +26,16 @@ def status_document():
     with read_connection() as conn:
         state=feed_health(conn)
     sources={}
+    metadata=state.get('sources')
+    if not isinstance(metadata,dict):metadata={}
     for name in SOURCES:
-        source=(state.get('sources') or {}).get(name) or {}
+        # A fresh/default federal-only install must not imply AHA was enabled.
+        # A persisted first failed AHA attempt is still visible and sanitized.
+        if name=='aha' and name not in metadata:continue
+        source=metadata.get(name) or {}
         if not isinstance(source,dict):source={}
         status=source.get('status','never_run')
-        item={'status':status if status in STATUSES else 'unknown'}
+        item={'status':status if isinstance(status,str) and status in STATUSES else 'unknown'}
         for field in ('last_success_at','oldest_response_at'):
             value=timestamp(source.get(field))
             if value is not None:item[field]=value

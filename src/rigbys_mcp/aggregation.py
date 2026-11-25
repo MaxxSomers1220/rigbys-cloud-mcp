@@ -44,7 +44,14 @@ def _year_interval(year, fiscal):
 
 def _source_counts(rows, cutoff, as_of):
     awards, papers, unknown_awards, unknown_papers, known_awards, known_papers = [set() for _ in range(6)]
+    opportunities = {'grants_gov':set(), 'aha':set()}
     for row in rows:
+        identifier=row.get('opportunity_id')
+        if isinstance(identifier,str):
+            if identifier.startswith('gg-'):
+                opportunities['grants_gov'].add(identifier)
+            elif identifier.startswith('aha-'):
+                opportunities['aha'].add(identifier)
         for field, year_field, fiscal, eligible, unknown, known in (
             ('linked_awards','fiscal_year',True,awards,unknown_awards,known_awards),
             ('linked_papers','publication_year',False,papers,unknown_papers,known_papers)):
@@ -59,7 +66,13 @@ def _source_counts(rows, cutoff, as_of):
                     known.add(identifier)
                     if interval[0]<=as_of and interval[1]>=cutoff:
                         eligible.add(identifier)
-    return {'grants_gov':len(rows),'nih_reporter':len(awards),'openalex':len(papers)}, {
+    counts={'grants_gov':len(opportunities['grants_gov']),
+            'nih_reporter':len(awards),'openalex':len(papers)}
+    # Preserve the federal-only response shape. Research edge/source-reference
+    # identifiers never become additional opportunities or AHA program counts.
+    if opportunities['aha']:
+        counts['aha']=len(opportunities['aha'])
+    return counts, {
         'award_period_unknown_count':len(unknown_awards-known_awards),
         'paper_period_unknown_count':len(unknown_papers-known_papers)}
 
@@ -118,6 +131,8 @@ def aggregate(rows, topic, window_months=12, as_of=None):
     for row in rows:
         if not row.get('opportunity_id'):
             raise ValueError('Aggregate source row is missing opportunity_id')
+        if not isinstance(row['opportunity_id'],str) or not row['opportunity_id'].startswith(('gg-','aha-')):
+            raise ValueError('Aggregate source row has an unsupported opportunity_id namespace')
         by_id.setdefault(row['opportunity_id'],row)
     rows=list(by_id.values())
     versions=sorted({row['methodology_version'] for row in rows

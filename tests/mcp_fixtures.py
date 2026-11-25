@@ -70,7 +70,7 @@ def fixture_records():
                               'award_amount_parsed','eligibility_parsed','summary_short')}
         linked_awards = [_award(*a) for a in awards]
         linked_papers = [_paper(*p) for p in papers]
-        opportunity_id = f'fixture-{index:04d}'
+        opportunity_id = f'gg-fixture-{index:04d}'
         for linked in linked_awards+linked_papers:
             linked['opportunity_id']=opportunity_id
         score_values = scores if scores is not None else (50,50,50,50)
@@ -102,8 +102,8 @@ def fixture_records():
         record.update(dict(zip(('growth_score','momentum_score','novelty_score','gap_score'),score_values)))
         records.append(record)
     unrelated=deepcopy(records[0])
-    unrelated['opportunity_id']='fixture-0009'
-    unrelated['dedupe_key']=hashlib.sha256(b'fixture-0009').hexdigest()
+    unrelated['opportunity_id']='gg-fixture-0009'
+    unrelated['dedupe_key']=hashlib.sha256(b'gg-fixture-0009').hexdigest()
     unrelated['opportunity_number']='TEST-26-009'
     unrelated['title_normalized']='Renewable energy grid reliability'
     unrelated['description']='Synthetic energy research opportunity.'

@@ -146,7 +146,7 @@ def test_http_auth_rejects_missing_malformed_unknown_expired_revoked_and_short_k
 
 
 def test_real_sdk_lists_four_tools_and_calls_all_four_paid_without_charging_handshake(service):
-    expected=service.db.execute("SELECT record FROM opportunities WHERE opportunity_id='fixture-0001'").fetchone()[0]
+    expected=service.db.execute("SELECT record FROM opportunities WHERE opportunity_id='gg-fixture-0001'").fetchone()[0]
     async def exercise():
         async with streamablehttp_client(service.url,headers=token_header(service.tokens['paid']),terminate_on_close=False) as (read,write,_):
             async with ClientSession(read,write) as session:
@@ -160,9 +160,9 @@ def test_real_sdk_lists_four_tools_and_calls_all_four_paid_without_charging_hand
                 assert len(search['opportunities'])==8
                 assert sum(x['score_evidence']['status']=='insufficient_data_neutral_placeholder'
                            for x in search['opportunities'])==2
-                record=payload(await session.call_tool('opportunity_get',{'opportunity_id':'fixture-0001'}))
+                record=payload(await session.call_tool('opportunity_get',{'opportunity_id':'gg-fixture-0001'}))
                 assert record==expected
-                links=payload(await session.call_tool('opportunity_links',{'opportunity_id':'fixture-0001'}))
+                links=payload(await session.call_tool('opportunity_links',{'opportunity_id':'gg-fixture-0001'}))
                 assert len(links['edges'])==4
                 assert all('join_confidence' in e and 'target_url' in e for e in links['edges'])
                 gap=payload(await session.call_tool('gap_for_topic',{'topic':'rare disease'}))
@@ -175,8 +175,8 @@ def test_real_sdk_lists_four_tools_and_calls_all_four_paid_without_charging_hand
 
 def test_free_paid_tool_and_score_filter_refusals_do_not_consume_search_quota(service):
     headers=token_header(service.tokens['free'])
-    for name,args in [('opportunity_get',{'opportunity_id':'fixture-0001'}),
-                      ('opportunity_links',{'opportunity_id':'fixture-0001'}),
+    for name,args in [('opportunity_get',{'opportunity_id':'gg-fixture-0001'}),
+                      ('opportunity_links',{'opportunity_id':'gg-fixture-0001'}),
                       ('gap_for_topic',{'topic':'rare disease'}),
                       ('opportunity_search',{'topic':'rare disease','min_gap_score':0})]:
         response=service.client.post('/mcp',json=rpc(name,args),headers=headers)
@@ -208,7 +208,7 @@ def test_genuine_capture_ages_exactly_seven_days_and_never_leaks_paid_fields(ser
         assert datetime.fromisoformat(record['feed_generated_at'])<=service.clock['now']-timedelta(days=7)
         assert record['source_refs']
     # The paid source record remains scored and summarized; snapshot projection did not mutate it.
-    current=service.db.execute("SELECT record FROM opportunities WHERE opportunity_id='fixture-0001'").fetchone()[0]
+    current=service.db.execute("SELECT record FROM opportunities WHERE opportunity_id='gg-fixture-0001'").fetchone()[0]
     assert current['summary_short'] and current['score_evidence']['status']=='descriptive_proxy'
 
 
@@ -253,7 +253,7 @@ def test_revocation_rechecked_and_principal_never_follows_session_header(service
     paid_headers={**token_header(service.tokens['paid']),'Mcp-Session-Id':'same-untrusted-session'}
     assert service.client.post('/mcp',json=rpc(),headers=paid_headers).status_code==200
     free_headers={**token_header(service.tokens['free']),'Mcp-Session-Id':'same-untrusted-session'}
-    assert_plain_error(service.client.post('/mcp',json=rpc('opportunity_get',{'opportunity_id':'fixture-0001'}),headers=free_headers),403)
+    assert_plain_error(service.client.post('/mcp',json=rpc('opportunity_get',{'opportunity_id':'gg-fixture-0001'}),headers=free_headers),403)
     service.db.execute('UPDATE api_keys SET revoked_at=%s WHERE key_hash=%s',
                        (BASE_TIME,service.hashes['paid']))
     assert_plain_error(service.client.post('/mcp',json=rpc(),headers=paid_headers),401)

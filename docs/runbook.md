@@ -157,3 +157,13 @@ serves the current file only. A 503 can mean the first upgraded build is pending
 the old builder published without an export, or the database is unavailable.
 Check the feed-builder's release and its latest successful execution before
 retrying.
+
+## 6. AHA source extension: preparation only
+
+This is not an instruction to enable AHA in the live service. The default remains disabled; `--aha-manifest PATH`/`RIGBYS_AHA_MANIFEST` are opt-in and have not been added to production configuration. The reviewed manifest is activation-blocked by unresolved general-application prerequisite verification. [The source/operations contract](nonfederal-aha.md) contains the exact reviewed scope, deadlines and blocked gates.
+
+Before a later authorized release, obtain a database/raw/export backup; ensure compatible web and feed-builder code and migration 005 are installed; verify every required source freshly and review any changed cycle/content; compare against a real federal candidate/checksummed artifact; and complete a whole-union rehearsal. The real historical 769 snapshot is unavailable, so neither a verified 771 union nor zero AHA duplicates can be inferred from the supplied pilot or synthetic sentinel.
+
+Inspect source statuses and actual retrieval times without a fixed three-source assumption. Failed AHA prerequisites/collection/candidate validation must be a nonzero strict-union failure: preserve the last successful timestamp, opportunities/links, caches, sealed free snapshots and export generations/bytes. Do not publish a federal-only fallback or relabel retained data fresh. A first-gate expiry is handled from a freshly verified enabled source; the later invited deadline does not reopen entry.
+
+If a previously AHA-enabled build must be stopped, pause the feed job and keep a compatible guarded builder while diagnosing. Removing the manifest is rejected by the persistent omission guard, including after all AHA calls have expired. Deploying an older federal-only builder can bypass that guard and delete AHA on its next replacement; a web-only rollback does not reverse feed data or job configuration. Any actual activation, removal or recovery deployment requires a separate reviewed operation. No production setting or access control is changed in this task.

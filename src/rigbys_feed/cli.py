@@ -16,6 +16,8 @@ def main():
     parser.add_argument('--raw-dir',default=os.environ.get('RIGBYS_RAW_DIR','tmp/raw'))
     parser.add_argument('--force-research',action='store_true')
     parser.add_argument('--resume-raw',action='store_true',help='Recover successful public requests from the last 12h')
+    parser.add_argument('--aha-manifest', default=os.environ.get('RIGBYS_AHA_MANIFEST'),
+                        help='Explicit reviewed AHA manifest; omitted on a fresh installation means federal-only')
     args=parser.parse_args()
     logging.basicConfig(level=logging.INFO,format='%(message)s')
     logging.getLogger('httpx').setLevel(logging.WARNING)
@@ -26,7 +28,8 @@ def main():
         with psycopg.connect(dsn,autocommit=True) as conn:
             migrate(conn)
             if args.command=='build':
-                result=build(conn,args.raw_dir,args.force_research,args.resume_raw)
+                result=build(conn,args.raw_dir,args.force_research,args.resume_raw,
+                             aha_manifest=args.aha_manifest)
             elif args.command=='health':
                 result=health(conn)
             else:

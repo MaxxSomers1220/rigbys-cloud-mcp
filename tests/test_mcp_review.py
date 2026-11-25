@@ -66,11 +66,11 @@ def test_deadline_date_contract_independent_of_postgres_default_timezone(databas
         sql.Identifier(database.info.dbname)))
     results = repo.search('rare disease', deadline_before='2026-12-01',
                           deadline_after='2026-12-01')['opportunities']
-    assert [r['opportunity_id'] for r in results] == ['fixture-0001']
+    assert [r['opportunity_id'] for r in results] == ['gg-fixture-0001']
     assert results[0]['deadline_parsed'].startswith('2026-12-01T00:00:00')
     assert results[0]['deadline_parsed'].endswith('+00:00')
     assert repo.search('rare disease', deadline_before='2026-11-30',
-                       deadline_after='2026-11-30')['opportunities'][0]['opportunity_id'] == 'fixture-0004'
+                       deadline_after='2026-11-30')['opportunities'][0]['opportunity_id'] == 'gg-fixture-0004'
 
 
 def test_read_queries_do_not_mutate_feed_and_links_have_no_score_or_summary_fields(database, monkeypatch):
@@ -80,8 +80,8 @@ def test_read_queries_do_not_mutate_feed_and_links_have_no_score_or_summary_fiel
     run_count = database.execute('SELECT count(*) FROM feed_runs').fetchone()[0]
     repo.search('rare disease', sponsor='NIH', limit=25)
     assert repo.search('rare disease', sponsor='NIH%')['opportunities'] == []
-    assert repo.get(' fixture-0001 ')['opportunity_id'] == 'fixture-0001'
-    response = repo.links('fixture-0001')
+    assert repo.get(' gg-fixture-0001 ')['opportunity_id'] == 'gg-fixture-0001'
+    response = repo.links('gg-fixture-0001')
     for edge in response['edges']:
         assert 'join_confidence' in edge and edge['target_url']
         assert not any('score' in key or 'summary' in key for key in edge)
