@@ -40,7 +40,7 @@ def test_fresh_migration_idempotent_indexes_and_constraints(database):
     assert {'opportunities','opportunity_links','api_keys','redemptions','rate_limit_counters',
             'feed_runs','source_cache','schema_migrations','free_feed_snapshots','free_search_records',
             'snapshot_exports','snapshot_export_chunks'} == tables
-    assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==4
+    assert conn.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==5
     indexes={row[0] for row in conn.execute("SELECT indexname FROM pg_indexes WHERE schemaname='public'")}
     assert {'opportunities_deadline_idx','opportunities_sponsor_idx','opportunities_gap_idx',
             'opportunities_search_idx','opportunity_links_target_idx'} <= indexes
@@ -128,7 +128,7 @@ def test_applied_migration_checksum_cannot_be_rewritten(database,tmp_path,monkey
     monkeypatch.setattr(module,'MIGRATIONS',altered)
     with pytest.raises(RuntimeError,match='checksum changed'):
         module.migrate(database)
-    assert database.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==4
+    assert database.execute('SELECT count(*) FROM schema_migrations').fetchone()[0]==5
 
 
 def test_failed_fresh_migration_rolls_back_all_ddl(tmp_path,monkeypatch):

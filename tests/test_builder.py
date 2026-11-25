@@ -34,8 +34,10 @@ def test_all_five_layers_in_transform():
 
 def test_failure_event_has_readable_railway_message(tmp_path, monkeypatch, caplog):
     conn = Mock()
-    conn.execute.return_value.fetchone.return_value = (True,)
+    conn.execute.side_effect = lambda sql, *args: Mock(**{
+        'fetchone.return_value': (False,) if 'SELECT EXISTS' in sql else (True,)})
     monkeypatch.setattr(builder, 'health', lambda _: {'sources': {}})
+    monkeypatch.setattr(builder, 'load_cache', lambda *args: None)
     monkeypatch.setattr(builder, 'record_failure', Mock())
 
     def fail(_):

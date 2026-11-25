@@ -81,3 +81,13 @@ and checksums. `opportunities.record` retains the unified record and its
 `linked_nsf_program_awards` evidence. The temporary exact award and paper graph
 projection is stored once in `opportunity_links`.
 Field-level join references point to each linked entry's evidence references.
+
+## Opt-in reviewed AHA opportunities
+
+The nationwide nonfederal extension is limited to two named 2027 AHA cardiovascular/cerebrovascular programs, not every AHA listing or a general registry. See [the complete contract](nonfederal-aha.md) for source verification, material restrictions and activation blocks. Default feed behavior remains federal-only unless the explicit manifest is configured; this task does not activate it in production.
+
+`eligibility_geography` records the eligible-U.S.-nonprofit/no-state-restriction interpretation without promising individual eligibility. Stable derived AHA IDs/dedupe use provider/cycle/program, not a Grants.gov number or mutable title/date. Field citations retain official URLs, source IDs, actual retrieval times, raw-envelope/document hashes and section locators. Shared text/amount helpers do not make an AHA record a Grants.gov record.
+
+AHA date indexes retain `deadline_precision=date`; exact `submission_deadline_at`, local timestamp/timezone, `deadline_stage` and `application_stages` control first-entry closure. The December 9 mandatory pre-proposal closes new entry even though an invited full proposal is due March 4. Published totals 231000/200000 already include stated 10% indirect costs, are not annual amounts, and retain an unknown floor; terms are 36/24 months.
+
+AHA research arrays are empty with explicit outside-current-coverage status and neutral 50 placeholders. Missing AHA awards/papers is not a gap finding, and shared titles or number collisions do not establish research links. Counts distinguish federal input/exclusions, AHA reviewed/admitted/excluded and union publication. Every enabled source must verify before a single complete publication; failed verification or omitted prior configuration retains the whole last-good generation.

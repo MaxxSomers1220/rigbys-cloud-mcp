@@ -117,7 +117,7 @@ def test_snapshot_capture_rolls_back_with_full_publication_transaction(database)
             raise RuntimeError('forced rollback after capture')
     assert database.execute('SELECT count(*) FROM free_feed_snapshots').fetchone()[0]==1
     assert database.execute('SELECT count(*) FROM free_search_records').fetchone()[0]==9
-    assert database.execute("SELECT title_normalized FROM opportunities WHERE opportunity_id='fixture-0001'").fetchone()[0]==original[0]['title_normalized']
+    assert database.execute("SELECT title_normalized FROM opportunities WHERE opportunity_id='gg-fixture-0001'").fetchone()[0]==original[0]['title_normalized']
 
 
 def test_free_filters_caps_and_newest_eligible_generation(database):
@@ -130,8 +130,8 @@ def test_free_filters_caps_and_newest_eligible_generation(database):
                          deadline_before='2026-12-31',deadline_after='2026-12-01',
                          limit=100,as_of=captured+timedelta(days=7))
     assert selected['feed_generated_at'].startswith('2001-01-02')
-    assert {row['opportunity_id'] for row in selected['opportunities']}=={'fixture-0001','fixture-0002','fixture-0005'}
-    assert next(row for row in selected['opportunities'] if row['opportunity_id']=='fixture-0001')['title_normalized']=='Rare disease newer title'
+    assert {row['opportunity_id'] for row in selected['opportunities']}=={'gg-fixture-0001','gg-fixture-0002','gg-fixture-0005'}
+    assert next(row for row in selected['opportunities'] if row['opportunity_id']=='gg-fixture-0001')['title_normalized']=='Rare disease newer title'
     run=database.execute('SELECT max(run_id) FROM feed_runs').fetchone()[0]
     assert capture_snapshot(database,run)==database.execute('SELECT snapshot_id FROM free_feed_snapshots WHERE feed_run_id=%s',(run,)).fetchone()[0]
     assert database.execute('SELECT count(*) FROM free_feed_snapshots').fetchone()[0]==2

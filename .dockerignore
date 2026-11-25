@@ -10,6 +10,9 @@
 !src/**
 !migrations/
 !migrations/**
+!config/
+!config/sources/
+!config/sources/aha-reviewed.json
 
 **/__pycache__/**
 **/*.py[cod]

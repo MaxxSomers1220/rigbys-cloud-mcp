@@ -32,6 +32,7 @@ _CACHE_PART_PREFIX = '__rigbys_cache_chunk_v1__:'
 _FAILURE_STAGES = {
     'grants_gov', 'nih_reporter_openalex', 'clinical_trials_gov',
     'nsf_award_search', 'transform', 'postgres_publication',
+    'source_configuration', 'aha', 'candidate_validation',
 }
 
 
@@ -67,6 +68,20 @@ def _semantic(value):
     return value
 
 
+def _record_semantics(record):
+    value = _semantic(record)
+    if record.get('source') == 'aha':
+        # The shared scorer records its observation date on every run. A new
+        # daily observation is not a changed AHA document. Keep the date in the
+        # published citations, while actual score inputs/values remain semantic.
+        # Federal comparison behavior is deliberately unchanged.
+        for field in ('growth_score', 'momentum_score', 'novelty_score', 'gap_score'):
+            for reference in value.get('source_refs', {}).get(field, []):
+                if reference.get('methodology_version') == record.get('methodology_version'):
+                    reference.pop('as_of', None)
+    return value
+
+
 def _iso(value):
     return value.isoformat() if isinstance(value, datetime) else value
 
@@ -96,7 +111,7 @@ def publish_feed(conn, records, generated_at, source_counts, source_status, cach
             prior = previous.get(record['opportunity_id'])
             changes = deepcopy(prior.get('change_log', [])) if prior else []
             if prior:
-                old, new = _semantic(prior), _semantic(record)
+                old, new = _record_semantics(prior), _record_semantics(record)
                 fields = sorted(key for key in set(old) | set(new) if old.get(key) != new.get(key))
                 if fields:
                     changes.append({'at':generated_at, 'fields':fields})

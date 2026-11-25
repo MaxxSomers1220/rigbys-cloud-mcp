@@ -1,9 +1,11 @@
 """Scheduled feed pipeline. Publication is atomic; upstream failure never erases a feed."""
 from datetime import datetime, timedelta, timezone
+from copy import deepcopy
 import hashlib
 import json
 import logging
 from pathlib import Path
+import re
 
 from .cleaning import clean_all
 from .clinical_trials import ClinicalTrials, attach_trials, mentioned_ids
@@ -14,6 +16,7 @@ from .research import fetch_research, default_fiscal_years
 from .scoring import score
 from .sources import GrantsGov, PublicClient, SourceError, utcnow
 from .summarizing import summarize
+from . import aha
 
 log = logging.getLogger(__name__)
 
@@ -75,11 +78,71 @@ def compact_research(awards, papers):
     return awards, papers
 
 
-def transform(grants, awards, publications, papers, coverage, now, *, trials=None, nsf_programs=None):
+def validate_candidate(records):
+    """Reject identity collisions and explicit mirrors before replacement publication.
+
+    Similar titles, topics, amounts and dates are deliberately not identity proof.
+    This comparison covers the actual federal candidate, not an unavailable
+    historical snapshot, and never rewrites a federal canonical record.
+    """
+    ids, keys = set(), set()
+    federal_ids, federal_urls = set(), set()
+    for record in records:
+        identifier, key = record['opportunity_id'], record['dedupe_key']
+        if identifier in ids or key in keys:
+            raise SourceError('Candidate contains duplicate opportunity identity')
+        ids.add(identifier)
+        keys.add(key)
+        if identifier.startswith('gg-'):
+            federal_ids.add(identifier)
+            federal_urls.update(ref['url'] for ref in record['source_refs'].get('title_normalized', [])
+                                if isinstance(ref, dict) and isinstance(ref.get('url'), str))
+        elif not identifier.startswith('aha-'):
+            raise SourceError('Candidate contains an unsupported opportunity namespace')
+    for record in records:
+        if not record['opportunity_id'].startswith('aha-'):
+            continue
+        if (record.get('canonical_opportunity_id') in federal_ids or
+                any('gg-' + identity['id'] in federal_ids
+                    for identity in record['source_ids'] if identity.get('source') == 'grants_gov') or
+                any(ref.get('url') in federal_urls or ref.get('canonical_url') in federal_urls
+                    for ref in record['source_refs'].get('title_normalized', []) if isinstance(ref, dict))):
+            raise SourceError('AHA candidate has explicit federal mirror evidence; review required')
+
+
+def _additional_record(incoming):
+    """Small normalized boundary, never a Grants.gov cleaning/research input."""
+    record = deepcopy(incoming)
+    identities = [identity['id'] for identity in record['source_ids'] if identity.get('source') == 'aha']
+    if (record.get('source') != 'aha' or len(identities) != 1 or
+            record['opportunity_id'] != 'aha-' + identities[0]):
+        raise SourceError('Invalid normalized AHA identity')
+    identity = re.fullmatch(r'(20\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)', identities[0])
+    if (identity is None or record['dedupe_key'] != hashlib.sha256(
+            f'aha|{identity[1]}|{identity[2]}'.encode()).hexdigest()):
+        raise SourceError('Invalid normalized AHA deduplication key')
+    for field in ('links', 'linked_awards', 'linked_papers', 'linked_trials', 'linked_nsf_program_awards'):
+        if record.get(field):
+            raise SourceError('AHA research evidence is outside the implemented coverage')
+        record[field] = []
+    record['research_coverage'] = {
+        'opportunity_provider': 'aha', 'status': 'outside_current_research_coverage',
+        'note': 'AHA awards, papers, trials and NSF context are not collected; absence is not evidence of a research gap.',
+    }
+    record['join_status'] = 'outside_current_research_coverage'
+    for field in ('linked_awards', 'linked_papers', 'linked_trials', 'linked_nsf_program_awards'):
+        record['source_refs'][field] = [{'source': 'builder',
+            'note': 'Outside current AHA research coverage; no upstream research join was attempted.'}]
+    return record
+
+
+def transform(grants, awards, publications, papers, coverage, now, *, trials=None, nsf_programs=None,
+              additional_records=()):
     records = clean_all(grants, now.date())
     join(records, awards, publications, papers, coverage)
     attach_trials(records, trials or {})
     attach_nsf_awards(records, nsf_programs or {})
+    records.extend(_additional_record(record) for record in additional_records)
     for record in records:
         score(record, now.date())
         summarize(record)
@@ -91,13 +154,22 @@ def transform(grants, awards, publications, papers, coverage, now, *, trials=Non
     return records
 
 
-def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
+def build(conn, raw_dir, force_research=False, resume_raw=False, http=None, *, aha_manifest=None):
     now = datetime.now(timezone.utc)
     counts, stage = {}, 'grants_gov'
     statuses = health(conn).get('sources', {})
     if not conn.execute('SELECT pg_try_advisory_lock(724421702)').fetchone()[0]:
         raise SourceError('another feed build is running')
     try:
+        stage = 'source_configuration'
+        # This durable marker survives a verified zero-open-call result. It is
+        # configuration history, never source material reused for freshness.
+        prior_aha = load_cache(conn, 'aha_scope')
+        if not aha_manifest and (prior_aha or conn.execute(
+                "SELECT EXISTS (SELECT 1 FROM opportunities WHERE starts_with(opportunity_id, 'aha-'))"
+                ).fetchone()[0]):
+            raise SourceError('Previously published AHA scope requires an explicit manifest')
+        stage = 'grants_gov'
         http = http or (ResumeClient(raw_dir) if resume_raw else PublicClient(raw_dir))
         grants = GrantsGov(http).fetch()
         counts['grants_gov_posted'] = len(grants)
@@ -158,11 +230,35 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
         counts['nsf_awards_observed'] = len({a['id'] for p in nsf_programs.values() for a in p['awards']})
         if isinstance(http, ResumeClient):
             http.saved.clear()
+        batch = None
+        if aha_manifest:
+            stage = 'aha'
+            batch = aha.collect(aha_manifest, raw_dir, datetime.now(timezone.utc))
+            if batch.verification.get('status') != 'verified':
+                raise SourceError('Enabled AHA scope was not completely verified')
+            counts.update(batch.counts)
+            caches['aha_scope'] = {'payload': batch.scope, 'fetched_at': batch.verification['verified_at']}
         stage = 'transform'
         now = datetime.now(timezone.utc)
+        additional = []
+        if batch:
+            # Verification may straddle a closing instant. The later invited
+            # full application never reopens entry for a new applicant.
+            additional = [record for record in batch.records if aha.open_to_new_applicants(record, now)]
+            counts['aha_admitted_opportunities'] = len(additional)
+            counts['aha_excluded_programs'] += len(batch.records) - len(additional)
         records = transform(grants, awards, publications, papers, coverage, now,
-                            trials=trials, nsf_programs=nsf_programs)
-        counts.update(published_opportunities=len(records), excluded_or_deduped=len(grants)-len(records),
+                            trials=trials, nsf_programs=nsf_programs,
+                            additional_records=additional)
+        stage = 'candidate_validation'
+        validate_candidate(records)
+        federal_count = sum(record['opportunity_id'].startswith('gg-') for record in records)
+        if federal_count == 0:
+            raise SourceError('Refusing to publish an empty federal candidate')
+        if batch:
+            counts.update(federal_published_opportunities=federal_count,
+                          total_union_opportunities=len(records))
+        counts.update(published_opportunities=len(records), excluded_or_deduped=len(grants)-federal_count,
                       award_links=sum(len(r['linked_awards']) for r in records),
                       paper_links=sum(len(r['linked_papers']) for r in records),
                       trial_links=sum(len(r['linked_trials']) for r in records),
@@ -182,6 +278,9 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
                         'last_success_at': max(s['ref']['fetched_at'] for s in trials.values()),
                         'reused_weekly_cache': not trial_refresh,
                     }, **nsf_status}
+        if batch:
+            statuses['aha'] = {'status': 'ok', 'last_success_at': batch.verification['verified_at'],
+                               'oldest_response_at': min(ref['fetched_at'] for ref in batch.references)}
         stage = 'postgres_publication'
         publish_feed(conn, records, now.isoformat(), counts, statuses, caches)
         result = health(conn)
@@ -194,7 +293,8 @@ def build(conn, raw_dir, force_research=False, resume_raw=False, http=None):
         failed_sources = {'grants_gov':['grants_gov'],
                           'nih_reporter_openalex':['nih_reporter','openalex'],
                           'clinical_trials_gov':['clinical_trials_gov'],
-                          'nsf_award_search':['nsf_award_search']}.get(stage, [])
+                          'nsf_award_search':['nsf_award_search'],
+                          'aha':['aha'], 'source_configuration':['aha']}.get(stage, [])
         for name in failed_sources:
             statuses[name] = {**statuses.get(name,{}), 'status':'refresh_failed'}
         error_type = type(exc).__name__

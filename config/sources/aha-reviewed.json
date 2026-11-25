@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "provider": "aha",
+  "cycle": "2027",
+  "enabled_by_default": false,
+  "reviewed_date": "2026-11-24",
+  "review_scope": "Two named standard AHA programs; not the entire AHA directory.",
+  "geographic_policy": {
+    "country": "US",
+    "scope": "nationwide",
+    "state_restrictions": [],
+    "basis": "Reviewed RFPs require a U.S. nonprofit institution and specify no state restriction; this is a geographic-screen interpretation, not individual eligibility approval."
+  },
+  "general_requirements_document": "aha_general_requirements",
+  "documents": [
+    {
+      "key": "aha_career_rfp",
+      "url": "https://professional.heart.org/en/-/media/PHD-Files/Research/Funding-Opportunities-Media-Folder/Career-Development-Award.pdf?sc_lang=en",
+      "format": "pdf",
+      "review_status": "verified",
+      "expected_sha256": "f786d92b420b2b0840905b6d25bc669bb59e0c8660dc3c856ba9131a26928ac2",
+      "approved_redirects": [],
+      "assertions": [
+        {
+          "key": "national_nonprofit_host",
+          "pattern": "(?:U\\.?\\s*S\\.?|United\\s+States)[\\s\\S]{0,150}non[ -]?profit|non[ -]?profit[\\s\\S]{0,150}(?:U\\.?\\s*S\\.?|United\\s+States)"
+        },
+        {
+          "key": "indirect_costs",
+          "pattern": "10\\s*%"
+        },
+        {
+          "key": "doctorate",
+          "pattern": "doctor(?:al|ate)|Ph\\.?\\s*D"
+        },
+        {
+          "key": "career_rank",
+          "pattern": "assistant\\s+professor"
+        },
+        {
+          "key": "career_window",
+          "pattern": "(?:6|six)\\s+years"
+        },
+        {
+          "key": "mentor_count",
+          "pattern": "(?:two|2)\\s+mentor|primary\\s+mentor[\\s\\S]{0,120}secondary\\s+mentor"
+        },
+        {
+          "key": "effort",
+          "pattern": "10\\s*%"
+        },
+        {
+          "key": "prior_award_restrictions",
+          "pattern": "R01"
+        },
+        {
+          "key": "K99_R00",
+          "pattern": "K99\\s*/\\s*R00|K99|R00"
+        },
+        {
+          "key": "membership",
+          "pattern": "Professional\\s+Member|membership"
+        },
+        {
+          "key": "immigration",
+          "pattern": "DACA"
+        },
+        {
+          "key": "immigration_H1B",
+          "pattern": "H[ -]?1[ -]?B"
+        },
+        {
+          "key": "immigration_TN",
+          "pattern": "\\bTN\\b"
+        },
+        {
+          "key": "resubmission_limit",
+          "pattern": "(?:three|3)\\s+(?:times|submissions)"
+        }
+      ],
+      "review_note": "Historical reviewer pinned original bytes and material terms; current source access must be reverified. Identity/cycle, money, units and dates are checked against these program values at collection.",
+      "document_revision": null
+    },
+    {
+      "key": "aha_innovative_rfp",
+      "url": "https://professional.heart.org/en/-/media/PHD-Files/Research/Funding-Opportunities-Media-Folder/Innovative-Project-Award.pdf?sc_lang=en",
+      "format": "pdf",
+      "review_status": "verified",
+      "expected_sha256": "8f64e6f001fcaf15037c81e419d1139bdb2411928c8fa15ffedee59290767b65",
+      "approved_redirects": [],
+      "assertions": [
+        {
+          "key": "national_nonprofit_host",
+          "pattern": "(?:U\\.?\\s*S\\.?|United\\s+States)[\\s\\S]{0,150}non[ -]?profit|non[ -]?profit[\\s\\S]{0,150}(?:U\\.?\\s*S\\.?|United\\s+States)"
+        },
+        {
+          "key": "indirect_costs",
+          "pattern": "10\\s*%"
+        },
+        {
+          "key": "doctorate",
+          "pattern": "doctor(?:al|ate)|Ph\\.?\\s*D"
+        },
+        {
+          "key": "beyond_training",
+          "pattern": "fellow|training"
+        },
+        {
+          "key": "membership",
+          "pattern": "Professional\\s+Member|membership"
+        },
+        {
+          "key": "peer_review",
+          "pattern": "peer\\s+review"
+        },
+        {
+          "key": "reviewer_registration",
+          "pattern": "register|registration"
+        },
+        {
+          "key": "no_preliminary_data",
+          "pattern": "preliminary\\s+data"
+        },
+        {
+          "key": "blinding",
+          "pattern": "blind"
+        },
+        {
+          "key": "mandatory_preproposal",
+          "pattern": "pre[ -]?proposal"
+        },
+        {
+          "key": "invitation_only",
+          "pattern": "invit"
+        },
+        {
+          "key": "immigration",
+          "pattern": "DACA"
+        },
+        {
+          "key": "immigration_H1B",
+          "pattern": "H[ -]?1[ -]?B"
+        },
+        {
+          "key": "immigration_TN",
+          "pattern": "\\bTN\\b"
+        }
+      ],
+      "review_note": "Historical reviewer pinned original bytes and material terms; current source access must be reverified. Identity/cycle, money, units and dates are checked against these program values at collection.",
+      "document_revision": null
+    },
+    {
+      "key": "aha_general_requirements",
+      "url": "https://professional.heart.org/en/research-programs/application-resources",
+      "format": "html",
+      "review_status": "unverified",
+      "expected_sha256": null,
+      "approved_redirects": [],
+      "assertions": [
+        {
+          "key": "general_application_identity",
+          "pattern": "application\\s+(?:requirements|resources)"
+        },
+        {
+          "key": "membership",
+          "pattern": "membership|professional\\s+member"
+        },
+        {
+          "key": "immigration_status",
+          "pattern": "citizen|permanent\\s+resident|immigration"
+        },
+        {
+          "key": "institutional_authorization",
+          "pattern": "institution|non[ -]?profit"
+        }
+      ],
+      "review_note": "Mandatory activation blocker: pilot direct request was HTTP403; no original general-rules bytes/hash supplied. Manual web inspection is not automated daily verification. Fresh authoritative accessible evidence must be reviewed and pinned before enabling.",
+      "document_revision": null
+    }
+  ],
+  "programs": [
+    {
+      "key": "career-development-award",
+      "title": "2027 Career Development Award",
+      "source_url": "https://professional.heart.org/en/research-programs/aha-funding-opportunities/career-development-award",
+      "document": "aha_career_rfp",
+      "total_usd": 231000,
+      "annual_usd": 77000,
+      "months": 36,
+      "indirect_note": "Published amounts already include the stated 10% institutional indirect costs.",
+      "opens_date": "2026-10-01",
+      "deadline_date": "2026-12-01",
+      "deadline_time": "15:00:00",
+      "deadline_stage": "full_application",
+      "award_start_date": "2027-04-01",
+      "description": "Mentored early-career cardiovascular and cerebrovascular research and training.",
+      "eligibility": [
+        "Eligible U.S. nonprofit host; no state-specific restriction is listed.",
+        "A qualifying doctorate is required at application. Faculty/staff appointment at assistant-professor level or equivalent or below must be secured by activation, within six years of the first qualifying appointment; documented training or career-interruption exceptions apply.",
+        "Prior NIH R01 or K99/R00 recipients and current or former AHA Career Development/Scientist Development awardees are excluded. Other NIH K support requires nonoverlapping budgets.",
+        "At least 10% effort, two mentors including one outside the department/division/institution, and a career-development plan are required.",
+        "AHA Professional Membership, institutional sign-off and one application per deadline are required; the same project is limited to three submissions.",
+        "Allowed status at submission and through funding: U.S. citizen, permanent resident, qualifying I-485 pending resident, E-3, G-4, H-1B, O-1, TN or DACA; review the source documentation conditions."
+      ],
+      "locators": {
+        "title_normalized": "p.1 heading",
+        "description": "p.1 Purpose; pp.6–7 Research Plan",
+        "eligibility_parsed": "p.1 Important Notes; p.2 Eligibility; p.3 Requirements; p.4 Restrictions",
+        "award_amount_parsed": "p.4 Budget",
+        "award_period_months": "p.4 Budget",
+        "application_stages": "p.1 Key Dates and Important Notes"
+      },
+      "expected_content_sha256": "f786d92b420b2b0840905b6d25bc669bb59e0c8660dc3c856ba9131a26928ac2"
+    },
+    {
+      "key": "innovative-project-award",
+      "title": "2027 Innovative Project Award",
+      "source_url": "https://professional.heart.org/en/research-programs/aha-funding-opportunities/innovative-project-award",
+      "document": "aha_innovative_rfp",
+      "total_usd": 200000,
+      "annual_usd": 100000,
+      "months": 24,
+      "indirect_note": "Published amounts already include the stated 10% indirect costs.",
+      "opens_date": "2026-10-01",
+      "deadline_date": "2026-12-09",
+      "deadline_time": "15:00:00",
+      "deadline_stage": "pre_proposal",
+      "invitation_date": "2027-01-21",
+      "invited_full_deadline_date": "2027-03-04",
+      "award_start_date": "2027-07-01",
+      "description": "Novel cardiovascular and cerebrovascular research ideas without preliminary results.",
+      "eligibility": [
+        "Eligible U.S. nonprofit host; no state-specific restriction is listed.",
+        "A research or clinical doctorate and employment beyond fellowship/training are required; no additional career-rank, discipline or seniority limit is listed.",
+        "AHA Professional Membership and institutional authorization are required.",
+        "Applicants must complete assigned peer reviews for their own pre-proposal to advance; reviewer registration is required.",
+        "The idea must not previously have been submitted to AHA. Preliminary data are prohibited; comply with blinded pre-proposal and format requirements.",
+        "The initial pre-proposal is mandatory; the later full-application stage requires invitation.",
+        "At submission and through funding, retain a permitted status: U.S. citizenship, permanent residence, qualifying I-485 pending residence, E-3, G-4, H-1B, O-1, TN or DACA. Fellowship-only F-1/J-1 clauses do not waive the exclusion of fellows."
+      ],
+      "locators": {
+        "title_normalized": "p.1 heading",
+        "description": "p.2 Purpose",
+        "eligibility_parsed": "p.1 Important Notes; pp.2–4 Purpose/Eligibility; pp.5–8 Required Pre-proposal",
+        "award_amount_parsed": "p.5 Budget",
+        "award_period_months": "p.5 Budget",
+        "application_stages": "p.1 Key Dates and Important Notes"
+      },
+      "expected_content_sha256": "8f64e6f001fcaf15037c81e419d1139bdb2411928c8fa15ffedee59290767b65"
+    }
+  ],
+  "activation_note": "Intentionally blocked on general application requirements verification; no production source activation in this implementation.",
+  "review_binding_sha256": "1b37e10bc656e324030526605e6c3946a8ae120e287dbd47b4e2c6db9d90813d"
+}
